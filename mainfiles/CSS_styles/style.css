@@ -1,19 +1,34 @@
 /* css/style.css */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+background-color:white;
+padding: 10px;
+}
+
 nav {
     background-color: #035914;
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
 nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    text-align: center; /* Center the menu items */
+    text-align: center; 
+    display: flex;
 }
 
 nav li {
-    display: inline-block; /* Make list items horizontal */
-    margin: 0 10px;
+    /* display: inline-block; To make list items horizontal */
+    margin-right: 20px;
     position: relative; /* For dropdown positioning */
 }
 
@@ -21,6 +36,32 @@ nav a {
     color: white;
     text-decoration: none;
     padding: 10px;
+}
+
+nav .hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+nav .search-bar {
+    display: flex;
+}
+
+nav .search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+nav .search-bar button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+main {
+    padding: 20px;
 }
 
 nav a:hover {
@@ -51,6 +92,23 @@ nav li:hover .dropdown {
     display: block; /* Show the dropdown on hover */
 }
 
-main {
-  padding: 20px;
+/* Responsive styles */
+@media (max-width: 768px) {
+    nav {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+    }
+
+    nav .hamburger {
+        display: block;
+    }
+
+    nav .search-bar {
+        margin-top: 10px;
+    }
 }
