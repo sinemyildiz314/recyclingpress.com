@@ -20,8 +20,8 @@
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul>
-                    <li><a href="../index.html" data-page="home">Home</a></li>
-                    <li><a href="./news.html" data-page="news">News</a></li>
+                    <li><a href="index.html" data-page="home">Home</a></li>
+                    <li><a href="news.html" data-page="news">News</a></li>
                     <li>
                         <a href="#" data-page="sustainability">Sustainability &#9662;</a>
                         <ul class="dropdown">
@@ -29,8 +29,8 @@
                             <li><a href="./sustainability/recyclables.html" data-page="recyclables">Recyclables</a></li>
                         </ul>
                     </li>
-                    <li><a href="./events.html" data-page="events">Events</a></li>
-                    <li><a href="./contact.html" data-page="contact">Contact</a></li>
+                    <li><a href="events.html" data-page="events">Events</a></li>
+                    <li><a href="contact.html" data-page="contact">Contact</a></li>
                 </ul>
                 <div class="search-bar">
                     <input type="text" placeholder="Search...">
@@ -40,7 +40,7 @@
         </header>
     </div>
 
-    <main id="content">
+    <div id="page-content" data-page="contact">
         <h1>Contact Us</h1>
 
         <div class="contact-info">
@@ -60,7 +60,7 @@
                 <input type="email" id="email" name="email" required><br><br>
 
                 <label for="message">Message:</label>
-                </textarea id="message"></form></textarea><br><br>
+                <textarea id="message" name="message"></textarea><br><br>
 
                 <input type="submit" value="Submit">
             </form>
@@ -81,16 +81,13 @@
             width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" 
             referrerpolicy="no-referrer-when-downgrade"></iframe>
         </div>
-
-
-       
-    </main>
+   </div>
 
         <footer>
             <p>Copyright &copy; 2025 recyclingpress.com</p>
         </footer>
 
-    <script src="./mainfiles/script.js"></script>
+    <script src="../script.js"></script>
 </body>
 
 </html>

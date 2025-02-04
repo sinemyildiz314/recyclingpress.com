@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recyclingpress.com</title>
-    <link href="./mainfiles/CSS_styles/style.css" rel="stylesheet">
+    <link href="../CSS_styles/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -14,23 +14,22 @@
     <div id="wrapper">
         <header>
             <!-- <img class="logo" src tbc..> -->
-             <!-- add search bar and subscribe button at the right tab, add hamburger on the left top -->
              <nav>
                 <div class="hamburger">
                     <i class="fas fa-bars"></i>
                 </div>
                 <ul>
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="./HTML_pages/news.html">News</a></li>
+                    <li><a href="index.html" data-page="home">Home</a></li>
+                    <li><a href="news.html" data-page="news">News</a></li>
                     <li>
-                        <a href="#">Sustainability &#9662;</a>
+                        <a href="#" data-page="sustainability">Sustainability &#9662;</a>
                         <ul class="dropdown">
-                            <li><a href="./HTML_pages/sustainability/materials.html">Materials</a></li>
-                            <li><a href="./HTML_pages/sustainability/recyclables.html">Recyclables</a></li>
+                            <li><a href="./sustainability/materials.html" data-page="materials">Materials</a></li>
+                            <li><a href="./sustainability/recyclables.html" data-page="recyclables">Recyclables</a></li>
                         </ul>
                     </li>
-                    <li><a href="./HTML_pages/events.html">Events</a></li>
-                    <li><a href="./HTML_pages/contact.html">Contact</a></li>
+                    <li><a href="events.html" data-page="events">Events</a></li>
+                    <li><a href="contact.html" data-page="contact">Contact</a></li>
                 </ul>
                 <div class="search-bar">
                     <input type="text" placeholder="Search...">
@@ -38,23 +37,24 @@
                 </div>
              </nav>
         </header>
-    </div>
 
-    <main id="content">
+        <main id="content">
 
-        <h1>Welcome to My Website</h1>
-        <p>This is the home page content.</p>
-        <p>This is the home page content.</p>
-        <p>This is the home page content.</p>
-        <p>This is the home page content.</p>
-        <p>This is the home page content.</p>
+            <h1>Welcome to My Website</h1>
+            <p>This is the home page content.</p>
+            <p>This is the home page content.</p>
+            <p>This is the home page content.</p>
+            <p>This is the home page content.</p>
+            <p>This is the home page content.</p>
 
-    </main>
+        </main>
 
         <footer>
             <p>Copyright &copy; 2025 recyclingpress.com</p>
         </footer>
+    </div>
 
-    <script src="./script.js"></script>
+    <script src="../script.js"></script>
 </body>
+
 </html>
