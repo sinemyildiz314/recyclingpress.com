@@ -1,72 +1,53 @@
 //Fade-in animation on page load
-document.addEventListener('DOMContentLoaded', (event) => {
+document.addEventListener('DOMContentLoaded', function() {
     document.body.style.opacity = 0; 
     setTimeout(() => {
-        document.body.style.transition = "opacity 1s ease-in-out"; // Added a smooth transition
-        document.body.style.opacity = 1; // Fade in
-    }, 100); // Delay the fade-in slightly
-});
+        document.body.style.transition = "opacity 1s ease-in-out"; 
+        document.body.style.opacity = 1; 
+    }, 100); 
 
-const navLinks = document.querySelectorAll('nav a');
-const contentDiv = document.getElementById('content');
-const hamburger = document.querySelector('.hamburger');
-const navUl = document.querySelector('nav ul');
+    // Contact form submission
+    const contactForm = document.getElementById('contact-form');
+    contactForm.addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
 
-navLinks.forEach(link => {
-    link.addEventListener('click', (event) => {
-        // event.preventDefault();
-        const page = event.target.dataset.page;
-        loadPage(page);
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+
+        if (!name || !email || !message) {
+            alert('Please fill in all fields.');
+            return;
+        }
+        alert('Message sent successfully!');
+        contactForm.reset(); // Clear the form after successful submission
+
+        console.log("Name:", name);
+        console.log("Email:", email);
+        console.log("Message:", message);
+    });
+
+    // Dropdown functionality (TBD, I will ask at the Saturday class, it still not working )
+    const dropdownLinks = document.querySelectorAll('.dropdown > a');
+    const dropdownMenus = document.querySelectorAll('.dropdown ul');
+
+
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', (event) => {
+            event.preventDefault();
+
+            const parentDropdown = link.parentElement;
+            const subMenu = parentDropdown.querySelector('ul');
+
+            if (subMenu) {
+                subMenu.classList.toggle('show');
+
+                dropdownMenus.forEach(otherMenu => {
+                    if (otherMenu !== subMenu && otherMenu.classList.contains('show')) {
+                        otherMenu.classList.remove('show');
+                    }
+                });
+            }
+        });
     });
 });
-
-function loadPage(page) {
-    fetch(`${page}.html`)
-      .then(response => response.text())
-      .then(html => {
-            const tempDiv = document.createElement('div');
-            tempDiv.innerHTML = html;
-            const pageContent = tempDiv.querySelector('#page-content');
-
-            if (pageContent) {
-                contentDiv.innerHTML = pageContent.innerHTML;
-
-                const loadedPage = pageContent.dataset.page;
-
-                history.pushState(null, null, loadedPage);  // Use pushState for cleaner URLs
-
-                if (loadedPage === 'contact') { 
-                    const form = document.getElementById('contact-form');
-                    if (form) {
-                        form.addEventListener('submit', handleSubmit);
-                    } else {
-                        console.error("Contact form not found after loading contact.html");
-                    }
-                }
-
-            } else {
-                console.warn("No #page-content found in loaded HTML. Check your page template: " + page + ".html");
-                contentDiv.innerHTML = html; 
-            }
-        })
-      .catch(error => {
-            console.error("Error loading page:", error);
-            contentDiv.innerHTML = "<p>Error loading page.</p>";
-        });
-}
-
-
-function handleSubmit(event) {
-    event.preventDefault();
-    const name = document.getElementById('name').value;
-    const email = document.getElementById('email').value;
-    const message = document.getElementById('message').value;
-    alert('Form submitted!');
-}
-
-hamburger.addEventListener('click', () => {
-    navUl.style.display = navUl.style.display === 'block' ? 'none' : 'block';
-});
-
-
-
