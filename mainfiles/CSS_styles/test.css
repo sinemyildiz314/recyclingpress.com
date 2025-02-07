@@ -1,0 +1,162 @@
+nav {
+    background-color: #035914;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 60px;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    /* text-align: center;  */
+    display: flex;
+}
+
+nav li {
+    /* display: inline-block;  */
+    margin-right: 20px;
+    position: relative; /* For dropdown positioning */
+}
+
+nav a {
+    display: block;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(253, 253, 253);
+    padding: 10px;
+    transition: color 0.3s ease, backgroud-color 0.3s ease; transform 0.2s ease;
+}
+
+nav a:hover {
+    color:#ccc;
+    background-color: #002b0a;
+    transform: translateY(-2px);
+}
+
+nav a:active {
+    color: #90d5a1;
+    transform: translateY(1px);
+}
+
+nav .hamburger {
+    display: none;
+    cursor: pointer;
+    padding: 15px;
+    font-size: 20px;
+    color: white;
+    background: none;
+    border: none;
+    z-index: 2;
+}
+
+nav .search-bar {
+    display: flex;
+}
+
+nav .search-bar input {
+    padding: 5px;
+    border: 1px solid #ccc;
+}
+
+nav .search-bar button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    cursor: pointer;
+}
+
+
+.dropdown {
+    display: none; /* Hide the dropdown initially */
+    position: absolute;
+    background-color:#002b0a;
+    z-index: 1; /* To Ensure it's on top */
+    min-width: 160px; 
+    box-shadow: 0px 8px 16px 0px rgba(7, 184, 113, 0.2); 
+    top: 100%;
+    left: 0;
+}
+
+.dropdown li {
+    display: block; 
+    margin: 0; 
+
+}
+.dropdown a {
+    padding: 12px 16px;
+    text-align: left; 
+    display: block;
+    text-decoration: none;
+    color: rgb(253, 253, 253);
+}
+
+nav li:hover .dropdown {
+    display: block; 
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    nav .hamburger {
+        display: block;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: fixed;
+        top: 60px;
+        left: 10px;
+        width: 40%;
+        height: calc(100vh - 60%);
+        overflow-y: auto;
+        background-color: #035914;
+        z-index: 11;
+        transition: transform 0.3s ease-in-out;
+        transform: translateY(-100%)
+    }
+
+    nav ul.show {
+        display: flex;
+        transform: translateY(0);
+    }
+
+    nav li {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+    }
+
+    nav a {
+        padding: 15px 10px;
+        text-decoration: none;
+        color: rgb(253, 253, 253)
+    }
+
+    nav .search-bar {
+        margin-top: 10px;
+    }
+
+    .dropdown {
+        display: none; /* Initially hidden */
+        position: static; /* Prevents dropdown from going off-screen */
+        width: 100%; /* Occupy full width of the menu */
+        box-shadow: none; /* Remove box shadow on mobile */
+    }
+
+    .dropdown.show {
+        display: block; /* Show when .show class is present */
+    }
+
+    .dropdown li {
+        display: block;
+    }
+
+    .dropdown a {
+        padding: 12px 16px;
+        text-align: left;
+    }
+}

@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recyclingpress.com</title>
-    <link href="../CSS_styles/style.css" rel="stylesheet">
-    <link href="../CSS_styles/contact.css" rel="contactpagestylesheet">
+    <link href="../CSS_styles/mainstyles.css" rel="stylesheet">
+    <link href="../CSS_styles/navigation.css" rel="stylesheet">
+    <link href="../CSS_styles/contact.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -15,11 +16,11 @@
     <div id="wrapper">
         <header>
             <!-- <img class="logo" src tbc..> -->
-             <nav>
-                <div class="hamburger">
+            <nav>
+                <div class="hamburger" onclick="toggleMenu()">
                     <i class="fas fa-bars"></i>
                 </div>
-                <ul>
+                <ul id="main-menu">
                     <li><a href="index.html" data-page="home">Home</a></li>
                     <li><a href="news.html" data-page="news">News</a></li>
                     <li>
@@ -88,6 +89,22 @@
         </footer>
 
     <script src="../script.js"></script>
+
+    <script>
+        function toggleMenu() {
+            const menu = document.getElementById("main-menu");
+            menu.classList.toggle("show");
+        }
+
+        window.addEventListener('click', function(e){
+            const menu = document.getElementById("main-menu");
+            const hamburger = document.querySelector('.hamburger');
+            if (!menu.contains(e.target) && !hamburger.contains(e.target) && window.innerWidth > 768){
+                menu.classList.remove('show');
+            }
+        });
+    </script>
+
 </body>
 
 </html>

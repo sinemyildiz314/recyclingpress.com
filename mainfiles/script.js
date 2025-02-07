@@ -27,27 +27,4 @@ document.addEventListener('DOMContentLoaded', function() {
         console.log("Message:", message);
     });
 
-    // Dropdown functionality (TBD, I will ask at the Saturday class, it still not working )
-    const dropdownLinks = document.querySelectorAll('.dropdown > a');
-    const dropdownMenus = document.querySelectorAll('.dropdown ul');
-
-
-    dropdownLinks.forEach(link => {
-        link.addEventListener('click', (event) => {
-            event.preventDefault();
-
-            const parentDropdown = link.parentElement;
-            const subMenu = parentDropdown.querySelector('ul');
-
-            if (subMenu) {
-                subMenu.classList.toggle('show');
-
-                dropdownMenus.forEach(otherMenu => {
-                    if (otherMenu !== subMenu && otherMenu.classList.contains('show')) {
-                        otherMenu.classList.remove('show');
-                    }
-                });
-            }
-        });
-    });
 });

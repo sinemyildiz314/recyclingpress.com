@@ -1,0 +1,38 @@
+#content {
+    padding: 20px;
+}
+
+.featured-and-recent {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Two columns for featured/recent */
+    grid-gap: 20px;
+}
+
+.grid-item {
+    padding: 20px;
+    border: 1px solid #ccc;
+}
+
+#featured-article img, #recent-articles img, aside img, #featured-video video {
+    max-width: 100%;
+    height: auto;
+}
+
+.article-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-gap: 10px;
+}
+
+.gallery-images {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    grid-gap: 10px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .featured-and-recent {
+        grid-template-columns: 1fr; /* Stack featured/recent */
+    }
+}

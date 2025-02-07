@@ -4,49 +4,118 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recyclingpress.com</title>
-    <link href="../CSS_styles/style.css" rel="stylesheet">
+    <link href="../CSS_styles/mainstyles.css" rel="stylesheet">
+    <link href="../CSS_styles/navigation.css" rel="stylesheet">
+    <link href="../CSS_styles/index.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
-
 </head>
 <body>
     <div id="wrapper">
         <header>
             <!-- <img class="logo" src tbc..> -->
              <nav>
-                <div class="hamburger">
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
                     <i class="fas fa-bars"></i>
-                </div>
-                <ul>
-                    <li><a href="index.html" data-page="home">Home</a></li>
-                    <li><a href="news.html" data-page="news">News</a></li>
-                    <li>
-                        <a href="#" data-page="sustainability">Sustainability &#9662;</a>
-                        <ul class="dropdown">
-                            <li><a href="./sustainability/materials.html" data-page="materials">Materials</a></li>
-                            <li><a href="./sustainability/recyclables.html" data-page="recyclables">Recyclables</a></li>
-                        </ul>
+                </button>
+                
+                <ul id="main-menu" role="menubar">
+                    <li role="presentation"><a href="index.html" role="menuitem" data-page="home">Home</a></li>
+                    <li role="presentation"><a href="news.html" role="menuitem" data-page="news">News</a></li>
+                    <li role="presentation" aria-haspopup="true">
+                      <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
+                        Sustainability <i class="fas fa-caret-down"></i>
+                      </a>
+                      <ul class="dropdown" role="menu">
+                        <li role="presentation"><a href="./sustainability/materials.html" role="menuitem" data-page="materials" id="materials-item">Materials</a></li>
+                        <li role="presentation"><a href="./sustainability/recyclables.html" role="menuitem" data-page="recyclables" id="recyclables-item">Recyclables</a></li>
+                      </ul>
                     </li>
-                    <li><a href="events.html" data-page="events">Events</a></li>
-                    <li><a href="contact.html" data-page="contact">Contact</a></li>
-                </ul>
+                    <li role="presentation"><a href="events.html" role="menuitem" data-page="events">Events</a></li>
+                    <li role="presentation" aria-haspopup="true">
+                      <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
+                      <ul class="dropdown" role="menu">
+                        <li role="presentation"><a href="./contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">Recycling Press Media Group</a></li>
+                        <li role="presentation"><a href="./contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
+                      </ul>
+                    </li>
+                    <div class="social-media-icons">
+                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-twitter"></i></a></li>
+                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-instagram"></i></a></li>
+                    </div>
+                  </ul>
+
                 <div class="search-bar">
                     <input type="text" placeholder="Search...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
              </nav>
+
         </header>
 
         <main id="content">
-
-            <h1>Welcome to My Website</h1>
-            <p>This is the home page content.</p>
-            <p>This is the home page content.</p>
-            <p>This is the home page content.</p>
-            <p>This is the home page content.</p>
-            <p>This is the home page content.</p>
-
+            <div class="featured-and-recent">
+                <section id="featured-article" class="grid-item">
+                    <h2>Featured Article</h2>
+                    <article>
+                        <h3>Green News</h3>
+                        <img src="../images/greennews.png" alt="Green News Image">
+                        <p>This Swiss data centre will hear 6,000 homes with recycled energy</p>
+                        <a href="article.html">Read More</a>
+                    </article>
+                </section>
+        
+                <section id="recent-articles" class="grid-item">
+                    <h2>Recent Articles</h2>
+                    <div class="article-list">
+                        <article>
+                            <h3>Article Title 1</h3>
+                            <img src="article-image1.jpg" alt="Article 1 Image">
+                            <p>Article summary goes here...</p>
+                            <a href="article1.html">Read More</a>
+                        </article>
+                        <article>
+                            <h3>Article Title 2</h3>
+                            <img src="article-image2.jpg" alt="Article 2 Image">
+                            <p>Article summary goes here...</p>
+                            <a href="article2.html">Read More</a>
+                        </article>
+                    </div>
+                </section>
+            </div>
+        
+            <aside class="grid-item">
+                <h2>More Articles</h2>
+                <div class="article-list">
+                    <article>
+                        <h3>Article Title 4</h3>
+                        <img src="article-image4.jpg" alt="Article 4 Image">
+                        <p>Article summary goes here...</p>
+                        <a href="article4.html">Read More</a>
+                    </article>
+                    <article>
+                        <h3>Article Title 5.</h3>
+                        <img src="article-image5.jpg" alt="Article 5 Image">
+                        <p>Article summary goes here...</p>
+                        <a href="article5.html">Read More</a>
+                    </article>
+                </div>
+            </aside>
+        
+            <section id="featured-video" class="grid-item">
+                <h2>Featured Video</h2>
+                <video src="featured-video.mp4" controls></video>
+            </section>
+        
+            <section id="photo-gallery" class="grid-item">
+                <h2>Photo Gallery</h2>
+                <div class="gallery-images">
+                    <img src="photo1.jpg" alt="Photo 1">
+                    <img src="photo2.jpg" alt="Photo 2">
+                    <img src="photo3.jpg" alt="Photo 3">
+                </div>
+            </section>
         </main>
 
         <footer>
@@ -55,6 +124,20 @@
     </div>
 
     <script src="../script.js"></script>
+
+    <script>
+
+        function toggleMenu() {
+        const menu = document.getElementById("main-menu");
+        menu.classList.toggle("show"); // This is fine
+
+        // Toggle aria-expanded attribute for accessibility
+        const hamburger = document.querySelector('.hamburger');
+        const isExpanded = menu.classList.contains('show');
+        hamburger.setAttribute('aria-expanded', isExpanded); 
+        }
+
+    </script>
 </body>
 
 </html>
