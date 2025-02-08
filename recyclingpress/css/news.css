@@ -1,4 +1,3 @@
-/* style.css */
 body {
     font-family: sans-serif;
     margin: 0;
@@ -6,13 +5,13 @@ body {
     background-color: #f4f4f4;
 }
 
-.container {
+/* .container {
     max-width: 960px;
     margin: 20px auto;
     padding: 20px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 #top-news {
     margin-bottom: 20px;
@@ -30,11 +29,11 @@ h2 {
     display: flex;
     overflow-x: auto;
     padding: 10px;
-    flex-wrap: wrap; /* Allow wrapping */
+    flex-wrap: wrap; 
 }
 
 .news-item {
-    flex: 1 0 300px; /* Adjust as needed */
+    flex: 1 0 300px;
     margin: 10px;
     border: 1px solid #ddd;
     padding: 10px;
@@ -56,18 +55,18 @@ h2 {
 
 .news-slider-container {
     position: relative;
-    overflow: hidden; /* Hide overflowing content */
+    overflow: hidden; 
 }
 
 .news-slider {
     display: flex;
     transition: transform 0.5s ease-in-out;
-    width: fit-content; /* Key: Make slider width fit content */
+    width: fit-content; 
 }
 
 .news-slider .news-item {
-    flex: 0 0 100%; /* Key: Each item takes full width of container */
-    margin: 0; /* Remove margins from slider items */
+    flex: 0 0 100%; 
+    margin: 0; 
 }
 
 .slider-prev, .slider-next {

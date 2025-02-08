@@ -1,12 +1,13 @@
 /* css/style.css */
 body {
     font-family: sans-serif;
+    line-height: 1.6;
     margin: 0;
     padding: 0;
 }
 
 header {
-background-color:white;
+background-color:#f4f4f4;
 padding: 10px;
 }
 
@@ -21,4 +22,8 @@ footer {
 #main-menu {
     margin-top: 10px;
     margin-left:0px;
+}
+
+#content {
+    padding: 20px;
 }

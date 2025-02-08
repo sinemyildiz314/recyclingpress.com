@@ -4,15 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recyclingpress.com</title>
-    <link href="./CSS_styles/mainstyles.css" rel="stylesheet">
-    <link href="./CSS_styles/navigation.css" rel="stylesheet">
-    <link href="./CSS_styles/index.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="./css/mainstyles.css" rel="stylesheet">
+    <link href="./css/navigation.css" rel="stylesheet">
+    <link href="./css/index.css" rel="stylesheet">
 </head>
 <body>
-    <div id="wrapper">
         <header>
             <!-- <img class="logo" src tbc..> -->
              <nav>
@@ -50,7 +49,6 @@
                     <button><i class="fas fa-search"></i></button>
                 </div>
              </nav>
-
         </header>
 
         <main id="content">
@@ -67,7 +65,6 @@
                         <a href="./articles_html/greennews.html">Read More</a>
                     </article>
                 </section>
-        
                 <section id="recent-articles" class="grid-item">
                     <h2>Top Stories</h2>
                     <div class="article-list">
@@ -86,7 +83,6 @@
                     </div>
                 </section>
             </div>
-        
             <aside class="grid-item">
                 <h2>More Articles</h2>
                 <div class="article-list">
@@ -106,7 +102,6 @@
                     </article>
                 </div>
             </aside>
-        
             <section id="featured-video" class="grid-item">
                 <h2>Explore The Recycling Process - How Are Over 130 Million Tons of Glass Recycled?</h2>
                 <p>This video, from "The Engine", summarizes the modern recycling process.
@@ -128,26 +123,8 @@
         <footer>
             <p>Copyright &copy; 2025 recyclingpress.com</p>
         </footer>
-    </div>
-
     <script src="./script.js"></script>
 
-    <script>
-
-        function toggleMenu() {
-        const menu = document.getElementById("main-menu");
-        menu.classList.toggle("show"); // This is fine
-
-        // Toggle aria-expanded attribute for accessibility
-        const hamburger = document.querySelector('.hamburger');
-        const isExpanded = menu.classList.contains('show');
-        hamburger.setAttribute('aria-expanded', isExpanded); 
-
-        // hamburger.classList.toggle('hidden');
-
-        }
-
-    </script>
 </body>
 
 </html>

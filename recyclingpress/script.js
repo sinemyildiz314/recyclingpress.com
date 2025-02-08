@@ -15,7 +15,7 @@ function toggleMenu() {
         function newsSlider() {
             const newsSliderContainer = document.querySelector('.section.news-slider');
             if (newsSliderContainer) {
-                const newsSlider = document.querySelector('.news-slider');
+                const newsSlider = document.querySelector('div.news-slider');
                 const sliderPrev = document.querySelector('.slider-prev');
                 const sliderNext = document.querySelector('.slider-next');
                 const newsItems = document.querySelectorAll('.news-slider .news-item');
@@ -30,11 +30,13 @@ function toggleMenu() {
                     const maxPosition = (newsItems.length - 1) * itemWidth;
                     currentPosition = Math.min(currentPosition + itemWidth, maxPosition);
                     newsSlider.style.transform = `translateX(-${currentPosition}px)`;
+                    console.log("sliderNext", currentPosition);
                 });
             
                 sliderPrev.addEventListener('click', () => {
                     currentPosition = Math.max(currentPosition - itemWidth, 0);
                     newsSlider.style.transform = `translateX(-${currentPosition}px)`;
+                    console.log("sliderPrev", currentPosition);
                 });
         
             }
@@ -62,7 +64,8 @@ function toggleMenu() {
                     console.log("Email:", email);
                     console.log("Message:", message);
                     }); 
-            }  
+            }
+  
         }
 
 //Fade-in animation on page load
