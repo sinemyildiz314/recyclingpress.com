@@ -17,3 +17,8 @@ main {
 footer {
     padding: 20px;
 }
+
+#main-menu {
+    margin-top: 10px;
+    margin-left:0px;
+}
