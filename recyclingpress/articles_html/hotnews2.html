@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>recyclingpress.com</title>
+    <link href="../CSS_styles/mainstyles.css" rel="stylesheet">
+    <link href="../CSS_styles/navigation.css" rel="stylesheet">
+    <link href="../CSS_styles/index.css" rel="stylesheet">
+    <link href="../CSS_styles/articles.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+    crossorigin="anonymous" referrerpolicy="no-referrer">
+</head>
+<body>
+    <div id="wrapper">
+        <header>
+            <!-- <img class="logo" src tbc..> -->
+             <nav>
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                
+                <ul id="main-menu" role="menubar">
+                    <li role="presentation"><a href="../index.html" role="menuitem" data-page="home">Home</a></li>
+                    <li role="presentation"><a href="../news.html" role="menuitem" data-page="news">News</a></li>
+                    <li role="presentation" aria-haspopup="true">
+                      <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
+                        Sustainability <i class="fas fa-caret-down"></i>
+                      </a>
+                      <ul class="dropdown" role="menu">
+                        <li role="presentation"><a href="../sustainability/materials.html" role="menuitem" data-page="materials" id="materials-item">Materials</a></li>
+                        <li role="presentation"><a href="../sustainability/recyclables.html" role="menuitem" data-page="recyclables" id="recyclables-item">Recyclables</a></li>
+                      </ul>
+                    </li>
+                    <li role="presentation"><a href="../events.html" role="menuitem" data-page="events">Events</a></li>
+                    <li role="presentation" aria-haspopup="true">
+                      <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
+                      <ul class="dropdown" role="menu">
+                        <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">Recycling Press Media Group</a></li>
+                        <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
+                      </ul>
+                    </li>
+                    <div class="social-media-icons">
+                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-twitter"></i></a></li>
+                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-instagram"></i></a></li>
+                    </div>
+                  </ul>
+
+                <div class="search-bar">
+                    <input type="text" placeholder="Search...">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+             </nav>
+
+        </header>
+    </div>
+
+    <div class="container">
+        <article>
+            <h1>The 5 biggest recycling trends to look out for in 2025</h1>
+            <img src="../images/hotnews2tomra.png" alt="News Image">
+            <p>The recycling industry is rapidly evolving, with 2025 poised to be a pivotal year.
+                Key advancements are expected in AI-powered sorting, aluminum decarbonization, and packaging sustainability.
+                Dr. Volker Rehrmann, head of <a href="https://www.tomra.com/" target="_blank">TOMRA Recycling</a>,
+                a leader in sensor-based sorting, highlights five key trends
+                shaping the future of recycling.</p>
+
+            <h2>1. AI-driven sorting gets smarter</h2>
+            <p>Deep learning, a branch of AI, will continue to revolutionize sorting practices.
+                Building on last year's successes in accurately sorting challenging materials
+                like opaque packaging, textiles, and multi-layer materials, deep learning will
+                tackle even more complex tasks, potentially expanding into areas like metal sorting.
+                While traditional sorting methods using sensors remain important, AI's ability to
+                recognize objects based on visual characteristics opens new possibilities, automating
+                tasks previously done manually, similar to how TOMRA's GAINnext system mimics human vision.</p>
+
+            <h2>2. Real-time insights for better sorting</h2>
+            <p>AI and cloud technology will enhance transparency and analysis in sorting facilities.
+                Platforms like TOMRA Insight and tools like PolyPerception's waste analyzer will provide
+                real-time data on waste composition.  Digital twins of sorting lines will enable detailed
+                tracking and analysis, empowering operators to make data-driven decisions for optimized efficiency,
+                reduced material loss, and improved regulatory compliance.</p>
+
+            <h2>3. PPWR sets the pace for packaging</h2>
+            <p>The European Packaging and Packaging Waste Regulation (PPWR) will significantly impact the industry in 2025.
+                Ambitious recyclability targets for 2030 and mandatory recycled content requirements for plastic packaging
+                will drive innovation in eco-design and recycling technologies, including advanced mechanical and chemical recycling.
+                The PPWR provides much-needed certainty, encouraging investment and potentially stabilizing recycled material prices.</p>
+
+            <h2>4. Aluminum recycling goes green</h2>
+            <p>Decarbonization remains crucial, especially for aluminum.  Driven by corporate net-zero commitments,
+                demand for recycled aluminum and high-quality feedstock will continue to grow.  Recycled aluminum
+                offers significant CO2 savings, and achieving a circular aluminum economy requires improved sorting
+                and material separation.  Technologies like Laser-Induced Breakdown Spectroscopy (LIBS), with TOMRA
+                planning further AUTOSORT PULSE system deployments, will play a key role.</p>
+
+            <h2>5. Expanding the scope of recycling</h2>
+            <p>Beyond common recyclables like plastics and aluminum, other material streams will gain traction.
+                For example, advanced wood sorting technologies are enabling the production of recycled wood products
+                with quality comparable to virgin materials.  Similarly, advancements in textile recycling are demonstrating
+                the technological feasibility of large-scale textile recovery and reuse.</p>
+        </article>
+    </div>
+
+    <footer>
+        <p>Copyright &copy; 2025 recyclingpress.com</p>
+    </footer>
+
+<script src="../script.js"></script>
+
+<script>
+    function toggleMenu() {
+        const menu = document.getElementById("main-menu");
+        menu.classList.toggle("show");
+    }
+
+    window.addEventListener('click', function(e){
+        const menu = document.getElementById("main-menu");
+        const hamburger = document.querySelector('.hamburger');
+        if (!menu.contains(e.target) && !hamburger.contains(e.target) && window.innerWidth > 768){
+            menu.classList.remove('show');
+        }
+    });
+</script>
+
+</body>
+
+</html>
