@@ -1,0 +1,43 @@
+/* articles.css */
+.container {
+    width: 80%; 
+    margin: 20px auto; /* Centers the container */
+    padding: 20px;
+    background-color: #f8f8f8; 
+    border-radius: 8px; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); 
+}
+
+article {
+    text-align: justify; 
+}
+
+.article-image {
+    display: block; /* Make the image a block element */
+    margin: 20px auto; /* Centers the image */
+    max-width: 100%; 
+    height: auto;
+}
+
+@media (max-width: 768px) {  /* Adjust breakpoint as needed */
+    .container {
+        width: 95%; /* Takes up more of the screen width on mobile */
+        padding: 10px; /* Reduced padding */
+        margin: 10px auto;
+    }
+
+    h1 {
+        font-size: 1.8em; /* Smaller heading size */
+    }
+
+    p {
+        font-size: 1em; /* Slightly smaller paragraph size */
+        line-height: 1.5; /* Improved line height for readability */
+    }
+
+    .article-image {
+        margin: 10px auto; /* Reduced margin */
+    }
+}
+
+

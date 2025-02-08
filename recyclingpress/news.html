@@ -4,81 +4,145 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recyclingpress.com</title>
-    <link href="../CSS_styles/mainstyles.css" rel="stylesheet">
-    <link href="../CSS_styles/navigation.css" rel="stylesheet">
+    <link href="./CSS_styles/mainstyles.css" rel="stylesheet">
+    <link href="./CSS_styles/navigation.css" rel="stylesheet">
+    <link href="./CSS_styles/news.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
+
 </head>
 <body>
     <div id="wrapper">
         <header>
             <!-- <img class="logo" src tbc..> -->
-            <nav>
-                <div class="hamburger" onclick="toggleMenu()">
+             <nav>
+                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
                     <i class="fas fa-bars"></i>
-                </div>
-                <ul id="main-menu">
-                    <li><a href="index.html" data-page="home">Home</a></li>
-                    <li><a href="news.html" data-page="news">News</a></li>
-                    <li>
-                        <a href="#" data-page="sustainability">Sustainability &#9662;</a>
-                        <ul class="dropdown">
-                            <li><a href="./sustainability/materials.html" data-page="materials">Materials</a></li>
-                            <li><a href="./sustainability/recyclables.html" data-page="recyclables">Recyclables</a></li>
+                </button>
+                    <ul id="main-menu" role="menubar">
+                        <li role="presentation"><a href="index.html" role="menuitem" data-page="home">Home</a></li>
+                        <li role="presentation"><a href="news.html" role="menuitem" data-page="news">News</a></li>
+                        <li role="presentation" aria-haspopup="true">
+                        <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
+                            Sustainability <i class="fas fa-caret-down"></i>
+                        </a>
+                        <ul class="dropdown" role="menu">
+                            <li role="presentation"><a href="./sustainability_html/materials.html" role="menuitem" data-page="materials" id="materials-item">Materials</a></li>
+                            <li role="presentation"><a href="./sustainability_html/recyclables.html" role="menuitem" data-page="recyclables" id="recyclables-item">Recyclables</a></li>
                         </ul>
-                    </li>
-                    <li><a href="events.html" data-page="events">Events</a></li>
-                    <li><a href="contact.html" data-page="contact">Contact</a></li>
-                </ul>
+                        </li>
+                        <li role="presentation"><a href="events.html" role="menuitem" data-page="events">Events</a></li>
+                        <li role="presentation" aria-haspopup="true">
+                        <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
+                        <ul class="dropdown" role="menu">
+                            <li role="presentation"><a href="./contact_html/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">Recycling Press Media Group</a></li>
+                            <li role="presentation"><a href="./contact_html/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
+                        </ul>
+                        </li>
+                        <div class="social-media-icons">
+                        <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-twitter"></i></a></li>
+                        <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-instagram"></i></a></li>
+                        </div>
+                    </ul>
+
                 <div class="search-bar">
                     <input type="text" placeholder="Search...">
                     <button><i class="fas fa-search"></i></button>
                 </div>
              </nav>
+
         </header>
-    </div>
 
-    <div id="newspage-content" data-page="news">
-        <h1>News</h1>
-
-        <div class="News-info">
-            <h2>News Information</h2>
-            <p>TBD<br>TBD</p>
+        <div class="container">
+            <section id="top-news">
+                <h2>Top Hot News</h2>
+                <div class="news-row">
+                    <div class="news-item">
+                        <img src="placeholder.jpg" alt="News Image">
+                        <h3>Headline 1</h3>
+                        <p>Short description of the news.</p>
+                    </div>
+                    <div class="news-item">
+                        <img src="placeholder.jpg" alt="News Image">
+                        <h3>Headline 2</h3>
+                        <p>Short description of the news.</p>
+                    </div>
+                    <div class="news-item">
+                        <img src="placeholder.jpg" alt="News Image">
+                        <h3>Headline 3</h3>
+                        <p>Short description of the news.</p>
+                    </div>
+                </div>
+            </section>
+    
+            <section id="mixed-news">
+                <h2>Mixed News</h2>
+                <div class="news-slider-container">
+                    <div class="news-slider">
+                        <div class="news-item">
+                            <img src="placeholder.jpg" alt="News Image">
+                            <h3>Headline 4</h3>
+                            <p>Short description of the news.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="placeholder.jpg" alt="News Image">
+                            <h3>Headline 5</h3>
+                            <p>Short description of the news.</p>
+                        </div>
+                        <div class="news-item">
+                            <img src="placeholder.jpg" alt="News Image">
+                            <h3>Headline 6</h3>
+                            <p>Short description of the news.</p>
+                        </div>
+                    </div>
+                    <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
+                    <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+                </div>
+            </section>
         </div>
 
+    
+        
+                <!-- <div class="news-column">
+                    <div id="featured-article">
+                        <h2>Hot News</h2>
+                        <h3>Turning Waste into Blooms: RHS Trials Compost Toilets</h3>
+                        <img src="./images/hotnews1.png" alt="Green Skills Garden">
+                        <p>The horticultural charity's showpiece garden in Surrey is setting aside a space to test human waste fertiliser...</p>
+                        <a href="./articles_html/hotnews1.html">Read More</a>
+                    </div>
+                </div> -->
 
-        <div class="social-media">
-            <h2>Social Media</h2>
-            <ul>
-                <li><a href="#">Instagram</a></li>
-                <li><a href="#">Twitter</a></li>
-                <li><a href="#">Whatsapp</a></li>
-            </ul>
-        </div>
-   </div>
 
         <footer>
             <p>Copyright &copy; 2025 recyclingpress.com</p>
         </footer>
+    </div>
 
-    <script src="../script.js"></script>
+    <script src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
 
     <script>
         function toggleMenu() {
-            const menu = document.getElementById("main-menu");
-            menu.classList.toggle("show");
-        }
+        const menu = document.getElementById("main-menu");
+        menu.classList.toggle("show"); // This is fine
 
-        window.addEventListener('click', function(e){
-            const menu = document.getElementById("main-menu");
-            const hamburger = document.querySelector('.hamburger');
-            if (!menu.contains(e.target) && !hamburger.contains(e.target) && window.innerWidth > 768){
-                menu.classList.remove('show');
-            }
-        });
+        // Toggle aria-expanded attribute for accessibility
+        const hamburger = document.querySelector('.hamburger');
+        const isExpanded = menu.classList.contains('show');
+        hamburger.setAttribute('aria-expanded', isExpanded); 
+
+        hamburger.classList.toggle('hidden');
+
+        }
     </script>
 
-</body>
 
+</body>
 </html>
+

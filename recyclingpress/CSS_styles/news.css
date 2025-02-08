@@ -1,0 +1,104 @@
+/* style.css */
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+#top-news {
+    margin-bottom: 20px;
+}
+
+#mixed-news {
+    margin-bottom: 20px;
+}
+
+h2 {
+    margin-bottom: 10px;
+}
+
+.news-row {
+    display: flex;
+    overflow-x: auto;
+    padding: 10px;
+    flex-wrap: wrap; /* Allow wrapping */
+}
+
+.news-item {
+    flex: 1 0 300px; /* Adjust as needed */
+    margin: 10px;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 5px;
+    box-sizing: border-box;
+    transition: transform 0.2s;
+}
+
+.news-item img {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.news-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
+.news-slider-container {
+    position: relative;
+    overflow: hidden; /* Hide overflowing content */
+}
+
+.news-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: fit-content; /* Key: Make slider width fit content */
+}
+
+.news-slider .news-item {
+    flex: 0 0 100%; /* Key: Each item takes full width of container */
+    margin: 0; /* Remove margins from slider items */
+}
+
+.slider-prev, .slider-next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    cursor: pointer;
+    z-index: 1;
+}
+
+.slider-prev {
+    left: 10px;
+}
+
+.slider-next {
+    right: 10px;
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .news-item {
+        flex: 1 0 45%; /* Two columns */
+    }
+}
+
+@media (max-width: 500px) {
+    .news-item {
+        flex: 1 0 90%; /* One column */
+    }
+}
