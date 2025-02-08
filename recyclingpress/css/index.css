@@ -16,6 +16,11 @@
     transition: transform 0.2s;
 }
 
+.grid-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+}
+
 #featured-article img, #recent-articles img, aside img, #featured-video video {
     max-width: 100%;
     height: auto;
