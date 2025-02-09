@@ -4,7 +4,14 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
+    height: 50px;
+    position: fixed;
+    width: 100%;
+    top:0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    box-shadow: 0 2px 5px rgba(33, 5, 5, 0.1);
 }
 
 nav #sustainability-link, #aboutus-link {
@@ -28,9 +35,9 @@ nav ul {
     display: none; /* Initially hidden */
     flex-direction: column; /* Stack menu items vertically */
     position: fixed; /* Used fixed positioning for the menu */
-    top: 60px; 
-    left: 10px;
-    width: 40%; 
+    top: 50px; 
+    left: 0px;
+    width: 30%; 
     height: calc(100vh - 60px); 
     overflow-y: auto;
     background-color: #035914; 
@@ -95,7 +102,7 @@ nav .search-bar input {
 }
 
 nav .search-bar button {
-    background-color: #4CAF50;
+    background-color: #0faa33;
     color: white;
     padding: 5px 10px;
     border: none;
@@ -106,7 +113,7 @@ nav .search-bar button {
     display: none; 
     position: absolute;  
     box-shadow: 0px 8px 16px 0px rgba(7, 184, 113, 0.2);
-    background-color: #002b0a;
+    background-color: #12521f;
     z-index: 1;
     min-width: 160px;
     top: 100%;
@@ -154,4 +161,24 @@ nav .search-bar button {
     nav .search-bar {
         margin-top: 10px;
     }
+}
+
+
+.nav-content {
+    display: flex; /* Use flexbox for layout */
+    justify-content: center; /* Center content horizontally */
+    align-items: center; /* Center content vertically */
+}
+
+.logo {
+    display: inline-block;
+    vertical-align: middle;
+    margin-right: 100px; /* Add some space to the right of the logo */
+    margin-top: 10%;
+}
+
+.logo img {
+    height: 150px; /* Set the desired height for your logo */
+    vertical-align: middle;
+
 }
