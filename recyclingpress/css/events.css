@@ -1,0 +1,49 @@
+.event {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    padding: 10px; /* Add some padding around the event */
+    border-bottom: 1px solid #ccc; /* Optional: Add a separator line */
+  }
+  
+  .event a {
+      display: flex; /* Make the <a> element a flex container too */
+      align-items: center; /* Vertically align items within the link */
+      text-decoration: none; /* Remove underline from the link */
+      color: inherit; /* Inherit color from parent */
+      width: 100%; /* Make the link take full width */
+  }
+  
+  .date {
+    width: 60px; /* Adjust width as needed */
+    text-align: center;
+    margin-right: 20px; /* Add some space between date and details */
+  }
+  
+  .month {
+    font-size: 14px;
+    font-weight: bold;
+    color: #888; /* Example color */
+  }
+  
+  .day {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333; /* Example color */
+  }
+  
+  .event-details {
+    flex-grow: 1; /* Allow details to take up remaining space */
+  }
+  
+  .event h3 {
+    margin-top: 0; /* Remove default margin from h3 */
+  }
+  
+  .event-details h3, h4, p {
+    margin: 5px;
+
+  }
+
+  h4 {
+    color: rgb(195, 76, 21);
+  }
