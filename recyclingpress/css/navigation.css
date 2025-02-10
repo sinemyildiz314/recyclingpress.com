@@ -4,12 +4,12 @@ nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 50px;
+    height: 60px;
     position: fixed;
     width: 100%;
     top:0;
-    left: 0;
-    right: 0;
+    left: 0px;
+    right: 0px;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(33, 5, 5, 0.1);
 }
@@ -94,6 +94,8 @@ nav .hamburger {
 
 nav .search-bar {
     display: flex;
+    margin-left: auto;
+    margin-right: 20px;
 }
 
 nav .search-bar input {
@@ -120,7 +122,6 @@ nav .search-bar button {
     left: 0;
     transition: opacity 0.3s ease;
 }
-
 
 
 .dropdown li {
@@ -165,20 +166,19 @@ nav .search-bar button {
 
 
 .nav-content {
-    display: flex; /* Use flexbox for layout */
-    justify-content: center; /* Center content horizontally */
-    align-items: center; /* Center content vertically */
+    display: flex; 
+    /* justify-content: space-between;  */
+    align-items: center; 
 }
 
 .logo {
     display: inline-block;
     vertical-align: middle;
-    margin-right: 100px; /* Add some space to the right of the logo */
-    margin-top: 10%;
+    margin-top: 12%;
+    margin-left: 10px;
 }
 
 .logo img {
-    height: 150px; /* Set the desired height for your logo */
-    vertical-align: middle;
-
+    height: 150px; 
 }
+
