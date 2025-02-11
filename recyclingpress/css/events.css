@@ -1,34 +1,33 @@
 .event {
     display: flex;
-    align-items: center; /* Vertically align items */
-    padding: 10px; /* Add some padding around the event */
-    border-bottom: 1px solid #ccc; /* Optional: Add a separator line */
+    align-items: center; 
+    padding: 10px; 
+    border-bottom: 1px solid #ccc; 
   }
   
   .event a {
-      display: flex; /* Make the <a> element a flex container too */
-      align-items: center; /* Vertically align items within the link */
-      text-decoration: none; /* Remove underline from the link */
-      color: inherit; /* Inherit color from parent */
-      width: 100%; /* Make the link take full width */
+      display: flex; 
+      align-items: center; 
+      text-decoration: none; 
+      color: inherit; 
+      width: 100%; 
   }
   
   .date {
-    width: 60px; /* Adjust width as needed */
+    width: 60px; 
     text-align: center;
     margin-right: 20px; /* Add some space between date and details */
   }
   
   .month {
     font-size: 14px;
-    font-weight: bold;
-    color: #888; /* Example color */
+    color: #180e02; 
   }
   
   .day {
     font-size: 20px;
     font-weight: bold;
-    color: #333; /* Example color */
+    color: #180e02; 
   }
   
   .event-details {
@@ -36,7 +35,7 @@
   }
   
   .event h3 {
-    margin-top: 0; /* Remove default margin from h3 */
+    margin-top: 0; 
   }
   
   .event-details h3, h4, p {
@@ -47,3 +46,63 @@
   h4 {
     color: rgb(195, 76, 21);
   }
+
+#newsletter-signup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#newsletter-signup.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#newsletter-signup input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#newsletter-signup button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.event {
+    transition: transform 0.3s ease;
+}
+
+.event:hover {
+    transform: scale(1.05);
+}
+
+main h2 {
+    animation: fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+#newsletter-message { 
+    margin-top: 10px;
+    color: green; 
+}
