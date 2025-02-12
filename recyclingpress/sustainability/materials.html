@@ -57,72 +57,61 @@
    <br>
    <br>
 
-   <h1>Sustainability & Recycling</h1>
-
-    <div class="title">
-        <h2>Recycling 101</h2>
-        <p>Want to learn about recycling? Check out our tips below.</p>
-    </div>
-
-   <main id="content">
-    <div class="container">
-        <h2>Three Basic Rules</h2>
-        <p>Check out these rules to recycle like a champion and
-            help more materials get a second life.</p>
-
-        <div class="row">
-          <div class="col-sm-4">
-            <img src="../images/recycling1.png" alt="Recycle bottles, cans, paper and cardboard" width="100%">
-            <p>Rule 1</p>
-            <h2>Recycle bottles, cans, paper and cardboard</h2>
-            <p></p>
-          </div>
-
-          <div class="col-sm-4">
-            <img src="../images/recycling2.png" alt="Recycle bottles, cans, paper and cardboard" width="100%">
-            <p>Rule 2</p>
-            <h2>Keep food and liquid out of your recycling</h2>
-          </div>
-
-          <div class="col-sm-4">
-            <img src="../images/recycling3.png" alt="Recycle bottles, cans, paper and cardboard" width="100%">
-            <p>Rule 3</p>
-            <h2>No loose plastic bags no bagged recyclables</h2>
-          </div>
-        </div>
-
-        <div id="quiz">
-            <h1>Trash or Treasure?</h1>
-            <p>Recycling can be confusing, but it doesn't have to be. Learn the truth about common recycling myths and
-                make sure you're doing your part to protect the environment.</p>
-            <div class="question">
-              <h2>Recycling arows on a container mean it is definitely recyclable?</h2>
-              <label><input type="checkbox" name="q1" value="a">Yes</label>
-              <label><input type="checkbox" name="q1" value="b">No</label>
+    <main>
+            <h1>Sustainability & Recycling</h1>
+            <div class="title">
+                <h2>Recycling 101</h2>
+                <p>Want to learn about recycling? Check out our tips below.</p>
             </div>
-          
-            <div class="question">
-              <h2>Containers must be squeaky clean in order to be recycled?</h2>
-              <label><input type="checkbox" name="q2" value="a">Yes</label>
-              <label><input type="checkbox" name="q2" value="b">No</label>
+            <div class="container">
+                <h2>Three Basic Rules</h2>
+                <p>Follow these rules to recycle correctly.</p>
+    
+                <div class="rules">
+                    <div class="rule">
+                        <img src="../images/recycling1.png" alt="Recycle bottles, cans, paper">
+                        <h2>Rule 1</h2>
+                        <p>Recycle bottles, cans, paper, and cardboard.</p>
+                    </div>
+                    <div class="rule">
+                        <img src="../images/recycling2.png" alt="Keep food out of recycling">
+                        <h2>Rule 2</h2>
+                        <p>Keep food and liquid out of recycling.</p>
+                    </div>
+                    <div class="rule">
+                        <img src="../images/recycling3.png" alt="No loose plastic bags">
+                        <h2>Rule 3</h2>
+                        <p>No loose plastic bags in the bin.</p>
+                    </div>
+                </div>
+    <p>Think you know recycling? 🌍 Test your eco-smarts and level up your green game! Take the quiz now! ♻️✅</p>
+                <button class="start-quiz-btn" onclick="startQuiz()">Start Quiz</button>
             </div>
-
-            <button onclick="checkAnswers()">Submit</button>
-            
-          
-            <div id="result"></div>
-        </div>
-
-
-
-      </div>
-   </main>
-
+    
+            <!-- Quiz Popup -->
+            <div id="quizPopup" class="popup">
+                <div class="popup-content">
+                    <h2 id="quizQuestion"></h2>
+                    <div id="quizOptions"></div>
+                    <button class="next-btn" onclick="nextQuestion()">Next</button>
+                    <button class="close-button" onclick="closeQuiz()">Close</button>
+                </div>
+            </div>
+    
+            <div id="quizResultPopup" class="popup">
+                <div class="popup-content">
+                    <h2 id="resultMessage"></h2>
+                    <p id="resultScore"></p>
+                    <button class="close-button" onclick="closeQuiz()">Close</button>
+                    <button class="replay-button" onclick="startQuiz()">Replay</button>
+                </div>
+            </div>
+    </main>
         <footer>
             <p>Copyright &copy; 2025 recyclingpress.com</p>
         </footer>
 
-    <script src="https://cdn.jsdelivr.net/npm/js-confetti@latest/dist/js-confetti.browser.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0"></script>
     <script src="../script.js"></script>
 
 </body>
