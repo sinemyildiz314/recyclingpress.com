@@ -58,114 +58,148 @@ function contactForm() {
 
 
 // The Game Logic
-let currentQuestion = 0;
-const questions = document.querySelectorAll('.question');
-const result = document.getElementById('result');
+// ✅ Confetti Animation (Triggers for a perfect score)
+function launchConfetti() {
+  const duration = 3 * 1000; // Confetti animation lasts 3 seconds
+  const end = Date.now() + duration;
+
+  (function frame() {
+      confetti({
+          particleCount: 5,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0 }
+      });
+      confetti({
+          particleCount: 5,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1 }
+      });
+
+      if (Date.now() < end) {
+          requestAnimationFrame(frame);
+      }
+  })();
+}
+
+const questions = [
+  { question: "Recycling arrows on a container mean it is definitely recyclable?", options: ["Yes", "No"], answer: "No" },
+  { question: "Containers must be squeaky clean to be recycled?", options: ["Yes", "No"], answer: "No" },
+  { question: "Even if an item shouldn't go in the bin, it will get sorted anyway?", options: ["Yes", "No"], answer: "No" },
+  { question: "All types of glass bottles and jars are not recyclable?", options: ["Yes", "No"], answer: "Yes" },
+  { question: "Aerosol cans are acceptable in the recycle bin?", options: ["Yes", "No"], answer: "Yes" }
+];
+
+let currentQuestionIndex = 0;
 let score = 0;
 
-questions[currentQuestion].classList.add('show');
+function startQuiz() {
+  currentQuestionIndex = 0;
+  score = 0;
+  document.getElementById("quizPopup").style.display = "flex";
+  showQuestion();
+}
 
-function checkAnswers() {
-  const answers = {
-    q1: ['b'],
-    q2: ['b']
-  };
+function showQuestion() {
+  const question = questions[currentQuestionIndex];
+  document.getElementById("quizQuestion").innerText = question.question;
 
-  for (let q in answers) {
-    const selectedAnswers = document.querySelectorAll(`input[name="${q}"]:checked`);
-    const selectedValues = Array.from(selectedAnswers).map(input => input.value);
+  const optionsContainer = document.getElementById("quizOptions");
+  optionsContainer.innerHTML = "";
+  
+  question.options.forEach(option => {
+      const label = document.createElement("label");
+      label.innerText = option;
+      
+      const input = document.createElement("input");
+      input.type = "radio";
+      input.name = "quizOption";
+      input.value = option;
+      input.onclick = () => nextQuestion(input.value); // Moves to next question automatically
+      
+      label.prepend(input);
+      optionsContainer.appendChild(label);
+  });
+}
 
-    if (selectedValues.length === answers[q].length && selectedValues.every((value, index) => value === answers[q][index])) {
+function nextQuestion(selectedValue) {
+  if (selectedValue === questions[currentQuestionIndex].answer) {
       score++;
-    }
   }
 
-  const currentQuestionInputs = questions[currentQuestion].querySelectorAll('input');
-  currentQuestionInputs.forEach(input => input.disabled = true);
-
-  setTimeout(showNextQuestion, 1000);
-}
-
-function showNextQuestion() {
-  questions[currentQuestion].classList.remove('show');
-
-  const currentQuestionInputs = questions[currentQuestion].querySelectorAll('input');
-  currentQuestionInputs.forEach(input => {
-    input.checked = false;
-    input.disabled = false;
-  });
-
-  currentQuestion++;
-
-  if (questions[currentQuestion]) {
-    questions[currentQuestion].classList.add('show');
+  currentQuestionIndex++;
+  if (currentQuestionIndex < questions.length) {
+      showQuestion();
   } else {
-    showResultMessage();
+      showResult();
   }
 }
 
-function showResultMessage() {
-  const answers = {
-    q1: ['b'],
-    q2: ['b']
-  };
-  const totalQuestions = Object.keys(answers).length;
-  const percentage = (score / totalQuestions) * 100;
+function showResult() {
+  document.getElementById("quizPopup").style.display = "none";
+  document.getElementById("quizResultPopup").style.display = "flex";
 
-  let message = "";
-  if (percentage >= 80) {
-    message = "Congratulations! You did great!";
-  } else if (percentage >= 50) {
-    message = "Not bad! You can do better!";
+  let message;
+  if (score === 5) {
+      message = "🎉 Congrats! Perfect Score! 🎉";
+      launchConfetti(); // 🎊 Start confetti animation if the user scores 5/5
+  } else if (score >= 3) {
+      message = "Great Job!";
   } else {
-    message = "Try again! You can do it!";
+      message = "Try Again!";
   }
 
-  const popup = document.createElement('div');
-  popup.classList.add('popup');
-  popup.innerHTML = `
-    <div class="popup-content">
-      <h2>${message}</h2>
-      <p>Your score is ${score} out of ${totalQuestions}.</p>
-      <button class="close-button">Close</button>
-      <button class="replay-button">Replay</button>
-    </div>
-  `;
-  document.body.appendChild(popup);
+  document.getElementById("resultMessage").innerText = message;
+  document.getElementById("resultScore").innerText = `Your score: ${score} / ${questions.length}`;
 
-  const closeButton = popup.querySelector('.close-button');
-  closeButton.addEventListener('click', () => {
-    popup.remove();
-  });
-
-  const replayButton = popup.querySelector('.replay-button');
-  replayButton.addEventListener('click', () => {
-    // Reset the quiz
-    currentQuestion = 0;
-    score = 0;
-    questions.forEach(question => {
-      question.classList.remove('show');
-    });
-    questions[currentQuestion].classList.add('show');
-
-    // Remove the pop-up
-    popup.remove();
-  });
-
-  const data = {
-    score: score,
-    percentage: percentage,
-    message: message
-  };
-  console.log("Quiz data:", data);
-  localStorage.setItem("quizData", JSON.stringify(data));
+  saveUserData(score, message);
 }
 
+/* Save User Data to Local & Session Storage */
+function saveUserData(score, message) {
+  const timestamp = new Date().toLocaleString();
 
+  const userData = {
+      score: score,
+      message: message,
+      timestamp: timestamp
+  };
+
+  // Save the latest user data in session storage (clears when tab closes)
+  sessionStorage.setItem("quizSession", JSON.stringify(userData));
+
+  // Save the full quiz history in local storage (persists even after browser closes)
+  let quizHistory = JSON.parse(localStorage.getItem("quizHistory")) || [];
+  quizHistory.push(userData);
+  localStorage.setItem("quizHistory", JSON.stringify(quizHistory));
+
+  // Console log for debugging and data retrieval
+  console.log("Latest Quiz Attempt:", userData);
+  console.log("Full Quiz History:", quizHistory);
+}
+
+/* Retrieve Saved User Data */
+function getUserData() {
+  console.log("Session Data (Current Attempt):", JSON.parse(sessionStorage.getItem("quizSession")));
+  console.log("Local Storage Data (All Attempts):", JSON.parse(localStorage.getItem("quizHistory")));
+}
+
+/* Replay Quiz (Resets and Starts Again) */
+function replayQuiz() {
+  document.getElementById("quizResultPopup").style.display = "none";
+  startQuiz();
+}
+
+function closeQuiz() {
+  document.getElementById("quizPopup").style.display = "none";
+  document.getElementById("quizResultPopup").style.display = "none";
+}
+
+document.querySelector(".replay-button").addEventListener("click", replayQuiz);
 
 
 //DOM 
-
 document.addEventListener('DOMContentLoaded', () => {
         console.log('DOM is fully loaded');
         
@@ -252,3 +286,4 @@ document.addEventListener('DOMContentLoaded', () => {
     // checkAnswers();
 
 });
+
