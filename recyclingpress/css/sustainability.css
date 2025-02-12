@@ -5,10 +5,15 @@
   margin: 0;
 }
 
-.title {
-  background-color: #efefe4;
+main {
   width: 100%;
+  padding: 0;
   margin: 0;
+}
+
+.title {
+  background-color: #c2c2b5;
+  width: 100%;
 }
 
 .title h2, p {
