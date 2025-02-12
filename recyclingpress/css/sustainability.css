@@ -1,0 +1,160 @@
+.container {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.title {
+  background-color: #efefe4;
+  width: 100%;
+  margin: 0;
+
+}
+
+.title h2,
+p {
+  padding: 10px;
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.col-sm-4 {
+  width: 32%;
+  padding: 10px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 768px) {
+  .col-sm-4 {
+      width: 48%;
+  }
+}
+
+@media (max-width: 576px) {
+  .col-sm-4 {
+      width: 100%;
+  }
+}
+
+h1 {
+  padding-left: 10px;
+}
+
+body {
+  font-family: sans-serif;
+  background-color: #f0f0f0;
+}
+
+#quiz {
+  width: 500px;
+  margin: 0 auto;
+  border: 1px solid #ccc;
+  padding: 20px;
+  background-color: #fff;
+  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 8px; /* Rounded corners for the quiz box */
+}
+
+.question {
+  margin-bottom: 10px;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.question.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+button {
+  padding: 10px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  border-radius: 5px; /* Rounded corners for buttons */
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+#result {
+  margin-top: 20px;
+  font-weight: bold;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#result.show {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.popup {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.popup-content {
+  background-color: #fff;
+  padding: 30px; /* Increased padding */
+  border-radius: 15px; /* More rounded corners */
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* More prominent shadow */
+  text-align: center;
+  font-size: 1.2em; /* Larger font size */
+}
+
+.close-button {
+  background-color: #b74f0a; /* Blue close button */
+  color: white;
+  padding: 12px 25px; /* Increased padding */
+  border: none;
+  border-radius: 8px; /* More rounded corners */
+  cursor: pointer;
+  font-size: 1em; /* Larger font size */
+  margin-top: 20px; /* Added margin to the top */
+  transition: background-color 0.3s ease; /* Added transition */
+}
+
+.close-button:hover {
+  background-color: #157508; /* Darker blue on hover */
+}
+
+.replay-button {
+  background-color: #067029; /* Blue close button */
+  color: white;
+  padding: 12px 25px; /* Increased padding */
+  border: none;
+  border-radius: 8px; /* More rounded corners */
+  cursor: pointer;
+  font-size: 1em; /* Larger font size */
+  margin-top: 20px; /* Added margin to the top */
+  transition: background-color 0.3s ease; /* Added transition */
+}
+
+.replay-button:hover {
+  background-color: #b74f0a; 
+
+}
