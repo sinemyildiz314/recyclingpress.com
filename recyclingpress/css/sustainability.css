@@ -1,3 +1,4 @@
+/* ======= General Page Styling ======= */
 .container {
   width: 100%;
   padding: 0;
@@ -8,34 +9,37 @@
   background-color: #efefe4;
   width: 100%;
   margin: 0;
-
 }
 
-.title h2,
-p {
+.title h2, p {
   padding: 10px;
 }
 
-.row {
+.rules {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
 }
 
-.col-sm-4 {
+.rule {
   width: 32%;
   padding: 10px;
   box-sizing: border-box;
+  text-align: center;
+}
+
+.rule img {
+  width: 100%;
 }
 
 @media (max-width: 768px) {
-  .col-sm-4 {
+  .rule {
       width: 48%;
   }
 }
 
 @media (max-width: 576px) {
-  .col-sm-4 {
+  .rule {
       width: 100%;
   }
 }
@@ -49,69 +53,34 @@ body {
   background-color: #f0f0f0;
 }
 
-#quiz {
-  width: 500px;
-  margin: 0 auto;
-  border: 1px solid #ccc;
-  padding: 20px;
-  background-color: #fff;
-  box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.2);
-  border-radius: 8px; /* Rounded corners for the quiz box */
-}
-
-.question {
-  margin-bottom: 10px;
-  opacity: 0;
-  transform: translateY(20px);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-.question.show {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-label {
-  display: block;
-  margin-bottom: 10px;
-}
-
-button {
-  padding: 10px 10px;
+/* ======= Start Quiz Button ======= */
+.start-quiz-btn {
+  padding: 12px 20px;
   background-color: #4CAF50;
   color: white;
   border: none;
   cursor: pointer;
   transition: background-color 0.3s ease;
-  border-radius: 5px; /* Rounded corners for buttons */
+  border-radius: 5px;
+  font-size: 1em;
+  margin-top: 20px;
+  display: block;
+  margin: 20px auto;
 }
 
-button:hover {
+.start-quiz-btn:hover {
   background-color: #3e8e41;
 }
 
-#result {
-  margin-top: 20px;
-  font-weight: bold;
-  opacity: 0;
-  transform: scale(0.8);
-  transition: opacity 0.5s ease, transform 0.5s ease;
-}
-
-#result.show {
-  opacity: 1;
-  transform: scale(1);
-}
-
+/* ======= Quiz Popup ======= */
 .popup {
+  display: none;
   position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.5);
+  top: 0;
+  left: 0;
   width: 100%;
   height: 100%;
-  display: flex;
+  background-color: rgba(0, 0, 0, 0.6);
   justify-content: center;
   align-items: center;
   z-index: 1000;
@@ -119,42 +88,78 @@ button:hover {
 
 .popup-content {
   background-color: #fff;
-  padding: 30px; /* Increased padding */
-  border-radius: 15px; /* More rounded corners */
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* More prominent shadow */
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
   text-align: center;
-  font-size: 1.2em; /* Larger font size */
+  width: 400px;
+  /* position: relative; */
+}
+
+/* Question Styles */
+#quizQuestion {
+  font-size: 1.2em;
+  margin-bottom: 15px;
+}
+
+#quizOptions label {
+  display: block;
+  padding: 10px;
+  background-color: #f3f3f3;
+  margin: 5px 0;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#quizOptions input {
+  display: none;
+}
+
+#quizOptions label:hover {
+  background-color: #ddd;
+}
+
+/* ======= Buttons ======= */
+.next-btn, .close-button, .replay-button {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 1em;
+  margin-top: 10px;
+  transition: background-color 0.3s ease;
+}
+
+/* Button Colors */
+.next-btn {
+  background-color: #4CAF50;
+  color: white;
 }
 
 .close-button {
-  background-color: #b74f0a; /* Blue close button */
+  background-color: #b74f0a;
   color: white;
-  padding: 12px 25px; /* Increased padding */
-  border: none;
-  border-radius: 8px; /* More rounded corners */
-  cursor: pointer;
-  font-size: 1em; /* Larger font size */
-  margin-top: 20px; /* Added margin to the top */
-  transition: background-color 0.3s ease; /* Added transition */
-}
-
-.close-button:hover {
-  background-color: #157508; /* Darker blue on hover */
 }
 
 .replay-button {
-  background-color: #067029; /* Blue close button */
+  background-color: #067029;
   color: white;
-  padding: 12px 25px; /* Increased padding */
-  border: none;
-  border-radius: 8px; /* More rounded corners */
-  cursor: pointer;
-  font-size: 1em; /* Larger font size */
-  margin-top: 20px; /* Added margin to the top */
-  transition: background-color 0.3s ease; /* Added transition */
+}
+
+/* Hover Effects */
+.next-btn:hover {
+  background-color: #2e7d32;
+}
+
+.close-button:hover {
+  background-color: #9a3d08;
 }
 
 .replay-button:hover {
-  background-color: #b74f0a; 
+  background-color: #3e8e41;
+}
 
+/* ======= Result Popup ======= */
+#quizResultPopup {
+  display: none;
 }
