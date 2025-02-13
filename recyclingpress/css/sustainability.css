@@ -12,7 +12,7 @@ main {
 }
 
 .title {
-  background-color: #c2c2b5;
+  background-color: #dfdfd7;
   width: 100%;
 }
 
@@ -77,7 +77,7 @@ body {
   background-color: #3e8e41;
 }
 
-/* ======= Quiz Popup ======= */
+/* General Popup Styling */
 .popup {
   display: none;
   position: fixed;
@@ -91,80 +91,101 @@ body {
   z-index: 1000;
 }
 
+/* Popup Content Box */
 .popup-content {
   background-color: #fff;
-  padding: 25px;
-  border-radius: 10px;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
   text-align: center;
   width: 400px;
-  /* position: relative; */
+  position: relative;
+  animation: fadeIn 0.3s ease-in-out;
 }
 
-/* Question Styles */
-#quizQuestion {
-  font-size: 1.2em;
-  margin-bottom: 15px;
+/* Title Styling */
+.popup-content h2 {
+  margin-bottom: 10px;
+  font-size: 22px;
+  color: #333;
 }
 
-#quizOptions label {
-  display: block;
-  padding: 10px;
-  background-color: #f3f3f3;
-  margin: 5px 0;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-#quizOptions input {
+/* Explanation Popup Styling */
+#explanationPopup {
   display: none;
 }
 
-#quizOptions label:hover {
-  background-color: #ddd;
+/* Explanation Content */
+#explanationContent {
+  margin-top: 15px;
+  text-align: left;
+  font-size: 16px;
 }
 
-/* ======= Buttons ======= */
-.next-btn, .close-button, .replay-button {
-  padding: 12px 20px;
+/* Buttons Styling */
+button {
+  margin-top: 15px;
+  padding: 10px 15px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
   font-size: 1em;
-  margin-top: 10px;
   transition: background-color 0.3s ease;
 }
 
-/* Button Colors */
+/* Primary Buttons */
 .next-btn {
   background-color: #4CAF50;
   color: white;
 }
 
+.next-btn:hover {
+  background-color: #2e7d32;
+}
+
+/* Close Buttons */
 .close-button {
   background-color: #b74f0a;
   color: white;
-}
-
-.replay-button {
-  background-color: #067029;
-  color: white;
-}
-
-/* Hover Effects */
-.next-btn:hover {
-  background-color: #2e7d32;
 }
 
 .close-button:hover {
   background-color: #9a3d08;
 }
 
+/* Replay Button */
+.replay-button {
+  background-color: #067029;
+  color: white;
+}
+
 .replay-button:hover {
   background-color: #3e8e41;
 }
 
-/* ======= Result Popup ======= */
-#quizResultPopup {
-  display: none;
+/* Close (X) Button in Explanation Popup */
+.close-explanation-btn {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  background: none;
+  color: #666;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+.close-explanation-btn:hover {
+  color: #000;
+}
+
+/* Animation for Popups */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }

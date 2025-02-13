@@ -58,146 +58,185 @@ function contactForm() {
 
 
 // The Game Logic
-// ✅ Confetti Animation (Triggers for a perfect score)
-function launchConfetti() {
-  const duration = 3 * 1000; // Confetti animation lasts 3 seconds
-  const end = Date.now() + duration;
 
-  (function frame() {
-      confetti({
-          particleCount: 5,
-          angle: 60,
-          spread: 55,
-          origin: { x: 0 }
-      });
-      confetti({
-          particleCount: 5,
-          angle: 120,
-          spread: 55,
-          origin: { x: 1 }
-      });
-
-      if (Date.now() < end) {
-          requestAnimationFrame(frame);
-      }
-  })();
-}
-
+// Fully Fixed Quiz JavaScript with Correct Score Calculation, Confetti & Explanation Navigation
 const questions = [
-  { question: "Recycling arrows on a container mean it is definitely recyclable?", options: ["Yes", "No"], answer: "No" },
-  { question: "Containers must be squeaky clean to be recycled?", options: ["Yes", "No"], answer: "No" },
-  { question: "Even if an item shouldn't go in the bin, it will get sorted anyway?", options: ["Yes", "No"], answer: "No" },
-  { question: "All types of glass bottles and jars are not recyclable?", options: ["Yes", "No"], answer: "Yes" },
-  { question: "Aerosol cans are acceptable in the recycle bin?", options: ["Yes", "No"], answer: "Yes" }
-];
-
-let currentQuestionIndex = 0;
-let score = 0;
-
-function startQuiz() {
-  currentQuestionIndex = 0;
-  score = 0;
-  document.getElementById("quizPopup").style.display = "flex";
-  showQuestion();
-}
-
-function showQuestion() {
-  const question = questions[currentQuestionIndex];
-  document.getElementById("quizQuestion").innerText = question.question;
-
-  const optionsContainer = document.getElementById("quizOptions");
-  optionsContainer.innerHTML = "";
+    { 
+      question: "Recycling arrows on a container mean it is definitely recyclable?", 
+      options: ["Yes", "No"], 
+      answer: "No", 
+      explanation: "The recycling arrows indicate the type of plastic, but not all plastics are recyclable in every area. Always check local guidelines."
+    },
+    { 
+      question: "Containers must be squeaky clean to be recycled?", 
+      options: ["Yes", "No"], 
+      answer: "No", 
+      explanation: "Containers should be free of excess food, but they don’t need to be spotless. Rinsing them lightly is enough."
+    },
+    { 
+      question: "Even if an item shouldn't go in the bin, it will get sorted anyway?", 
+      options: ["Yes", "No"], 
+      answer: "No", 
+      explanation: "Incorrectly placed items can contaminate entire batches of recycling, causing them to be discarded as trash."
+    },
+    { 
+      question: "All types of glass bottles and jars are not recyclable?", 
+      options: ["Yes", "No"], 
+      answer: "Yes", 
+      explanation: "Some glass, like Pyrex or ceramics, is not recyclable in standard bins. Only specific glass bottles and jars are accepted."
+    },
+    { 
+      question: "Aerosol cans are acceptable in the recycle bin?", 
+      options: ["Yes", "No"], 
+      answer: "Yes", 
+      explanation: "Most aerosol cans are recyclable, but they should be empty before disposal. Check with local guidelines."
+    }
+  ];
   
-  question.options.forEach(option => {
-      const label = document.createElement("label");
-      label.innerText = option;
-      
-      const input = document.createElement("input");
-      input.type = "radio";
-      input.name = "quizOption";
-      input.value = option;
-      input.onclick = () => nextQuestion(input.value); // Moves to next question automatically
-      
-      label.prepend(input);
-      optionsContainer.appendChild(label);
-  });
-}
-
-function nextQuestion(selectedValue) {
-  if (selectedValue === questions[currentQuestionIndex].answer) {
-      score++;
+  let currentQuestionIndex = 0;
+  let score = 0;
+  let userAnswers = [];
+  let explanationIndex = 0;
+  
+  function startQuiz() {
+    currentQuestionIndex = 0;
+    score = 0;
+    userAnswers = [];
+    document.getElementById("quizPopup").style.display = "flex";
+    showQuestion();
   }
-
-  currentQuestionIndex++;
-  if (currentQuestionIndex < questions.length) {
-      showQuestion();
-  } else {
-      showResult();
+  
+  function showQuestion() {
+    const question = questions[currentQuestionIndex];
+    document.getElementById("quizQuestion").innerText = question.question;
+    
+    const optionsContainer = document.getElementById("quizOptions");
+    optionsContainer.innerHTML = "";
+    
+    question.options.forEach(option => {
+        const label = document.createElement("label");
+        label.innerText = option;
+        
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "quizOption";
+        input.value = option;
+        label.prepend(input);
+        
+        optionsContainer.appendChild(label);
+    });
   }
-}
-
-function showResult() {
-  document.getElementById("quizPopup").style.display = "none";
-  document.getElementById("quizResultPopup").style.display = "flex";
-
-  let message;
-  if (score === 5) {
-      message = "🎉 Congrats! Perfect Score! 🎉";
-      launchConfetti(); // 🎊 Start confetti animation if the user scores 5/5
-  } else if (score >= 3) {
-      message = "Great Job!";
-  } else {
-      message = "Try Again!";
+  
+  function nextQuestion() {
+    const selectedOption = document.querySelector('input[name="quizOption"]:checked');
+    if (!selectedOption) {
+      alert("Please select an answer before proceeding.");
+      return;
+    }
+    
+    saveAnswer(selectedOption.value);
   }
-
-  document.getElementById("resultMessage").innerText = message;
-  document.getElementById("resultScore").innerText = `Your score: ${score} / ${questions.length}`;
-
-  saveUserData(score, message);
-}
-
-/* Save User Data to Local & Session Storage */
-function saveUserData(score, message) {
-  const timestamp = new Date().toLocaleString();
-
-  const userData = {
-      score: score,
-      message: message,
-      timestamp: timestamp
-  };
-
-  // Save the latest user data in session storage (clears when tab closes)
-  sessionStorage.setItem("quizSession", JSON.stringify(userData));
-
-  // Save the full quiz history in local storage (persists even after browser closes)
-  let quizHistory = JSON.parse(localStorage.getItem("quizHistory")) || [];
-  quizHistory.push(userData);
-  localStorage.setItem("quizHistory", JSON.stringify(quizHistory));
-
-  // Console log for debugging and data retrieval
-  console.log("Latest Quiz Attempt:", userData);
-  console.log("Full Quiz History:", quizHistory);
-}
-
-/* Retrieve Saved User Data */
-function getUserData() {
-  console.log("Session Data (Current Attempt):", JSON.parse(sessionStorage.getItem("quizSession")));
-  console.log("Local Storage Data (All Attempts):", JSON.parse(localStorage.getItem("quizHistory")));
-}
-
-/* Replay Quiz (Resets and Starts Again) */
-function replayQuiz() {
-  document.getElementById("quizResultPopup").style.display = "none";
-  startQuiz();
-}
-
-function closeQuiz() {
-  document.getElementById("quizPopup").style.display = "none";
-  document.getElementById("quizResultPopup").style.display = "none";
-}
-
-document.querySelector(".replay-button").addEventListener("click", replayQuiz);
-
+  
+  function saveAnswer(selectedValue) {
+    if (selectedValue === questions[currentQuestionIndex].answer) {
+        score++;
+    }
+  
+    userAnswers.push({
+      question: questions[currentQuestionIndex].question,
+      selected: selectedValue,
+      correct: questions[currentQuestionIndex].answer,
+      explanation: questions[currentQuestionIndex].explanation
+    });
+  
+    currentQuestionIndex++;
+    if (currentQuestionIndex < questions.length) {
+        showQuestion();
+    } else {
+        showResult();
+    }
+  }
+  
+  function showResult() {
+    document.getElementById("quizPopup").style.display = "none";
+    document.getElementById("quizResultPopup").style.display = "flex";
+  
+    let message;
+    if (score === questions.length) {
+        message = "🎉 Congrats! Perfect Score! 🎉";
+        launchConfetti();
+    } else if (score >= 3) {
+        message = "Great Job!";
+    } else {
+        message = "Try Again!";
+    }
+  
+    document.getElementById("resultMessage").innerText = message;
+    document.getElementById("resultScore").innerText = `Your score: ${score} / ${questions.length}`;
+  }
+  
+  function launchConfetti() {
+    const duration = 3000;
+    const animationEnd = Date.now() + duration;
+    const interval = setInterval(() => {
+        if (Date.now() > animationEnd) {
+            clearInterval(interval);
+            return;
+        }
+        confetti({
+            particleCount: 5,
+            spread: 80,
+            origin: { x: Math.random(), y: Math.random() - 0.2 }
+        });
+    }, 100);
+  }
+  
+  function openExplanationPopup() {
+    explanationIndex = 0;
+    document.getElementById("quizResultPopup").style.display = "none";
+    document.getElementById("explanationPopup").style.display = "flex";
+    showExplanation();
+  }
+  
+  function showExplanation() {
+    const explanationContainer = document.getElementById("explanationContent");
+    const question = questions[explanationIndex];
+    const userAnswer = userAnswers[explanationIndex] || { selected: "Not Answered" };
+  
+    explanationContainer.innerHTML = `
+      <h3>Question ${explanationIndex + 1}</h3>
+      <p><strong>Q:</strong> ${question.question}</p>
+      <p><strong>Your Answer:</strong> ${userAnswer.selected} ${userAnswer.selected === question.answer ? "✅" : "❌"}</p>
+      <p><strong>Correct Answer:</strong> ${question.answer}</p>
+      <p><strong>Explanation:</strong> ${question.explanation}</p>
+    `;
+  }
+  
+  function nextExplanation() {
+    if (explanationIndex < questions.length - 1) {
+      explanationIndex++;
+      showExplanation();
+    } else {
+      closeExplanationPopup();
+    }
+  }
+  
+  function closeExplanationPopup() {
+    document.getElementById("explanationPopup").style.display = "none";
+    document.getElementById("quizResultPopup").style.display = "flex";
+  }
+  
+  function closeQuiz() {
+    document.getElementById("quizPopup").style.display = "none";
+    document.getElementById("quizResultPopup").style.display = "none";
+    document.getElementById("explanationPopup").style.display = "none";
+  }
+  
+  function replayQuiz() {
+    closeQuiz();
+    startQuiz();
+  }
+  
 
 //DOM 
 document.addEventListener('DOMContentLoaded', () => {
