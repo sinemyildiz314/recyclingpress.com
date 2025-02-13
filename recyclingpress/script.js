@@ -58,8 +58,6 @@ function contactForm() {
 
 
 // The Game Logic
-
-// Fully Fixed Quiz JavaScript with Correct Score Calculation, Confetti & Explanation Navigation
 const questions = [
     { 
       question: "Recycling arrows on a container mean it is definitely recyclable?", 
@@ -236,12 +234,50 @@ const questions = [
     closeQuiz();
     startQuiz();
   }
-  
+
+
+// Function to handle dropdown toggling
+function setupDropdowns() {
+    const dropdownLinks = document.querySelectorAll("nav li[aria-haspopup='true'] > a");
+
+    dropdownLinks.forEach(link => {
+        link.addEventListener('click', function (event) {
+            event.preventDefault(); // Prevents page jumping
+
+            const dropdownMenu = this.nextElementSibling;
+
+            // Close other dropdowns before opening the clicked one
+            document.querySelectorAll(".dropdown").forEach(menu => {
+                if (menu !== dropdownMenu) {
+                    menu.classList.remove("show");
+                }
+            });
+
+            // Toggle dropdown visibility
+            dropdownMenu.classList.toggle("show");
+
+            // Toggle arrow rotation
+            this.querySelector("i").classList.toggle("fa-rotate-180");
+        });
+    });
+
+    // Close dropdowns when clicking outside
+    document.addEventListener("click", function (event) {
+        if (!event.target.closest("nav")) {
+            document.querySelectorAll(".dropdown").forEach(menu => menu.classList.remove("show"));
+            document.querySelectorAll("nav li[aria-haspopup='true'] > a i").forEach(icon => icon.classList.remove("fa-rotate-180"));
+        }
+    });
+}
+
 
 //DOM 
 document.addEventListener('DOMContentLoaded', () => {
         console.log('DOM is fully loaded');
-        
+  // Run dropdown function if dropdowns exist
+  if (document.querySelector("nav li[aria-haspopup='true'] > a")) {
+    setupDropdowns();
+}
     // Newsletter signup animation 
     const newsletterSignup = document.getElementById('newsletter-signup');
     const newsletterEmail = document.getElementById('newsletter-email');
@@ -272,7 +308,6 @@ document.addEventListener('DOMContentLoaded', () => {
             });
     }
     
-
     // Event Hover 
     const events = document.querySelectorAll('.event');
     events.forEach(event => {
@@ -322,7 +357,5 @@ document.addEventListener('DOMContentLoaded', () => {
 
     newsSlider();
     contactForm();
-    // checkAnswers();
-
 });
 
