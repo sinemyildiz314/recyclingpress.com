@@ -58,7 +58,7 @@
    <br>
 
     <main>
-            <h1>Sustainability & Recycling</h1>
+        <h1>Sustainability & Recycling</h1>
             <div class="title">
                 <h2>Recycling 101</h2>
                 <p>Want to learn about recycling? Check out our tips below.</p>
@@ -88,44 +88,40 @@
                     game! Take the quiz now! ♻️✅</p>
                 <button class="start-quiz-btn" onclick="startQuiz()">Start Quiz</button>
             </div>
-                
-           <!-- Quiz Popup -->
-<div id="quizPopup" class="popup">
-    <div class="popup-content">
-        <h2 id="quizQuestion"></h2>
-        <div id="quizOptions"></div>
-        <button class="next-btn" onclick="nextQuestion()">Next</button>
-        <button class="close-button" onclick="closeQuiz()">Close</button>
-    </div>
-</div>
 
-<!-- Quiz Result Popup -->
-<div id="quizResultPopup" class="popup">
-    <div class="popup-content">
-        <h2 id="resultMessage"></h2>
-        <p id="resultScore"></p>
+                <!-- Quiz Popup -->
+        <div id="quizPopup" class="popup">
+            <div class="popup-content">
+                <h2 id="quizQuestion"></h2>
+                <div id="quizOptions"></div>
+                <button class="next-btn" onclick="nextQuestion()">Next</button>
+                <button class="close-button" onclick="closeQuiz()">Close</button>
+            </div>
+        </div>
 
-        <!-- Single button for showing detailed answers -->
-        <button class="next-btn" id="moreInfoBtn" onclick="openExplanationPopup()">See Answer Details</button>
+        <!-- Quiz Result Popup -->
+        <div id="quizResultPopup" class="popup">
+            <div class="popup-content">
+                <h2 id="resultMessage"></h2>
+                <p id="resultScore"></p>
 
-        <button class="close-button" onclick="closeQuiz()">Close</button>
-        <button class="replay-button" onclick="replayQuiz()">Replay</button>
-    </div>
-</div>
+                <!-- Single button for showing detailed answers -->
+                <button class="next-btn" id="moreInfoBtn" onclick="openExplanationPopup()">See Answer Details</button>
 
-<!-- Explanation Popup (Step-by-step review of answers) -->
-<div id="explanationPopup" class="popup">
-    <div class="popup-content">
-        <h2>Answer Details</h2>
-        <div id="explanationContent"></div>
-        <button class="next-btn" onclick="nextExplanation()">Next</button>
-        <button class="close-button" onclick="closeExplanationPopup()">Close</button>
-    </div>
-</div>
+                <button class="close-button" onclick="closeQuiz()">Close</button>
+                <button class="replay-button" onclick="replayQuiz()">Replay</button>
+            </div>
+        </div>
 
-
-
-
+        <!-- Explanation Popup (Step-by-step review of answers) -->
+        <div id="explanationPopup" class="popup">
+            <div class="popup-content">
+                <h2>Answer Details</h2>
+                <div id="explanationContent"></div>
+                <button class="next-btn" onclick="nextExplanation()">Next</button>
+                <button class="close-button" onclick="closeExplanationPopup()">Close</button>
+            </div>
+        </div>
     </main>
         <footer>
             <p>Copyright &copy; 2025 recyclingpress.com</p>
