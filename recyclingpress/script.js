@@ -1,11 +1,15 @@
+/* =====================
+   Navigation 
+===================== */
 function toggleMenu() {
-    const menu = document.getElementById("main-menu");
-    menu.classList.toggle("show");
+  const menu = document.getElementById("main-menu");
+  menu.classList.toggle("show");
 
-    const hamburger = document.querySelector('.hamburger');
-    const isExpanded = menu.classList.contains('show');
-    hamburger.setAttribute('aria-expanded', isExpanded);
+  const hamburger = document.querySelector('.hamburger');
+  const isExpanded = menu.classList.contains('show');
+  hamburger.setAttribute('aria-expanded', isExpanded);
 }
+
 
 // Function to handle the contact form
 function contactForm() {
@@ -272,10 +276,141 @@ function setupDropdowns() {
 
 
 //DOM 
-document.addEventListener('DOMContentLoaded', () => {
-        console.log('DOM is fully loaded');
-  // Run dropdown function if dropdowns exist
-  if (document.querySelector("nav li[aria-haspopup='true'] > a")) {
+// document.addEventListener('DOMContentLoaded', () => {
+//         console.log('DOM is fully loaded');
+ 
+// });
+
+
+
+// ====
+
+/* =====================
+   Industry Page JavaScript 
+===================== */
+
+
+/*********************
+ Hero Section (Image Slider)
+*********************/
+let slideIndex = 0;
+function showSlides(n) {
+  console.log("Showing slide:", n);
+  const slides = document.querySelectorAll(".slide");
+  if (!slides.length) return;
+  slides.forEach((slide) => (slide.style.display = "none"));
+  slides[n].style.display = "block";
+}
+
+function nextSlide() {
+  slideIndex = (slideIndex + 1) % document.querySelectorAll(".slide").length;
+  showSlides(slideIndex);
+}
+
+function prevSlide() {
+  slideIndex = (slideIndex - 1 + document.querySelectorAll(".slide").length) % document.querySelectorAll(".slide").length;
+  showSlides(slideIndex);
+}
+
+/*********************
+ Like & Visit Counter
+*********************/
+function updateVisitCount(article) {
+  let visitCount = article.querySelector(".visit-count");
+  if (!visitCount) return;
+  let visits = sessionStorage.getItem(article.dataset.article) || 0;
+  visits++;
+  sessionStorage.setItem(article.dataset.article, visits);
+  visitCount.textContent = `👀 ${visits}`;
+}
+
+function likeArticle(event) {
+  let likeBtn = event.target;
+  let likeCount = likeBtn.querySelector(".like-count");
+  let articleId = likeBtn.closest(".article").dataset.article;
+  let likes = localStorage.getItem(articleId + "-likes") || 0;
+  likes++;
+  localStorage.setItem(articleId + "-likes", likes);
+  likeCount.textContent = likes;
+}
+
+/*********************
+ Floating Social Share
+*********************/
+function toggleShareButtons() {
+  console.log("Toggling share buttons");
+  const shareGroup = document.querySelector(".share-btn-group");
+  if (shareGroup) shareGroup.classList.toggle("show");
+}
+
+/*********************
+ Feedback Form
+*********************/
+function toggleFeedbackForm() {
+  const feedbackForm = document.querySelector(".feedback-form");
+  feedbackForm.classList.toggle("hidden");
+}
+
+function submitFeedback() {
+  alert("Thank you for your feedback!");
+  document.querySelector(".feedback-form").classList.add("hidden");
+}
+
+/*********************
+ Search Functionality
+*********************/
+function searchFunction() {
+  let input = document.getElementById("search-input").value.toLowerCase();
+  let articles = document.querySelectorAll(".article");
+  articles.forEach(article => {
+      let title = article.querySelector("h3").textContent.toLowerCase();
+      article.style.display = title.includes(input) ? "block" : "none";
+  });
+}
+
+/*********************
+ Event Listeners (Inside DOMContentLoaded)
+*********************/
+document.addEventListener("DOMContentLoaded", function () {
+  console.log("DOM fully loaded");
+  
+  // Navigation Menu Toggle
+  if (document.querySelector(".hamburger")) {
+      document.querySelector(".hamburger").addEventListener("click", toggleMenu);
+  }
+  
+  // Image Slider Controls
+  if (document.querySelector(".slide")) {
+      showSlides(slideIndex);
+  }
+  if (document.querySelector(".prev")) {
+      document.querySelector(".prev").addEventListener("click", prevSlide);
+  }
+  if (document.querySelector(".next")) {
+      document.querySelector(".next").addEventListener("click", nextSlide);
+  }
+
+  // Like & Visit Counter
+  document.querySelectorAll(".article").forEach(article => updateVisitCount(article));
+  document.querySelectorAll(".like-btn").forEach(btn => btn.addEventListener("click", likeArticle));
+
+  // Social Share Toggle
+  if (document.querySelector(".share-toggle-btn")) {
+      document.querySelector(".share-toggle-btn").addEventListener("click", toggleShareButtons);
+  }
+
+  // Feedback Form
+  if (document.querySelector(".feedback-btn")) {
+      document.querySelector(".feedback-btn").addEventListener("click", toggleFeedbackForm);
+  }
+  if (document.querySelector(".feedback-form button")) {
+      document.querySelector(".feedback-form button").addEventListener("click", submitFeedback);
+  }
+  
+  console.log("All event listeners added successfully!");
+
+   // Run dropdown function if dropdowns exist
+   if (document.querySelector("nav li[aria-haspopup='true'] > a")) {
     setupDropdowns();
 }
     // Newsletter signup animation 
@@ -353,9 +488,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    
-
     newsSlider();
     contactForm();
 });
-
