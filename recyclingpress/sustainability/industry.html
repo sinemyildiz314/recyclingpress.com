@@ -3,14 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recyclingpress.com</title>
+    <title>Industry | RecyclingPress</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="../css/mainstyles.css" rel="stylesheet">
     <link href="../css/navigation.css" rel="stylesheet">
+    <link href="../css/industry.css" rel="stylesheet">
+    
 </head>
 <body>
+    <!-- Navigation Bar -->
     <header>
         <nav>
            <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
@@ -46,14 +49,14 @@
                    </div>
                </ul>
 
-               <div class="search-bar">
-                   <input type="text" placeholder="Search...">
-                   <button><i class="fas fa-search"></i></button>
-               </div>
+                  <!-- Search Bar -->
+                  <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search...">
+                    <button onclick="searchFunction()"><i class="fas fa-search"></i></button>
+                </div>
            </div>
         </nav>
    </header>
-   <br>
    <br>
 
     <main>
@@ -62,15 +65,84 @@
                 <h2>Industries</h2>
                 <p>Want to learn about recycling? Check out our tips below.</p>
             </div>
+          <!-- Hero Section with Image Slider -->
+        <section class="hero">
+            <div class="slider">
+                <div class="slides">
+                    <div class="slide active"><img src="slide1.jpg" alt="Slide 1"></div>
+                    <div class="slide"><img src="slide2.jpg" alt="Slide 2"></div>
+                    <div class="slide"><img src="slide3.jpg" alt="Slide 3"></div>
+                </div>
+                <button class="prev" onclick="prevSlide()">&#10094;</button>
+                <button class="next" onclick="nextSlide()">&#10095;</button>
+            </div>
+        </section>
 
+        <!-- Categories Section -->
+        <section class="categories">
+            <h2>Industry Categories</h2>
+            <div class="category-grid">
+                <div class="category">Waste Management & Recycling</div>
+                <div class="category">Green Technology</div>
+                <div class="category">Sustainable Agriculture</div>
+                <div class="category">Circular Economy</div>
+                <div class="category">Eco-Friendly Products</div>
+                <div class="category">Renewable Energy</div>
+            </div>
+        </section>
 
+        <!-- Articles Section -->
+        <section class="articles">
+            <h2>Latest Articles</h2>
+            <div class="article-grid">
+                <article class="article">
+                    <img src="article1.jpg" alt="Article 1">
+                    <h3>Article Title 1</h3>
+                    <p>Short description of the article.</p>
+                    <button class="like-btn">❤️ <span class="like-count">0</span></button>
+                    <span class="visit-count">👀 0</span>
+                </article>
+                <article class="article">
+                    <img src="article2.jpg" alt="Article 2">
+                    <h3>Article Title 2</h3>
+                    <p>Short description of the article.</p>
+                    <button class="like-btn">❤️ <span class="like-count">0</span></button>
+                    <span class="visit-count">👀 0</span>
+                </article>
+            </div>
+        </section>
+
+        <!-- Floating Share Buttons -->
+        <div class="floating-share">
+            <div class="share-btn-container">
+                <button class="share-toggle-btn"><i class="fas fa-share-alt"></i></button>
+                <div class="share-btn-group">
+                    <a href="#" class="share-btn"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="share-btn"><i class="fab fa-twitter"></i></a>
+                    <a href="#" class="share-btn"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="share-btn"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="share-btn"><i class="fab fa-reddit"></i></a>
+                </div>
+            </div>
+        </div>
+        
+
+        <!-- Sticky Feedback Form -->
+        <div class="feedback-form-container">
+            <button class="feedback-btn" onclick="toggleFeedbackForm()">Feedback</button>
+            <div class="feedback-form hidden">
+                <h3>We value your feedback!</h3>
+                <textarea placeholder="Write your feedback..."></textarea>
+                <input type="text" placeholder="Your email (optional)">
+                <button onclick="submitFeedback()">Submit</button>
+            </div>
+        </div>
     </main>
-        <footer>
-            <p>Copyright &copy; 2025 recyclingpress.com</p>
-        </footer>
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
+    </footer>
 
     <script src="../script.js"></script>
-
 </body>
-
 </html>
