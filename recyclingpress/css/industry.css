@@ -45,28 +45,61 @@ nav.open ~ .slider .next {
 
 /* Categories Section */
 .categories {
-    padding: 20px;
+    padding: 50px 20px;
     text-align: center;
+    background-color: #f4f4f4;
 }
 
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto;
 }
 
 .category {
     background: white;
-    padding: 15px;
-    border-radius: 8px;
+    padding: 20px;
+    border-radius: 12px;
     text-align: center;
-    transition: 0.3s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    min-height: 180px;
 }
 
 .category:hover {
-    background-color: #cdeacd;
-    cursor: pointer;
+    transform: translateY(-5px);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+    background-color: #e7f8e7;
 }
+
+.category h3 {
+    margin-top: 15px;
+    font-size: 18px;
+    color: #035914;
+}
+
+.category p {
+    font-size: 14px;
+    color: #444;
+}
+
+/* Canvas Styling */
+canvas {
+    width: 100%;
+    height: 100px;
+    display: block;
+    background: transparent;
+}
+
+/* Unique Styling for Water Animation */
+.water-category canvas {
+    width: 100%;
+    height: 100px;
+}
+
 
 /* Floating Share Button (Always Visible Above Feedback Button with Background) */
 .floating-share {
@@ -290,3 +323,88 @@ footer {
     color: white;
     font-size: 14px;
 }
+
+
+/* 🎮 Recycling Sorting Game Styling */
+.recycling-game {
+    text-align: center;
+    padding: 20px;
+    background-color: #f4f8ff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 800px;
+    margin: 20px auto;
+}
+
+.recycling-game h2 {
+    color: #035914;
+    font-size: 22px;
+}
+
+.recycling-game p {
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+
+/* Bins & Waste Items */
+.game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.bins {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.bin {
+    width: 120px;
+    height: 150px;
+    border: 2px dashed #aaa;
+    border-radius: 10px;
+    padding: 10px;
+    background: #fff;
+    text-align: center;
+    position: relative;
+    transition: transform 0.3s;
+}
+
+.bin img {
+    width: 100%;
+    height: auto;
+}
+
+.bin p {
+    font-size: 14px;
+    margin-top: 5px;
+    font-weight: bold;
+}
+
+/* Waste Items */
+.waste-items {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.waste-items img {
+    width: 80px;
+    cursor: grab;
+    transition: transform 0.2s;
+}
+
+.waste-items img:active {
+    transform: scale(1.1);
+    cursor: grabbing;
+}
+
+#game-message {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 15px;
+}
+

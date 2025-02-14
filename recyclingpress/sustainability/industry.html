@@ -43,16 +43,30 @@
                        <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
                    </ul>
                    </li>
-                   <div class="social-media-icons">
-                   <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-twitter"></i></a></li>
-                   <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-instagram"></i></a></li>
-                   </div>
                </ul>
 
-                  <!-- Search Bar -->
-                  <div class="search-bar">
-                    <input type="text" id="search-input" placeholder="Search...">
-                    <button onclick="searchFunction()"><i class="fas fa-search"></i></button>
+               <div class="nav-right">
+                    <!-- Instagram & Twitter Social Links (Fixed in Navbar) -->
+                    <div class="social-media-nav">
+                        <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                
+                    <!-- Search Icon -->
+                    <button class="search-toggle"><i class="fas fa-search"></i></button>
+                
+                    <!-- Search Bar (Initially Hidden) -->
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search articles...">
+                        <button class="search-close"><i class="fas fa-times"></i></button>
+                    </div>
+
+                    <div id="search-results" class="search-dropdown"></div>
+
                 </div>
            </div>
         </nav>
@@ -82,14 +96,74 @@
         <section class="categories">
             <h2>Industry Categories</h2>
             <div class="category-grid">
-                <div class="category">Waste Management & Recycling</div>
-                <div class="category">Green Technology</div>
-                <div class="category">Sustainable Agriculture</div>
-                <div class="category">Circular Economy</div>
-                <div class="category">Eco-Friendly Products</div>
-                <div class="category">Renewable Energy</div>
+                <div class="category" id="waste-recycling">
+                    <h3>Waste Management & Recycling</h3>
+                    <p>Innovative ways industries handle waste & recycling.</p>
+                </div>
+                <div class="category water-category">
+                    <canvas id="waterCanvas"></canvas>
+                    <h3>Water & Sustainable Development</h3>
+                    <p>Ensuring clean and sustainable water usage.</p>
+                </div>
+                <div class="category">
+                    <h3>Green Technology</h3>
+                    <p>Exploring energy-efficient solutions for sustainability.</p>
+                </div>
+                <div class="category">
+                    <h3>Sustainable Agriculture</h3>
+                    <p>Eco-friendly farming techniques reducing waste.</p>
+                </div>
+                <div class="category">
+                    <h3>Circular Economy</h3>
+                    <p>Redesigning the economy to reduce waste.</p>
+                </div>
+                <div class="category">
+                    <h3>Eco-Friendly Products</h3>
+                    <p>Green alternatives for everyday consumer goods.</p>
+                </div>
             </div>
         </section>
+
+        <!-- Recycling Sorting Game Section -->
+    <section class="recycling-game">
+        <h2>♻️ Recycling Sorting Game</h2>
+        <p>Drag and drop the recyclable items into the correct bins!</p>
+        
+        <div class="game-container">
+            <!-- Recycling Bins -->
+            <div class="bins">
+                <div class="bin" id="plastic-bin" data-type="plastic">
+                    <img src="../images/game/bin_plastic.png" alt="Plastic Bin">
+                    <p>Plastic Bin</p>
+                </div>
+                <div class="bin" id="paper-bin" data-type="paper">
+                    <img src="../images/game/bin_paper.png" alt="Paper Bin">
+                    <p>Paper Bin</p>
+                </div>
+                <div class="bin" id="metal-bin" data-type="metal">
+                    <img src="../images/game/bin_metal.png" alt="Metal Bin">
+                    <p>Metal Bin</p>
+                </div>
+                <div class="bin" id="glass-bin" data-type="glass">
+                    <img src="../images/game/bin_glass.png" alt="Glass Bin">
+                    <p>Glass Bin</p>
+                </div>
+            </div>
+
+            <!-- Waste Items -->
+            <div class="waste-items">
+                <img src="../images/game/plastic_bottle.png" alt="Plastic Bottle" class="draggable" data-type="plastic">
+                <img src="../images/game/paper_cup.png" alt="Paper Cup" class="draggable" data-type="paper">
+                <img src="../images/game/metal_can.png" alt="Metal Can" class="draggable" data-type="metal">
+                <img src="../images/game/glass_jar.png" alt="Glass Jar" class="draggable" data-type="glass">
+            </div>
+        </div>
+
+        <p id="game-message"></p>
+    </section>
+
+
+
 
         <!-- Articles Section -->
         <section class="articles">

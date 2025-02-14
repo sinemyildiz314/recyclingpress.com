@@ -37,8 +37,8 @@
                         <li role="presentation" aria-haspopup="true">
                         <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
                         <ul class="dropdown" role="menu">
-                            <li role="presentation"><a href="./contact_html/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">About Us</a></li>
-                            <li role="presentation"><a href="./contact_html/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
+                            <li role="presentation"><a href="./contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">About Us</a></li>
+                            <li role="presentation"><a href="./contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
                         </ul>
                         </li>
                         <div class="social-media-icons">
@@ -47,10 +47,29 @@
                         </div>
                     </ul>
 
-                    <div class="search-bar">
-                        <input type="text" placeholder="Search...">
-                        <button><i class="fas fa-search"></i></button>
+                    <div class="nav-right">
+                    <!-- Instagram & Twitter Social Links (Fixed in Navbar) -->
+                    <div class="social-media-nav">
+                        <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
                     </div>
+                
+                    <!-- Search Icon -->
+                    <button class="search-toggle"><i class="fas fa-search"></i></button>
+                
+                    <!-- Search Bar (Initially Hidden) -->
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search articles...">
+                        <button class="search-close"><i class="fas fa-times"></i></button>
+                    </div>
+
+                    <div id="search-results" class="search-dropdown"></div>
+
+                </div>
                 </div>
              </nav>
         </header>
@@ -66,7 +85,7 @@
                             Turning energy waste into a community benefit,
                             using its excess heat to warm local homes...
                         </p>
-                        <a href="./articles_html/greennews.html">Read More</a>
+                        <a href="./articles/greennews.html">Read More</a>
                     </article>
                 </section>
                 <section id="recent-articles" class="grid-item">
@@ -76,13 +95,13 @@
                             <h3>Eco-Friendly Textiles: The Role of Sorting</h3>
                             <img src="./images/textilesnews.png" alt="Article 1 Image">
                             <p>Fashion for Good, a Netherlands-based global innovation platform, has launched the Sorting for Circularity Project ...</p>
-                            <a href="./articles_html/textilenews.html">Read More</a>
+                            <a href="./articles/textilenews.html">Read More</a>
                         </article>
                         <article>
                             <h3>EV Batteries: $500B Market by 2031</h3>
                             <img src="./images/electricvehicle.png" alt="Article 2 Image">
                             <p>Environmental concerns, government policies, and technological advances are driving rapid growth in the EV battery market...</p>
-                            <a href="./articles_html/evnews.html">Read More</a>
+                            <a href="./articles/evnews.html">Read More</a>
                         </article>
                     </div>
                 </section>
@@ -95,14 +114,14 @@
                         <img src="./images/paperpacking.png" alt="Article 4 Image">
                         <p>4evergreen:  Europe's paper industry unites to maximize the sustainability
                             and recyclability of its packaging, creating a truly circular economy...</p>
-                        <a href="./articles_html/paperpacking.html">Read More</a>
+                        <a href="./articles/paperpacking.html">Read More</a>
                     </article>
                     <article>
                         <h3>CHINAPLAS to Showcase Cutting-Edge Plastics Recycling</h3>
                         <img src="./images/plastic.png" alt="Article 5 Image">
                         <p>Cutting-edge plastics recycling tech takes center stage at CHINAPLAS 2025!
                             Experience "The Plastics Circularity Journey" live and see how we're closing the loop...</p>
-                        <a href="./articles_html/plasticnews.html">Read More</a>
+                        <a href="./articles/plasticnews.html">Read More</a>
                     </article>
                 </div>
             </aside>

@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recyclingpress.com</title>
-    <link href="../../CSS_styles/mainstyles.css" rel="stylesheet">
-    <link href="../../CSS_styles/navigation.css" rel="stylesheet">
-    <link href="../../CSS_styles/index.css" rel="stylesheet">
+    <link href="../css/mainstyles.css" rel="stylesheet">
+    <link href="../css/navigation.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <link href="../css/articles.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
@@ -16,7 +17,7 @@
         <header>
             <!-- <img class="logo" src tbc..> -->
              <nav>
-                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+                <button class="hamburger" aria-label="Toggle navigation menu">
                     <i class="fas fa-bars"></i>
                 </button>
                 
@@ -28,28 +29,44 @@
                         Sustainability <i class="fas fa-caret-down"></i>
                       </a>
                       <ul class="dropdown" role="menu">
-                        <li role="presentation"><a href="../sustainability/materials.html" role="menuitem" data-page="materials" id="materials-item">Materials</a></li>
-                        <li role="presentation"><a href="../sustainability/recyclables.html" role="menuitem" data-page="recyclables" id="recyclables-item">Recyclables</a></li>
+                        <li role="presentation"><a href="../sustainability/industry.html" role="menuitem" data-page="materials" id="materials-item">Industry</a></li>
+                        <li role="presentation"><a href="../sustainability/recycling.html" role="menuitem" data-page="recyclables" id="recyclables-item">Recycling</a></li>
                       </ul>
                     </li>
                     <li role="presentation"><a href="../events.html" role="menuitem" data-page="events">Events</a></li>
                     <li role="presentation" aria-haspopup="true">
                       <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
                       <ul class="dropdown" role="menu">
-                        <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">Recycling Press Media Group</a></li>
+                        <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">About Us</a></li>
                         <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
                       </ul>
                     </li>
-                    <div class="social-media-icons">
-                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-twitter"></i></a></li>
-                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-instagram"></i></a></li>
-                    </div>
                   </ul>
 
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
+                  <div class="nav-right">
+                  <!-- Instagram & Twitter Social Links (Fixed in Navbar) -->
+                  <div class="social-media-nav">
+                      <a href="https://instagram.com/yourprofile" target="_blank" aria-label="Instagram">
+                          <i class="fab fa-instagram"></i>
+                      </a>
+                      <a href="https://twitter.com/yourprofile" target="_blank" aria-label="Twitter">
+                          <i class="fab fa-twitter"></i>
+                      </a>
+                  </div>
+              
+                  <!-- Search Icon -->
+                  <button class="search-toggle"><i class="fas fa-search"></i></button>
+              
+                  <!-- Search Bar (Initially Hidden) -->
+                  <div class="search-bar">
+                      <input type="text" id="search-input" placeholder="Search articles...">
+                      <button class="search-close"><i class="fas fa-times"></i></button>
+                  </div>
+
+                  <div id="search-results" class="search-dropdown"></div>
+
+              </div>
+
              </nav>
 
         </header>
@@ -74,21 +91,6 @@
     </footer>
 
 <script src="../script.js"></script>
-
-<script>
-    function toggleMenu() {
-        const menu = document.getElementById("main-menu");
-        menu.classList.toggle("show");
-    }
-
-    window.addEventListener('click', function(e){
-        const menu = document.getElementById("main-menu");
-        const hamburger = document.querySelector('.hamburger');
-        if (!menu.contains(e.target) && !hamburger.contains(e.target) && window.innerWidth > 768){
-            menu.classList.remove('show');
-        }
-    });
-</script>
 
 </body>
 

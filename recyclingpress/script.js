@@ -60,6 +60,56 @@ function contactForm() {
     }
 }
 
+// Function to Manage Search Toggle Behaviour
+function setupSearchToggle() {
+  const searchToggle = document.querySelector(".search-toggle");
+  const searchBar = document.querySelector(".search-bar");
+  const searchClose = document.querySelector(".search-close");
+  const navRight = document.querySelector(".nav-right");
+  const navbarSocialIcons = document.querySelector(".social-media-nav");
+
+  if (searchToggle && searchBar) {
+      searchToggle.addEventListener("click", () => {
+          searchBar.style.display = "flex";
+          navRight.classList.add("search-active");
+          searchToggle.style.display = "none";
+
+          // Hide Social Media Icons when the search bar is active
+          if (navbarSocialIcons) {
+              navbarSocialIcons.style.opacity = "0";
+              navbarSocialIcons.style.pointerEvents = "none";
+          }
+      });
+
+      // Close Search Bar & Show Social Icons Again
+      if (searchClose) {
+          searchClose.addEventListener("click", () => {
+              searchBar.style.display = "none";
+              navRight.classList.remove("search-active");
+              searchToggle.style.display = "block";
+
+              if (navbarSocialIcons) {
+                  navbarSocialIcons.style.opacity = "1";
+                  navbarSocialIcons.style.pointerEvents = "auto";
+              }
+          });
+      }
+  }
+}
+
+// Function to Manage FLoating Share Buttons
+function setupShareToggle() {
+  const shareButton = document.querySelector(".share-toggle-btn");
+  if (shareButton) {
+      shareButton.addEventListener("click", () => {
+          const shareGroup = document.querySelector(".share-btn-group");
+          if (shareGroup) {
+              shareGroup.classList.toggle("show");
+          }
+      });
+  }
+}
+
 
 // The Game Logic
 const questions = [
@@ -275,16 +325,6 @@ function setupDropdowns() {
 }
 
 
-//DOM 
-// document.addEventListener('DOMContentLoaded', () => {
-//         console.log('DOM is fully loaded');
- 
-// });
-
-
-
-// ====
-
 /* =====================
    Industry Page JavaScript 
 ===================== */
@@ -360,13 +400,131 @@ function submitFeedback() {
  Search Functionality
 *********************/
 function searchFunction() {
-  let input = document.getElementById("search-input").value.toLowerCase();
-  let articles = document.querySelectorAll(".article");
-  articles.forEach(article => {
-      let title = article.querySelector("h3").textContent.toLowerCase();
-      article.style.display = title.includes(input) ? "block" : "none";
+  let input = document.getElementById("search-input").value.toLowerCase().trim();
+  let allTextElements = document.querySelectorAll("h1, h2, h3, p"); // Search inside all relevant tags
+  let resultContainer = document.getElementById("search-results");
+
+  // Clear previous results
+  resultContainer.innerHTML = "";
+  resultContainer.style.display = "none";
+
+  if (input.length === 0) {
+      return;
+  }
+
+  let foundResults = [];
+
+  allTextElements.forEach(element => {
+      let text = element.textContent.toLowerCase();
+      let parentElement = element.closest("article, section, div"); // Get closest wrapper
+      let linkElement = parentElement ? parentElement.querySelector("a") : null;
+      let articleLink = linkElement ? linkElement.href : "#"; // Get link if available
+
+      if (text.includes(input)) {
+          foundResults.push({ text: element.textContent, articleLink });
+      }
   });
+
+  // Display results or show "No Results"
+  if (foundResults.length > 0) {
+      foundResults.forEach(result => {
+          let resultItem = document.createElement("div");
+          resultItem.classList.add("search-result-item");
+          resultItem.innerHTML = `<a href="${result.articleLink}">${result.text.substring(0, 100)}...</a>`;
+          resultContainer.appendChild(resultItem);
+      });
+      resultContainer.style.display = "block";
+  } else {
+      resultContainer.innerHTML = "<p class='no-results'>No results found.</p>";
+      resultContainer.style.display = "block";
+  }
+
+  // **🔹 Hide results after 5 seconds**
+  setTimeout(() => {
+      resultContainer.style.display = "none";
+  }, 5000);
 }
+
+/*********************
+ Flowing Water Animation
+*********************/
+function startWaterAnimation() {
+  const canvas = document.getElementById("waterCanvas");
+  if (!canvas) return;
+  const ctx = canvas.getContext("2d");
+
+  canvas.width = 300;
+  canvas.height = 100;
+
+  let waveOffset = 0;
+
+  function drawWave() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.fillStyle = "rgba(0, 123, 255, 0.5)";
+
+      ctx.beginPath();
+      for (let x = 0; x < canvas.width; x++) {
+          let y =
+              20 * Math.sin((x + waveOffset) * 0.05) + 40; // Creates wave motion
+          ctx.lineTo(x, y);
+      }
+      ctx.lineTo(canvas.width, canvas.height);
+      ctx.lineTo(0, canvas.height);
+      ctx.closePath();
+      ctx.fill();
+
+      waveOffset += 2;
+      requestAnimationFrame(drawWave);
+  }
+
+  drawWave();
+}
+
+/*********************
+ Recycling Sorting Game
+*********************/
+document.addEventListener("DOMContentLoaded", function () {
+  const wasteItems = document.querySelectorAll(".draggable");
+  const bins = document.querySelectorAll(".bin");
+  const gameMessage = document.getElementById("game-message");
+
+  wasteItems.forEach(item => {
+      item.draggable = true;
+
+      item.addEventListener("dragstart", function (event) {
+          event.dataTransfer.setData("wasteType", item.dataset.type);
+      });
+  });
+
+  bins.forEach(bin => {
+      bin.addEventListener("dragover", function (event) {
+          event.preventDefault();
+      });
+
+      bin.addEventListener("drop", function (event) {
+          event.preventDefault();
+          const wasteType = event.dataTransfer.getData("wasteType");
+
+          if (wasteType === bin.dataset.type) {
+              gameMessage.textContent = "✅ Correct! Good job!";
+              gameMessage.style.color = "green";
+
+              // Remove item after sorting
+              document.querySelector(`img[data-type="${wasteType}"]`).remove();
+          } else {
+              gameMessage.textContent = "❌ Wrong bin! Try again.";
+              gameMessage.style.color = "red";
+          }
+
+          setTimeout(() => {
+              gameMessage.textContent = "";
+          }, 2000);
+      });
+  });
+});
+
+
+
 
 /*********************
  Event Listeners (Inside DOMContentLoaded)
@@ -375,10 +533,25 @@ document.addEventListener("DOMContentLoaded", function () {
   console.log("DOM fully loaded");
   
   // Navigation Menu Toggle
-  if (document.querySelector(".hamburger")) {
-      document.querySelector(".hamburger").addEventListener("click", toggleMenu);
+  const hamburger = document.querySelector(".hamburger");
+  if (hamburger) {
+      hamburger.addEventListener("click", toggleMenu);
   }
+
+    // Ensure search function triggers when typing
+    const searchInput = document.getElementById("search-input");
+    if (searchInput) {
+        searchInput.addEventListener("keyup", searchFunction);
+    }
+
+    setupSearchToggle();
+    setupShareToggle();
   
+  console.log("Initializing Industry Category Animations...");
+    
+    startWaterAnimation();
+    startRecyclingGame();
+
   // Image Slider Controls
   if (document.querySelector(".slide")) {
       showSlides(slideIndex);
@@ -395,9 +568,11 @@ document.addEventListener("DOMContentLoaded", function () {
   document.querySelectorAll(".like-btn").forEach(btn => btn.addEventListener("click", likeArticle));
 
   // Social Share Toggle
-  if (document.querySelector(".share-toggle-btn")) {
-      document.querySelector(".share-toggle-btn").addEventListener("click", toggleShareButtons);
+  const shareButton = document.querySelector(".share-toggle-btn");
+  if (shareButton) {
+      shareButton.addEventListener("click", toggleShareButtons);
   }
+
 
   // Feedback Form
   if (document.querySelector(".feedback-btn")) {
@@ -412,7 +587,7 @@ document.addEventListener("DOMContentLoaded", function () {
    // Run dropdown function if dropdowns exist
    if (document.querySelector("nav li[aria-haspopup='true'] > a")) {
     setupDropdowns();
-}
+    }
     // Newsletter signup animation 
     const newsletterSignup = document.getElementById('newsletter-signup');
     const newsletterEmail = document.getElementById('newsletter-email');
