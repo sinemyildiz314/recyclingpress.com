@@ -320,28 +320,56 @@ function setupDropdowns() {
 /* =====================
    Industry Page JavaScript 
 ===================== */
-
-
-/*********************
- Hero Section (Image Slider)
-*********************/
-let slideIndex = 0;
-function showSlides(n) {
-  console.log("Showing slide:", n);
+/* ===========================
+   🌍 HERO SLIDER FUNCTION (MODULAR)
+=========================== */
+function initImageSlider() {
   const slides = document.querySelectorAll(".slide");
-  if (!slides.length) return;
-  slides.forEach((slide) => (slide.style.display = "none"));
-  slides[n].style.display = "block";
-}
+  const dots = document.querySelectorAll(".dot");
+  let currentIndex = 0;
+  let interval;
 
-function nextSlide() {
-  slideIndex = (slideIndex + 1) % document.querySelectorAll(".slide").length;
-  showSlides(slideIndex);
-}
+  function showSlide(index) {
+      slides.forEach((slide, i) => {
+          slide.classList.toggle("active", i === index);
+      });
+      dots.forEach((dot, i) => {
+          dot.classList.toggle("active", i === index);
+      });
+  }
 
-function prevSlide() {
-  slideIndex = (slideIndex - 1 + document.querySelectorAll(".slide").length) % document.querySelectorAll(".slide").length;
-  showSlides(slideIndex);
+  function nextSlide() {
+      currentIndex = (currentIndex + 1) % slides.length;
+      showSlide(currentIndex);
+  }
+
+  function goToSlide(index) {
+      currentIndex = index;
+      showSlide(currentIndex);
+  }
+
+  // Auto-slide functionality
+  function startAutoSlide() {
+      interval = setInterval(nextSlide, 5000); // Change slide every 5s
+  }
+
+  // Stop auto-slide on interaction
+  function stopAutoSlide() {
+      clearInterval(interval);
+  }
+
+  // Event Listeners for Dots
+  dots.forEach((dot, index) => {
+      dot.addEventListener("click", () => {
+          stopAutoSlide();
+          goToSlide(index);
+          startAutoSlide();
+      });
+  });
+
+  // Initialize Slider
+  showSlide(currentIndex);
+  startAutoSlide();
 }
 
 /*********************
@@ -540,6 +568,8 @@ document.addEventListener("DOMContentLoaded", function () {
   // **Floating Share Buttons**
   setupShareToggle();
 
+  initImageSlider();
+
   // **Industry Page Animations**
   console.log("🎨 Initializing Industry Category Animations...");
   startWaterAnimation();
@@ -547,12 +577,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // **🚀 Now Start Recycling Sorting Game**
   startRecyclingGame(); // ✅ Place it AFTER setting up other UI elements
 
-  // **Image Slider Controls**
-  if (document.querySelector(".slide")) {
-      showSlides(slideIndex);
-  }
-  document.querySelector(".prev")?.addEventListener("click", prevSlide);
-  document.querySelector(".next")?.addEventListener("click", nextSlide);
+
 
   // **Like & Visit Counter**
   document.querySelectorAll(".article").forEach(article => updateVisitCount(article));
