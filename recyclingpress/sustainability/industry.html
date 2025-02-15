@@ -124,44 +124,41 @@
             </div>
         </section>
 
-        <!-- Recycling Sorting Game Section -->
+    <!-- Recycling Sorting Game Section -->
     <section class="recycling-game">
         <h2>♻️ Recycling Sorting Game</h2>
         <p>Drag and drop the recyclable items into the correct bins!</p>
-        
-        <div class="game-container">
-            <!-- Recycling Bins -->
-            <div class="bins">
-                <div class="bin" id="plastic-bin" data-type="plastic">
-                    <img src="../images/game/bin_plastic.png" alt="Plastic Bin">
-                    <p>Plastic Bin</p>
-                </div>
-                <div class="bin" id="paper-bin" data-type="paper">
-                    <img src="../images/game/bin_paper.png" alt="Paper Bin">
-                    <p>Paper Bin</p>
-                </div>
-                <div class="bin" id="metal-bin" data-type="metal">
-                    <img src="../images/game/bin_metal.png" alt="Metal Bin">
-                    <p>Metal Bin</p>
-                </div>
-                <div class="bin" id="glass-bin" data-type="glass">
-                    <img src="../images/game/bin_glass.png" alt="Glass Bin">
-                    <p>Glass Bin</p>
-                </div>
-            </div>
 
-            <!-- Waste Items -->
-            <div class="waste-items">
-                <img src="../images/game/plastic_bottle.png" alt="Plastic Bottle" class="draggable" data-type="plastic">
-                <img src="../images/game/paper_cup.png" alt="Paper Cup" class="draggable" data-type="paper">
-                <img src="../images/game/metal_can.png" alt="Metal Can" class="draggable" data-type="metal">
-                <img src="../images/game/glass_jar.png" alt="Glass Jar" class="draggable" data-type="glass">
+        <!-- Recycling Bins -->
+        <div class="bins">
+            <div class="bin" id="plastic-bin" data-type="plastic">
+                <img src="../images/game/bin_plastic.png" alt="Plastic Bin">
+                <p>Plastic Bin</p>
             </div>
+            <div class="bin" id="paper-bin" data-type="paper">
+                <img src="../images/game/bin_paper.png" alt="Paper Bin">
+                <p>Paper Bin</p>
+            </div>
+            <div class="bin" id="metal-bin" data-type="metal">
+                <img src="../images/game/bin_metal.png" alt="Metal Bin">
+                <p>Metal Bin</p>
+            </div>
+            <div class="bin" id="glass-bin" data-type="glass">
+                <img src="../images/game/bin_glass.png" alt="Glass Bin">
+                <p>Glass Bin</p>
+            </div>
+        </div>
+
+        <!-- Waste Items -->
+        <div class="waste-items">
+            <img src="../images/game/metal_can.png" alt="Metal Can" class="draggable" data-type="metal">
+            <img src="../images/game/plastic_bottle.png" alt="Plastic Bottle" class="draggable" data-type="plastic">
+            <img src="../images/game/glass_jar.png" alt="Glass Jar" class="draggable" data-type="glass">
+            <img src="../images/game/paper_cup.png" alt="Paper Cup" class="draggable" data-type="paper">
         </div>
 
         <p id="game-message"></p>
     </section>
-
 
 
 
@@ -216,7 +213,7 @@
     <footer>
         <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
     </footer>
-
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.3.2"></script>
     <script src="../script.js"></script>
 </body>
 </html>

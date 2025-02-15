@@ -97,15 +97,14 @@ function setupSearchToggle() {
   }
 }
 
-// Function to Manage FLoating Share Buttons
+/* =====================
+   Floating Share Button
+===================== */
 function setupShareToggle() {
   const shareButton = document.querySelector(".share-toggle-btn");
   if (shareButton) {
       shareButton.addEventListener("click", () => {
-          const shareGroup = document.querySelector(".share-btn-group");
-          if (shareGroup) {
-              shareGroup.classList.toggle("show");
-          }
+          document.querySelector(".share-btn-group").classList.toggle("show");
       });
   }
 }
@@ -227,6 +226,9 @@ const questions = [
     document.getElementById("resultScore").innerText = `Your score: ${score} / ${questions.length}`;
   }
   
+  /* =====================
+    Launch Confetti 🎉
+  ===================== */
   function launchConfetti() {
     const duration = 3000;
     const animationEnd = Date.now() + duration;
@@ -235,13 +237,10 @@ const questions = [
             clearInterval(interval);
             return;
         }
-        confetti({
-            particleCount: 5,
-            spread: 80,
-            origin: { x: Math.random(), y: Math.random() - 0.2 }
-        });
+        confetti({ particleCount: 5, spread: 80, origin: { x: Math.random(), y: Math.random() - 0.2 } });
     }, 100);
-  }
+}
+
   
   function openExplanationPopup() {
     explanationIndex = 0;
@@ -292,37 +291,30 @@ const questions = [
 
 // Function to handle dropdown toggling
 function setupDropdowns() {
-    const dropdownLinks = document.querySelectorAll("nav li[aria-haspopup='true'] > a");
+  const dropdownLinks = document.querySelectorAll("nav li[aria-haspopup='true'] > a");
 
-    dropdownLinks.forEach(link => {
-        link.addEventListener('click', function (event) {
-            event.preventDefault(); // Prevents page jumping
+  dropdownLinks.forEach(link => {
+      link.addEventListener("click", function (event) {
+          event.preventDefault();
 
-            const dropdownMenu = this.nextElementSibling;
+          const dropdownMenu = this.nextElementSibling;
+          document.querySelectorAll(".dropdown").forEach(menu => {
+              if (menu !== dropdownMenu) menu.classList.remove("show");
+          });
 
-            // Close other dropdowns before opening the clicked one
-            document.querySelectorAll(".dropdown").forEach(menu => {
-                if (menu !== dropdownMenu) {
-                    menu.classList.remove("show");
-                }
-            });
+          dropdownMenu.classList.toggle("show");
+          this.querySelector("i").classList.toggle("fa-rotate-180");
+      });
+  });
 
-            // Toggle dropdown visibility
-            dropdownMenu.classList.toggle("show");
-
-            // Toggle arrow rotation
-            this.querySelector("i").classList.toggle("fa-rotate-180");
-        });
-    });
-
-    // Close dropdowns when clicking outside
-    document.addEventListener("click", function (event) {
-        if (!event.target.closest("nav")) {
-            document.querySelectorAll(".dropdown").forEach(menu => menu.classList.remove("show"));
-            document.querySelectorAll("nav li[aria-haspopup='true'] > a i").forEach(icon => icon.classList.remove("fa-rotate-180"));
-        }
-    });
+  document.addEventListener("click", function (event) {
+      if (!event.target.closest("nav")) {
+          document.querySelectorAll(".dropdown").forEach(menu => menu.classList.remove("show"));
+          document.querySelectorAll("nav li[aria-haspopup='true'] > a i").forEach(icon => icon.classList.remove("fa-rotate-180"));
+      }
+  });
 }
+
 
 
 /* =====================
@@ -401,36 +393,25 @@ function submitFeedback() {
 *********************/
 function searchFunction() {
   let input = document.getElementById("search-input").value.toLowerCase().trim();
-  let allTextElements = document.querySelectorAll("h1, h2, h3, p"); // Search inside all relevant tags
+  let allTextElements = document.querySelectorAll("h1, h2, h3, p");
   let resultContainer = document.getElementById("search-results");
 
-  // Clear previous results
   resultContainer.innerHTML = "";
   resultContainer.style.display = "none";
 
-  if (input.length === 0) {
-      return;
-  }
+  if (!input) return;
 
   let foundResults = [];
-
   allTextElements.forEach(element => {
       let text = element.textContent.toLowerCase();
-      let parentElement = element.closest("article, section, div"); // Get closest wrapper
-      let linkElement = parentElement ? parentElement.querySelector("a") : null;
-      let articleLink = linkElement ? linkElement.href : "#"; // Get link if available
-
-      if (text.includes(input)) {
-          foundResults.push({ text: element.textContent, articleLink });
-      }
+      if (text.includes(input)) foundResults.push({ text: element.textContent.substring(0, 100) + "..." });
   });
 
-  // Display results or show "No Results"
   if (foundResults.length > 0) {
       foundResults.forEach(result => {
           let resultItem = document.createElement("div");
           resultItem.classList.add("search-result-item");
-          resultItem.innerHTML = `<a href="${result.articleLink}">${result.text.substring(0, 100)}...</a>`;
+          resultItem.innerHTML = `<p>${result.text}</p>`;
           resultContainer.appendChild(resultItem);
       });
       resultContainer.style.display = "block";
@@ -439,10 +420,7 @@ function searchFunction() {
       resultContainer.style.display = "block";
   }
 
-  // **🔹 Hide results after 5 seconds**
-  setTimeout(() => {
-      resultContainer.style.display = "none";
-  }, 5000);
+  setTimeout(() => { resultContainer.style.display = "none"; }, 5000);
 }
 
 /*********************
@@ -480,28 +458,30 @@ function startWaterAnimation() {
   drawWave();
 }
 
-/*********************
- Recycling Sorting Game
-*********************/
-document.addEventListener("DOMContentLoaded", function () {
+// ✅ Recycling Sorting Game - Restored Drag & Drop Functionality
+function startRecyclingGame() {
+  console.log("♻️ Initializing Recycling Sorting Game...");
+
   const wasteItems = document.querySelectorAll(".draggable");
   const bins = document.querySelectorAll(".bin");
   const gameMessage = document.getElementById("game-message");
 
+  let correctCount = 0;
+  const totalItems = wasteItems.length;
+
+  // Enable Dragging for Waste Items
   wasteItems.forEach(item => {
       item.draggable = true;
-
-      item.addEventListener("dragstart", function (event) {
+      item.addEventListener("dragstart", event => {
           event.dataTransfer.setData("wasteType", item.dataset.type);
       });
   });
 
+  // Enable Bins to Accept Waste Items
   bins.forEach(bin => {
-      bin.addEventListener("dragover", function (event) {
-          event.preventDefault();
-      });
+      bin.addEventListener("dragover", event => event.preventDefault());
 
-      bin.addEventListener("drop", function (event) {
+      bin.addEventListener("drop", event => {
           event.preventDefault();
           const wasteType = event.dataTransfer.getData("wasteType");
 
@@ -509,160 +489,117 @@ document.addEventListener("DOMContentLoaded", function () {
               gameMessage.textContent = "✅ Correct! Good job!";
               gameMessage.style.color = "green";
 
-              // Remove item after sorting
+              // Remove the item when correctly sorted
               document.querySelector(`img[data-type="${wasteType}"]`).remove();
+              correctCount++;
+
+              if (correctCount === totalItems) {
+                  launchConfetti();
+                  gameMessage.textContent = "🎉 You sorted all items correctly!";
+              }
           } else {
               gameMessage.textContent = "❌ Wrong bin! Try again.";
               gameMessage.style.color = "red";
           }
 
-          setTimeout(() => {
-              gameMessage.textContent = "";
-          }, 2000);
+          setTimeout(() => { gameMessage.textContent = ""; }, 2000);
       });
   });
-});
+}
 
-
+// ✅ Launch Confetti When Game is Completed
+function launchConfetti() {
+  const duration = 3000;
+  const animationEnd = Date.now() + duration;
+  const interval = setInterval(() => {
+      if (Date.now() > animationEnd) {
+          clearInterval(interval);
+          return;
+      }
+      confetti({ particleCount: 5, spread: 80, origin: { x: Math.random(), y: Math.random() - 0.2 } });
+  }, 100);
+}
 
 
 /*********************
- Event Listeners (Inside DOMContentLoaded)
+ Event Listeners (Optimized & Merged)
 *********************/
 document.addEventListener("DOMContentLoaded", function () {
-  console.log("DOM fully loaded");
-  
-  // Navigation Menu Toggle
-  const hamburger = document.querySelector(".hamburger");
-  if (hamburger) {
-      hamburger.addEventListener("click", toggleMenu);
-  }
+  console.log("🚀 DOM fully loaded");
 
-    // Ensure search function triggers when typing
-    const searchInput = document.getElementById("search-input");
-    if (searchInput) {
-        searchInput.addEventListener("keyup", searchFunction);
-    }
+  // **Navigation Menu Toggle**
+  document.querySelector(".hamburger")?.addEventListener("click", toggleMenu);
 
-    setupSearchToggle();
-    setupShareToggle();
-  
-  console.log("Initializing Industry Category Animations...");
-    
-    startWaterAnimation();
-    startRecyclingGame();
+  // **Dropdown Menu Setup**
+  setupDropdowns();
 
-  // Image Slider Controls
+  // **Search Toggle & Functionality**
+  document.getElementById("search-input")?.addEventListener("keyup", searchFunction);
+  setupSearchToggle();
+
+  // **Floating Share Buttons**
+  setupShareToggle();
+
+  // **Industry Page Animations**
+  console.log("🎨 Initializing Industry Category Animations...");
+  startWaterAnimation();
+
+  // **🚀 Now Start Recycling Sorting Game**
+  startRecyclingGame(); // ✅ Place it AFTER setting up other UI elements
+
+  // **Image Slider Controls**
   if (document.querySelector(".slide")) {
       showSlides(slideIndex);
   }
-  if (document.querySelector(".prev")) {
-      document.querySelector(".prev").addEventListener("click", prevSlide);
-  }
-  if (document.querySelector(".next")) {
-      document.querySelector(".next").addEventListener("click", nextSlide);
-  }
+  document.querySelector(".prev")?.addEventListener("click", prevSlide);
+  document.querySelector(".next")?.addEventListener("click", nextSlide);
 
-  // Like & Visit Counter
+  // **Like & Visit Counter**
   document.querySelectorAll(".article").forEach(article => updateVisitCount(article));
   document.querySelectorAll(".like-btn").forEach(btn => btn.addEventListener("click", likeArticle));
 
-  // Social Share Toggle
-  const shareButton = document.querySelector(".share-toggle-btn");
-  if (shareButton) {
-      shareButton.addEventListener("click", toggleShareButtons);
+  // **Feedback Form**
+  document.querySelector(".feedback-btn")?.addEventListener("click", toggleFeedbackForm);
+  document.querySelector(".feedback-form button")?.addEventListener("click", submitFeedback);
+
+  // **Newsletter Signup Animation**
+  const newsletterSignup = document.getElementById("newsletter-signup");
+  if (newsletterSignup) {
+      console.log("📧 Newsletter signup element found");
+      setTimeout(() => newsletterSignup.classList.add("show"), 2000);
+
+      document.getElementById("newsletter-subscribe")?.addEventListener("click", () => {
+          const email = document.getElementById("newsletter-email").value;
+          const message = document.getElementById("newsletter-message");
+
+          if (email.includes("@")) {
+              message.textContent = "✅ Thank you for subscribing!";
+              message.style.color = "green";
+              document.getElementById("newsletter-email").value = "";
+          } else {
+              message.textContent = "❌ Please enter a valid email address.";
+              message.style.color = "red";
+          }
+      });
   }
 
+  // **Event Hover Effect**
+  document.querySelectorAll(".event").forEach(event => {
+      event.addEventListener("mouseover", () => console.log("🎭 Hovered over event"));
+  });
 
-  // Feedback Form
-  if (document.querySelector(".feedback-btn")) {
-      document.querySelector(".feedback-btn").addEventListener("click", toggleFeedbackForm);
-  }
-  if (document.querySelector(".feedback-form button")) {
-      document.querySelector(".feedback-form button").addEventListener("click", submitFeedback);
-  }
-  
-  console.log("All event listeners added successfully!");
+  // **Fade-in Page Animation**
+  document.body.style.opacity = 0;
+  setTimeout(() => {
+      document.body.style.transition = "opacity 1s ease-in-out";
+      document.body.style.opacity = 1;
+  }, 100);
 
-   // Run dropdown function if dropdowns exist
-   if (document.querySelector("nav li[aria-haspopup='true'] > a")) {
-    setupDropdowns();
-    }
-    // Newsletter signup animation 
-    const newsletterSignup = document.getElementById('newsletter-signup');
-    const newsletterEmail = document.getElementById('newsletter-email');
-    const newsletterSubscribe = document.getElementById('newsletter-subscribe');
-    const newsletterMessage = document.getElementById('newsletter-message');
-    
-    if (newsletterSignup) {
-            console.log('Newsletter signup element found');
-            setTimeout(() => {
-                newsletterSignup.classList.add('show');
-            }, 2000);
-    
-            newsletterSubscribe.addEventListener('click', () => {
-                console.log('Subscribe button clicked');
-                const email = newsletterEmail.value;
-                console.log('Email value:', email);
-    
-                if (email.includes('@')) {
-                    console.log('Email is valid');
-                    newsletterMessage.textContent = "Thank you for subscribing!";
-                    newsletterMessage.style.color = "green";
-                    newsletterEmail.value = "";
-                } else {
-                    console.log('Email is not valid');
-                    newsletterMessage.textContent = "Please enter a valid email address.";
-                    newsletterMessage.style.color = "red";
-                }
-            });
-    }
-    
-    // Event Hover 
-    const events = document.querySelectorAll('.event');
-    events.forEach(event => {
-        event.addEventListener('mouseover', () => {
-            console.log("hover")
-        });
-    });
+  // **Newsletter Page Slider**
+  newsSlider();
 
-    // Fade-in animation 
-    document.body.style.opacity = 0;
-    setTimeout(() => {
-        document.body.style.transition = "opacity 1s ease-in-out";
-        document.body.style.opacity = 1;
-    }, 100);
+  // **Contact Form Handler**
+  contactForm();
 
-    // Newsletter Page Slider
-    function newsSlider() {
-        const newsSliderContainer = document.querySelector('.section.news-slider');
-        if (newsSliderContainer) {
-            const newsSlider = document.querySelector('div.news-slider');
-            const sliderPrev = document.querySelector('.slider-prev');
-            const sliderNext = document.querySelector('.slider-next');
-            const newsItems = document.querySelectorAll('.news-slider .news-item');
-            let currentPosition = 0;
-            let itemWidth = newsItems[0].offsetWidth;
-    
-            window.addEventListener('resize', () => {
-                itemWidth = newsItems[0].offsetWidth;
-            });
-    
-            sliderNext.addEventListener('click', () => {
-                const maxPosition = (newsItems.length - 1) * itemWidth;
-                currentPosition = Math.min(currentPosition + itemWidth, maxPosition);
-                newsSlider.style.transform = `translateX(-${currentPosition}px)`;
-                console.log("sliderNext", currentPosition);
-            });
-    
-            sliderPrev.addEventListener('click', () => {
-                currentPosition = Math.max(currentPosition - itemWidth, 0);
-                newsSlider.style.transform = `translateX(-${currentPosition}px)`;
-                console.log("sliderPrev", currentPosition);
-            });
-        }
-    }
-
-    newsSlider();
-    contactForm();
+  console.log("✅ All event listeners successfully added!");
 });
