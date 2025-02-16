@@ -60,43 +60,6 @@ function contactForm() {
     }
 }
 
-// Function to Manage Search Toggle Behaviour
-function setupSearchToggle() {
-  const searchToggle = document.querySelector(".search-toggle");
-  const searchBar = document.querySelector(".search-bar");
-  const searchClose = document.querySelector(".search-close");
-  const navRight = document.querySelector(".nav-right");
-  const navbarSocialIcons = document.querySelector(".social-media-nav");
-
-  if (searchToggle && searchBar) {
-      searchToggle.addEventListener("click", () => {
-          searchBar.style.display = "flex";
-          navRight.classList.add("search-active");
-          searchToggle.style.display = "none";
-
-          // Hide Social Media Icons when the search bar is active
-          if (navbarSocialIcons) {
-              navbarSocialIcons.style.opacity = "0";
-              navbarSocialIcons.style.pointerEvents = "none";
-          }
-      });
-
-      // Close Search Bar & Show Social Icons Again
-      if (searchClose) {
-          searchClose.addEventListener("click", () => {
-              searchBar.style.display = "none";
-              navRight.classList.remove("search-active");
-              searchToggle.style.display = "block";
-
-              if (navbarSocialIcons) {
-                  navbarSocialIcons.style.opacity = "1";
-                  navbarSocialIcons.style.pointerEvents = "auto";
-              }
-          });
-      }
-  }
-}
-
 /* =====================
    Floating Share Button
 ===================== */
@@ -414,51 +377,6 @@ function downloadUserInteractionData() {
   console.log("✅ User interaction data has been downloaded.");
 }
 
-
-/*********************
- ✅ Like & Visit Counter for Quotes
-*********************/
-
-// Function to update visit counts
-function updateVisitCounts() {
-  document.querySelectorAll(".quote-container").forEach(quoteBlock => {
-      const visitCountElement = quoteBlock.querySelector(".visit-count");
-      if (!visitCountElement) return;
-
-      const quoteId = quoteBlock.dataset.quote;
-      let visits = sessionStorage.getItem(quoteId) || 0;
-      visits = parseInt(visits) + 1;
-
-      sessionStorage.setItem(quoteId, visits);
-      visitCountElement.textContent = `👀 ${visits}`;
-  });
-}
-
-// Function to handle like button clicks
-function likeQuote(event) {
-  const likeBtn = event.currentTarget;
-  const likeCountElement = likeBtn.querySelector(".like-count");
-  const quoteBlock = likeBtn.closest(".quote-container");
-  if (!quoteBlock) return;
-
-  const quoteId = quoteBlock.dataset.quote;
-  let likes = localStorage.getItem(quoteId + "-likes") || 0;
-  likes = parseInt(likes) + 1;
-
-  localStorage.setItem(quoteId + "-likes", likes);
-  likeCountElement.textContent = likes;
-}
-
-// Function to set up event listeners for like buttons
-function setupLikeButtons() {
-  document.querySelectorAll(".like-btn").forEach(btn => {
-      btn.addEventListener("click", likeQuote);
-  });
-}
-
-
-//end//
-
 /*********************
  Floating Social Share
 *********************/
@@ -479,41 +397,6 @@ function toggleFeedbackForm() {
 function submitFeedback() {
   alert("Thank you for your feedback!");
   document.querySelector(".feedback-form").classList.add("hidden");
-}
-
-/*********************
- Search Functionality
-*********************/
-function searchFunction() {
-  let input = document.getElementById("search-input").value.toLowerCase().trim();
-  let allTextElements = document.querySelectorAll("h1, h2, h3, p");
-  let resultContainer = document.getElementById("search-results");
-
-  resultContainer.innerHTML = "";
-  resultContainer.style.display = "none";
-
-  if (!input) return;
-
-  let foundResults = [];
-  allTextElements.forEach(element => {
-      let text = element.textContent.toLowerCase();
-      if (text.includes(input)) foundResults.push({ text: element.textContent.substring(0, 100) + "..." });
-  });
-
-  if (foundResults.length > 0) {
-      foundResults.forEach(result => {
-          let resultItem = document.createElement("div");
-          resultItem.classList.add("search-result-item");
-          resultItem.innerHTML = `<p>${result.text}</p>`;
-          resultContainer.appendChild(resultItem);
-      });
-      resultContainer.style.display = "block";
-  } else {
-      resultContainer.innerHTML = "<p class='no-results'>No results found.</p>";
-      resultContainer.style.display = "block";
-  }
-
-  setTimeout(() => { resultContainer.style.display = "none"; }, 5000);
 }
 
 
@@ -581,7 +464,7 @@ function launchConfetti() {
 
 
 /*********************
- Event Listeners (Optimized & Merged)
+ 1) MAIN DOM: Event Listeners (Optimized & Merged)
 *********************/
 document.addEventListener("DOMContentLoaded", function () {
   console.log("🚀 DOM fully loaded");
@@ -591,11 +474,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // **Dropdown Menu Setup**
   setupDropdowns();
-
-  // **Search Toggle & Functionality**
-  document.getElementById("search-input")?.addEventListener("keyup", searchFunction);
-  setupSearchToggle();
-
   // **Floating Share Buttons**
   setupShareToggle();
   initImageSlider();
@@ -656,7 +534,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
+/*********************
+2) Second DOM: Likes & Views counter 
+*********************/
 document.addEventListener("DOMContentLoaded", function () {
   // Function to handle the like button click
   function handleLikeButtonClick(event) {
@@ -723,4 +603,99 @@ document.addEventListener("DOMContentLoaded", function () {
 
       likeBtn.addEventListener("click", handleLikeButtonClick);
   });
+});
+
+/*********************
+3) Third DOM: Search Bar 
+*********************/
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to Manage Search Toggle Behaviour
+  function setupSearchToggle() {
+      const searchToggle = document.querySelector(".search-toggle");
+      const searchBar = document.querySelector(".search-bar");
+      const searchClose = document.querySelector(".search-close");
+      const navRight = document.querySelector(".nav-right");
+      const navbarSocialIcons = document.querySelector(".social-media-nav");
+
+      if (searchToggle && searchBar) {
+          searchToggle.addEventListener("click", () => {
+              searchBar.style.display = "flex";
+              navRight.classList.add("search-active");
+              searchToggle.style.display = "none";
+
+              // Hide Social Media Icons when the search bar is active
+              if (navbarSocialIcons) {
+                  navbarSocialIcons.style.opacity = "0";
+                  navbarSocialIcons.style.pointerEvents = "none";
+              }
+          });
+
+          // Close Search Bar & Show Social Icons Again
+          if (searchClose) {
+              searchClose.addEventListener("click", () => {
+                  searchBar.style.display = "none";
+                  navRight.classList.remove("search-active");
+                  searchToggle.style.display = "block";
+
+                  if (navbarSocialIcons) {
+                      navbarSocialIcons.style.opacity = "1";
+                      navbarSocialIcons.style.pointerEvents = "auto";
+                  }
+              });
+          }
+      }
+  }
+
+  // Function to Handle Search Functionality
+  function searchFunction() {
+      const input = document.getElementById("search-input").value.toLowerCase().trim();
+      const allTextElements = document.querySelectorAll("h1, h2, h3, p");
+      const resultContainer = document.getElementById("search-results");
+
+      resultContainer.innerHTML = "";
+      resultContainer.style.display = "none";
+
+      if (!input) return;
+
+      const foundResults = [];
+      allTextElements.forEach(element => {
+          const text = element.textContent.toLowerCase();
+          if (text.includes(input)) {
+              const parentLink = element.closest("a");
+              if (parentLink) {
+                  foundResults.push({
+                      text: element.textContent.substring(0, 100) + "...",
+                      url: parentLink.href
+                  });
+              }
+          }
+      });
+
+      if (foundResults.length > 0) {
+          foundResults.forEach(result => {
+              const resultItem = document.createElement("div");
+              resultItem.classList.add("search-result-item");
+              resultItem.innerHTML = `<a href="${result.url}">${result.text}</a>`;
+              resultContainer.appendChild(resultItem);
+          });
+          resultContainer.style.display = "block";
+      } else {
+          resultContainer.innerHTML = "<p class='no-results'>No results found.</p>";
+          resultContainer.style.display = "block";
+      }
+
+      // Hide the results after 5 seconds
+      setTimeout(() => {
+          resultContainer.style.display = "none";
+      }, 5000);
+  }
+
+  // Initialize Functions
+  setupSearchToggle();
+
+  // Attach searchFunction to the search input
+  const searchInput = document.getElementById("search-input");
+  if (searchInput) {
+      searchInput.addEventListener("input", searchFunction);
+  }
 });

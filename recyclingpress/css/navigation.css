@@ -124,7 +124,7 @@ nav .hamburger {
     border-radius: 5px;
     padding: 5px;
     border: 1px solid #ccc;
-    position: absolute;
+    position: relative;
     right: 0;
     top: 50%;
     transform: translateY(-50%);
@@ -158,6 +158,7 @@ nav .hamburger {
     color: #052a0d;
 }
 
+/* When Search is Active */
 .nav-right.search-active .search-bar {
     display: flex;
 }
@@ -184,13 +185,13 @@ nav .hamburger {
     transform: translateY(-50%);
 }
 
-/* Hide Social Icons When Search Bar Expands */
+/* Hide Social Icons When Search Bar Expands
 .search-active .social-media-nav {
     opacity: 0;
     pointer-events: none;
-}
+} */
 
-
+/* ends */
 
 .dropdown {
     display: none; 
