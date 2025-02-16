@@ -103,37 +103,126 @@
         </section>
 
         <!-- Categories Section -->
-        <section class="categories">
-            <h2>Industry Categories</h2>
-            <p>Discover different angles of recycling across different industries and latest news. Flip them below! :)</p>
-            <div class="category-grid">
-                <div class="category" id="waste-recycling">
-                    <h3>Waste Management & Recycling</h3>
-                    <p>Innovative ways industries handle waste & recycling.</p>
-                </div>
-                <div class="category water-category">
-                    <canvas id="waterCanvas"></canvas>
-                    <h3>Water & Sustainable Development</h3>
-                    <p>Ensuring clean and sustainable water usage.</p>
-                </div>
-                <div class="category">
-                    <h3>Green Technology</h3>
-                    <p>Exploring energy-efficient solutions for sustainability.</p>
-                </div>
-                <div class="category">
-                    <h3>Sustainable Agriculture</h3>
-                    <p>Eco-friendly farming techniques reducing waste.</p>
-                </div>
-                <div class="category">
-                    <h3>Circular Economy</h3>
-                    <p>Redesigning the economy to reduce waste.</p>
-                </div>
-                <div class="category">
-                    <h3>Eco-Friendly Products</h3>
-                    <p>Green alternatives for everyday consumer goods.</p>
+        <!-- 🌍 Industry Categories Section -->
+    <!-- 🌍 Industry Categories Section -->
+    <section class="categories">
+        <h2>Industry Categories</h2>
+        <p class="category-description">
+            Discover how different industries are shaping a greener future! Each category highlights key sustainability efforts, from 
+            <strong>waste management</strong> to <strong>eco-friendly products</strong>. Simply <strong>hover and flip</strong> the cards 
+            to explore insights, and <strong>click</strong> on the images to dive deeper into the latest innovations, trends, and breaking 
+            news in each sector. Whether you're interested in <strong>circular economy solutions, green technology, or sustainable agriculture</strong>, 
+            this interactive section will keep you informed and inspired. 🌱🔄♻
+        </p>
+        
+        <div class="category-grid">
+
+            <!-- ♻ Waste Management & Recycling -->
+            <div class="category">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Waste Management & Recycling</h3>
+                            <p>Innovative ways industries handle waste & recycling.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="https://www.ft.com/waste-management-recycling" target="_blank">
+                                <img src="../images/industry/waste_management.png" alt="Recycling">
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </section>
+
+            <!-- 🌱 Green Technology -->
+            <div class="category">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Green Technology</h3>
+                            <p>Exploring energy-efficient solutions for sustainability.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="https://www.analyticsinsight.net/tech-news/green-tech-innovations-leading-the-way-in-2025" target="_blank">
+                                <img src="../images/industry/green_tech.png" alt="Green Tech">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🚜 Sustainable Agriculture -->
+            <div class="category">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Sustainable Agriculture</h3>
+                            <p>Eco-friendly farming techniques reducing waste.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="https://agriculture.ec.europa.eu/sustainability/environmental-sustainability/sustainable-agricultural-practices-and-methods_en" target="_blank">
+                                <img src="../images/industry/sustainable_agriculture.png" alt="Agriculture">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🌊 Water & Sustainable Development -->
+            <div class="category">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Water & Sustainable Development</h3>
+                            <p>Ensuring clean and sustainable water usage.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="https://www.activesustainability.com/water/" target="_blank">
+                                <img src="../images/industry/water_sustainable.png" alt="Water Sustainability">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🔄 Circular Economy -->
+            <div class="category">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Circular Economy</h3>
+                            <p>Redesigning the economy to reduce waste.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="https://www.localenterprise.ie/DublinCity/Enterprise-Development/Circular-Economy-and-Sustainability/" target="_blank">
+                                <img src="../images/industry/circular_economy.png" alt="Circular Economy">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 🛍 Eco-Friendly Products -->
+            <div class="category">
+                <div class="flip-card">
+                    <div class="flip-card-inner">
+                        <div class="flip-card-front">
+                            <h3>Eco-Friendly Products</h3>
+                            <p>Green alternatives for everyday consumer goods.</p>
+                        </div>
+                        <div class="flip-card-back">
+                            <a href="https://www.wired.com/tag/eco-friendly/" target="_blank">
+                                <img src="../images/industry/eco_friendly_product.png" alt="Eco-Friendly Products">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
 
     <!-- Recycling Sorting Game Section -->
     <section class="recycling-game">
@@ -171,28 +260,45 @@
         <p id="game-message"></p>
     </section>
 
+        <!-- 🌱 Inspirational Sustainability Quotes Section -->
+    <section class="inspirational-quotes">
+        <h2>Let These Words Inspire a Greener Future 🌱</h2>
+
+        <div class="quote-grid">
+
+            <blockquote class="quote" data-quote="quote-1">
+                <p>“We do not inherit the earth from our ancestors, we borrow it from our children.”</p>
+                <footer>- Native American Proverb</footer>
+                <button class="like-btn">❤️ <span class="like-count">0</span></button>
+                <span class="visit-count">👀 0</span>
+            </blockquote>
+
+            <blockquote class="quote" data-quote="quote-2">
+                <p>"If it can't be reduced, reused, repaired, rebuilt, refurbished, refinished, resold, recycled,
+                    or composted, then it should be restricted, redesigned, or removed from production." </p>
+                <footer>- Pete Seeger</footer>
+                <button class="like-btn">❤️ <span class="like-count">0</span></button>
+                <span class="visit-count">👀 0</span>
+            </blockquote>
+
+            <blockquote class="quote" data-quote="quote-3">
+                <p>"Buy less, choose well, make it last."</p>
+                <footer>- Vivienne Westwood</footer>
+                <button class="like-btn">❤️ <span class="like-count">0</span></button>
+                <span class="visit-count">👀 0</span>
+            </blockquote>
+
+            <blockquote class="quote" data-quote="quote-4">
+                <p>"Recycling turns things into other things. Which is like magic."</p>
+                <footer>- Recycling Press Media Group :)</footer>
+                <button class="like-btn">❤️ <span class="like-count">0</span></button>
+                <span class="visit-count">👀 0</span>
+            </blockquote>
+
+        </div>
+    </section>
 
 
-        <!-- Articles Section -->
-        <section class="articles">
-            <h2>Latest Articles</h2>
-            <div class="article-grid">
-                <article class="article">
-                    <img src="article1.jpg" alt="Article 1">
-                    <h3>Article Title 1</h3>
-                    <p>Short description of the article.</p>
-                    <button class="like-btn">❤️ <span class="like-count">0</span></button>
-                    <span class="visit-count">👀 0</span>
-                </article>
-                <article class="article">
-                    <img src="article2.jpg" alt="Article 2">
-                    <h3>Article Title 2</h3>
-                    <p>Short description of the article.</p>
-                    <button class="like-btn">❤️ <span class="like-count">0</span></button>
-                    <span class="visit-count">👀 0</span>
-                </article>
-            </div>
-        </section>
 
         <!-- Floating Share Buttons -->
         <div class="floating-share">

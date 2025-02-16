@@ -73,7 +73,23 @@
 }
 
 
-/* Categories Section */
+/* ==========================
+   🌍 Industry Categories Section
+========================== */
+.category-description {
+    text-align: center;
+    font-size: 18px;
+    color: #035914; /* Matching your sustainability theme */
+    max-width: 800px;
+    margin: 0 auto 20px auto;
+    padding: 15px;
+    background: #f4f8ff; /* Light eco-friendly blue background */
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    font-weight: 500;
+    line-height: 1.6;
+}
+
 .categories {
     padding: 50px 20px;
     text-align: center;
@@ -82,39 +98,141 @@
 
 .category-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px; /* ✅ Ensures proper spacing between categories */
     max-width: 1200px;
     margin: 0 auto;
+    justify-content: center;
 }
 
+/* Flip Card Styling */
 .category {
+    perspective: 1200px; /* ✅ Enhances the 3D flip effect */
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Flip Card Container */
+.flip-card {
+    width: 100%;
+    height: 300px; /* ✅ Adjusted for perfect balance */
+    position: relative;
+    transform-style: preserve-3d;
+    transition: transform 0.8s ease-in-out;
+}
+
+/* Flip Effect on Hover */
+.category:hover .flip-card {
+    transform: rotateY(180deg);
+}
+
+/* Front & Back Faces */
+.flip-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.flip-card-front,
+.flip-card-back {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+    border-radius: 12px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Front Side */
+.flip-card-front {
     background: white;
     padding: 20px;
-    border-radius: 12px;
     text-align: center;
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    position: relative;
-    min-height: 180px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.category:hover {
-    transform: translateY(-5px);
-    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
-    background-color: #e7f8e7;
-}
-
-.category h3 {
-    margin-top: 15px;
+/* Keep original text styles */
+.flip-card-front h3 {
     font-size: 18px;
     color: #035914;
+    margin-bottom: 10px;
 }
 
-.category p {
+.flip-card-front p {
     font-size: 14px;
     color: #444;
 }
+
+/* Back Side (Image Side) */
+.flip-card-back {
+    background: white;
+    transform: rotateY(180deg);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+/* Image Styling */
+.flip-card-back img {
+    width: 100%; /* ✅ Ensures full container fit */
+    height: 100%; /* ✅ Prevents distortion */
+    object-fit: cover; /* ✅ Avoids squeezing/stretching */
+    border-radius: 12px;
+}
+
+/* ==========================
+   🌍 Responsive Design Fixes
+========================== */
+@media (max-width: 1024px) {
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 15px; /* ✅ Adjusted for medium screens */
+    }
+}
+
+@media (max-width: 768px) {
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        gap: 15px; /* ✅ Keeps consistent spacing */
+    }
+
+    .flip-card {
+        height: 280px; /* ✅ Prevents excessive height */
+    }
+}
+
+@media (max-width: 480px) {
+    .category-grid {
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 10px; /* ✅ Compact but not too tight */
+    }
+
+    .flip-card {
+        height: 250px; /* ✅ Fits better on smaller screens */
+    }
+
+    .flip-card-front h3 {
+        font-size: 16px; /* ✅ Readable but smaller */
+    }
+
+    .flip-card-front p {
+        font-size: 13px;
+    }
+}
+
+
+
+
 
 /* Canvas Styling */
 canvas {
@@ -123,13 +241,6 @@ canvas {
     display: block;
     background: transparent;
 }
-
-/* Unique Styling for Water Animation */
-.water-category canvas {
-    width: 100%;
-    height: 100px;
-}
-
 
 /* Floating Share Button (Always Visible Above Feedback Button with Background) */
 .floating-share {
@@ -238,27 +349,74 @@ canvas {
     background: #035914;
 }
 
-/* Article Section Enhancements */
-.article-grid {
+/* 🌍 Quotes Section Styling */
+.inspirational-quotes {
+    text-align: center;
+    padding: 40px 20px;
+    background-color: #f4f8ff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 900px;
+    margin: 30px auto;
+}
+
+/* Headline */
+.inspirational-quotes h2 {
+    font-size: 24px;
+    color: #035914;
+    margin-bottom: 20px;
+}
+
+/* Quotes Grid */
+.quote-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
     gap: 20px;
-    padding: 20px;
 }
 
-.article {
+/* Individual Quote Styling */
+.quote {
     background: white;
-    padding: 15px;
+    padding: 20px;
+    border-left: 4px solid #035914;
     border-radius: 8px;
-    transition: 0.3s;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    font-style: italic;
 }
 
-.article:hover {
-    transform: translateY(-5px);
+/* Hover Effect */
+.quote:hover {
+    transform: scale(1.02);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
 }
 
-/* Like and Visit Counters */
+/* Quote Text */
+.quote p {
+    font-size: 18px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Footer for Author */
+.quote footer {
+    font-size: 14px;
+    color: #666;
+    font-weight: bold;
+    text-align: right;
+}
+
+/* Like & Visit Buttons */
+.like-btn, .visit-count {
+    display: inline-flex;
+    align-items: center;
+    margin-top: 10px;
+    font-size: 14px;
+    color: #444;
+    cursor: pointer;
+}
+
 .like-btn {
     background: none;
     border: none;
@@ -266,10 +424,17 @@ canvas {
     cursor: pointer;
 }
 
-.visit-count {
-    font-size: 14px;
-    color: #555;
+.like-btn:hover {
+    color: #d42a2a;
 }
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .quote-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* end */
 
 /* ==============================
    Responsive Improvements for Industry Page

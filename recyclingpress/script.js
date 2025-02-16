@@ -373,26 +373,91 @@ function initImageSlider() {
 }
 
 /*********************
- Like & Visit Counter
+ Flip Cards
 *********************/
-function updateVisitCount(article) {
-  let visitCount = article.querySelector(".visit-count");
-  if (!visitCount) return;
-  let visits = sessionStorage.getItem(article.dataset.article) || 0;
-  visits++;
-  sessionStorage.setItem(article.dataset.article, visits);
-  visitCount.textContent = `👀 ${visits}`;
+
+// 🎯 Function to Track User Interactions (Hover & Clicks)
+function trackUserInteractions() {
+  let hoverLogs = JSON.parse(localStorage.getItem("hoverLogs")) || [];
+  let clickLogs = JSON.parse(localStorage.getItem("clickLogs")) || [];
+
+  document.body.addEventListener("mousemove", (event) => {
+      hoverLogs.push({ x: event.clientX, y: event.clientY, time: new Date().toISOString() });
+      localStorage.setItem("hoverLogs", JSON.stringify(hoverLogs));
+  });
+
+  document.body.addEventListener("click", (event) => {
+      clickLogs.push({ x: event.clientX, y: event.clientY, time: new Date().toISOString() });
+      localStorage.setItem("clickLogs", JSON.stringify(clickLogs));
+  });
+
+  console.log("📊 User interactions tracking enabled.");
 }
 
-function likeArticle(event) {
-  let likeBtn = event.target;
-  let likeCount = likeBtn.querySelector(".like-count");
-  let articleId = likeBtn.closest(".article").dataset.article;
-  let likes = localStorage.getItem(articleId + "-likes") || 0;
-  likes++;
-  localStorage.setItem(articleId + "-likes", likes);
-  likeCount.textContent = likes;
+function downloadUserInteractionData() {
+  let hoverData = JSON.parse(localStorage.getItem("hoverLogs")) || [];
+  let clickData = JSON.parse(localStorage.getItem("clickLogs")) || [];
+
+  let data = { hoverData, clickData };
+  let jsonData = JSON.stringify(data, null, 2);
+  let blob = new Blob([jsonData], { type: "application/json" });
+  let url = URL.createObjectURL(blob);
+
+  let a = document.createElement("a");
+  a.href = url;
+  a.download = "user_interactions.json"; // File Name
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+
+  console.log("✅ User interaction data has been downloaded.");
 }
+
+
+/*********************
+ ✅ Like & Visit Counter for Quotes
+*********************/
+
+// Function to update visit counts
+function updateVisitCounts() {
+  document.querySelectorAll(".quote-container").forEach(quoteBlock => {
+      const visitCountElement = quoteBlock.querySelector(".visit-count");
+      if (!visitCountElement) return;
+
+      const quoteId = quoteBlock.dataset.quote;
+      let visits = sessionStorage.getItem(quoteId) || 0;
+      visits = parseInt(visits) + 1;
+
+      sessionStorage.setItem(quoteId, visits);
+      visitCountElement.textContent = `👀 ${visits}`;
+  });
+}
+
+// Function to handle like button clicks
+function likeQuote(event) {
+  const likeBtn = event.currentTarget;
+  const likeCountElement = likeBtn.querySelector(".like-count");
+  const quoteBlock = likeBtn.closest(".quote-container");
+  if (!quoteBlock) return;
+
+  const quoteId = quoteBlock.dataset.quote;
+  let likes = localStorage.getItem(quoteId + "-likes") || 0;
+  likes = parseInt(likes) + 1;
+
+  localStorage.setItem(quoteId + "-likes", likes);
+  likeCountElement.textContent = likes;
+}
+
+// Function to set up event listeners for like buttons
+function setupLikeButtons() {
+  document.querySelectorAll(".like-btn").forEach(btn => {
+      btn.addEventListener("click", likeQuote);
+  });
+}
+
+
+//end//
 
 /*********************
  Floating Social Share
@@ -451,40 +516,6 @@ function searchFunction() {
   setTimeout(() => { resultContainer.style.display = "none"; }, 5000);
 }
 
-/*********************
- Flowing Water Animation
-*********************/
-function startWaterAnimation() {
-  const canvas = document.getElementById("waterCanvas");
-  if (!canvas) return;
-  const ctx = canvas.getContext("2d");
-
-  canvas.width = 300;
-  canvas.height = 100;
-
-  let waveOffset = 0;
-
-  function drawWave() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      ctx.fillStyle = "rgba(0, 123, 255, 0.5)";
-
-      ctx.beginPath();
-      for (let x = 0; x < canvas.width; x++) {
-          let y =
-              20 * Math.sin((x + waveOffset) * 0.05) + 40; // Creates wave motion
-          ctx.lineTo(x, y);
-      }
-      ctx.lineTo(canvas.width, canvas.height);
-      ctx.lineTo(0, canvas.height);
-      ctx.closePath();
-      ctx.fill();
-
-      waveOffset += 2;
-      requestAnimationFrame(drawWave);
-  }
-
-  drawWave();
-}
 
 // ✅ Recycling Sorting Game - Restored Drag & Drop Functionality
 function startRecyclingGame() {
@@ -567,21 +598,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // **Floating Share Buttons**
   setupShareToggle();
-
   initImageSlider();
 
-  // **Industry Page Animations**
-  console.log("🎨 Initializing Industry Category Animations...");
-  startWaterAnimation();
+
+    // ✅ Setup User Interaction Tracking (Hover & Click)
+    trackUserInteractions(); 
 
   // **🚀 Now Start Recycling Sorting Game**
   startRecyclingGame(); // ✅ Place it AFTER setting up other UI elements
 
-
-
-  // **Like & Visit Counter**
-  document.querySelectorAll(".article").forEach(article => updateVisitCount(article));
-  document.querySelectorAll(".like-btn").forEach(btn => btn.addEventListener("click", likeArticle));
+  
 
   // **Feedback Form**
   document.querySelector(".feedback-btn")?.addEventListener("click", toggleFeedbackForm);
@@ -627,4 +653,74 @@ document.addEventListener("DOMContentLoaded", function () {
   contactForm();
 
   console.log("✅ All event listeners successfully added!");
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+  // Function to handle the like button click
+  function handleLikeButtonClick(event) {
+      const likeBtn = event.currentTarget;
+      const quoteElement = likeBtn.closest(".quote");
+      const quoteId = quoteElement.getAttribute("data-quote");
+      const likeCountElement = likeBtn.querySelector(".like-count");
+
+      // Retrieve the current like count from localStorage
+      let likeCount = parseInt(localStorage.getItem(`likeCount-${quoteId}`)) || 0;
+
+      // Increment the like count
+      likeCount++;
+
+      // Update the like count in localStorage
+      localStorage.setItem(`likeCount-${quoteId}`, likeCount);
+
+      // Update the like count in the UI
+      likeCountElement.textContent = likeCount;
+  }
+
+  // Function to handle the visit count
+  function handleVisitCount(entries, observer) {
+      entries.forEach(entry => {
+          if (entry.isIntersecting) {
+              const quoteElement = entry.target;
+              const quoteId = quoteElement.getAttribute("data-quote");
+              const visitCountElement = quoteElement.querySelector(".visit-count");
+
+              // Retrieve the current visit count from sessionStorage
+              let visitCount = parseInt(sessionStorage.getItem(`visitCount-${quoteId}`)) || 0;
+
+              // Increment the visit count
+              visitCount++;
+
+              // Update the visit count in sessionStorage
+              sessionStorage.setItem(`visitCount-${quoteId}`, visitCount);
+
+              // Update the visit count in the UI
+              visitCountElement.textContent = `👀 ${visitCount}`;
+
+              // Unobserve the element after counting
+              observer.unobserve(quoteElement);
+          }
+      });
+  }
+
+  // Set up the Intersection Observer for visit counting
+  const observer = new IntersectionObserver(handleVisitCount, { threshold: 0.5 });
+
+  // Attach event listeners to like buttons and observe quotes for visit counting
+  document.querySelectorAll(".quote").forEach(quoteElement => {
+      // Observe the quote element for visit counting
+      observer.observe(quoteElement);
+
+      // Attach click event listener to the like button
+      const likeBtn = quoteElement.querySelector(".like-btn");
+      const quoteId = quoteElement.getAttribute("data-quote");
+      const likeCountElement = likeBtn.querySelector(".like-count");
+
+      // Retrieve and display the current like count from localStorage
+      let likeCount = parseInt(localStorage.getItem(`likeCount-${quoteId}`)) || 0;
+      likeCountElement.textContent = likeCount;
+
+      likeBtn.addEventListener("click", handleLikeButtonClick);
+  });
 });
