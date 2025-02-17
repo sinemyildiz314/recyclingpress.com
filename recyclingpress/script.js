@@ -437,14 +437,20 @@ function launchConfetti() {
 document.addEventListener("DOMContentLoaded", function () {
   console.log("🚀 DOM fully loaded");
 
-  // **Navigation Menu Toggle**
-  document.querySelector(".hamburger")?.addEventListener("click", toggleMenu);
+    // ✅ Initialize AOS animations
+    AOS.init();
 
-  // **Dropdown Menu Setup**
-  setupDropdowns();
+    // ✅ Initialize hover effects on team members
+    setupTeamMemberHoverEffects();
 
- //Image SLider
-  initImageSlider();
+    // **Navigation Menu Toggle**
+    document.querySelector(".hamburger")?.addEventListener("click", toggleMenu);
+
+    // **Dropdown Menu Setup**
+    setupDropdowns();
+
+    //Image SLider
+    initImageSlider();
 
 
     // ✅ Setup User Interaction Tracking (Hover & Click)
@@ -819,3 +825,45 @@ if (document.readyState !== 'loading') {
 // ends..//
 
 
+// ==========================
+// 🌍 ABOUT US / CONTACT PAGE
+// ==========================
+
+/**
+ * Applies a hover effect to an element by scaling and adding a shadow.
+ * @param {HTMLElement} element - The element to apply the effect on.
+ */
+function addHoverEffect(element) {
+    element.style.transform = "scale(1.1)";
+    element.style.boxShadow = "0 0 15px rgba(0, 0, 0, 0.2)";
+}
+
+/**
+ * Removes the hover effect, restoring the original state.
+ * @param {HTMLElement} element - The element to restore.
+ */
+function removeHoverEffect(element) {
+    element.style.transform = "scale(1)";
+    element.style.boxShadow = "0 0 5px rgba(0, 0, 0, 0.1)";
+}
+
+/**
+ * Initializes team member hover effects using event delegation.
+ */
+function setupTeamMemberHoverEffects() {
+    const teamContainer = document.querySelector(".team-container");
+
+    if (teamContainer) {
+        teamContainer.addEventListener("mouseover", function (event) {
+            const member = event.target.closest(".team-member");
+            if (member) addHoverEffect(member);
+        });
+
+        teamContainer.addEventListener("mouseout", function (event) {
+            const member = event.target.closest(".team-member");
+            if (member) removeHoverEffect(member);
+        });
+    }
+}
+
+// ends //
