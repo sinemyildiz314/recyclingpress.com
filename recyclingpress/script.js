@@ -377,27 +377,6 @@ function downloadUserInteractionData() {
   console.log("✅ User interaction data has been downloaded.");
 }
 
-/*********************
- Floating Social Share
-*********************/
-function toggleShareButtons() {
-  console.log("Toggling share buttons");
-  const shareGroup = document.querySelector(".share-btn-group");
-  if (shareGroup) shareGroup.classList.toggle("show");
-}
-
-/*********************
- Feedback Form
-*********************/
-function toggleFeedbackForm() {
-  const feedbackForm = document.querySelector(".feedback-form");
-  feedbackForm.classList.toggle("hidden");
-}
-
-function submitFeedback() {
-  alert("Thank you for your feedback!");
-  document.querySelector(".feedback-form").classList.add("hidden");
-}
 
 
 // ✅ Recycling Sorting Game - Restored Drag & Drop Functionality
@@ -486,11 +465,6 @@ document.addEventListener("DOMContentLoaded", function () {
   startRecyclingGame(); // ✅ Place it AFTER setting up other UI elements
 
   
-
-  // **Feedback Form**
-  document.querySelector(".feedback-btn")?.addEventListener("click", toggleFeedbackForm);
-  document.querySelector(".feedback-form button")?.addEventListener("click", submitFeedback);
-
   // **Newsletter Signup Animation**
   const newsletterSignup = document.getElementById("newsletter-signup");
   if (newsletterSignup) {
@@ -529,6 +503,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // **Contact Form Handler**
   contactForm();
+
+  //** FeedBack Form */
+  initializeFeedbackForm();
 
   console.log("✅ All event listeners successfully added!");
 
@@ -605,97 +582,141 @@ document.addEventListener("DOMContentLoaded", function () {
   });
 });
 
-/*********************
-3) Third DOM: Search Bar 
-*********************/
-document.addEventListener("DOMContentLoaded", function () {
-  // Function to Manage Search Toggle Behaviour
-  function setupSearchToggle() {
-      const searchToggle = document.querySelector(".search-toggle");
-      const searchBar = document.querySelector(".search-bar");
-      const searchClose = document.querySelector(".search-close");
-      const navRight = document.querySelector(".nav-right");
-      const navbarSocialIcons = document.querySelector(".social-media-nav");
+// Function to Manage Search Toggle Behaviour
+function setupSearchToggle() {
+  const searchToggle = document.querySelector(".search-toggle");
+  const searchBar = document.querySelector(".search-bar");
+  const searchClose = document.querySelector(".search-close");
+  const navRight = document.querySelector(".nav-right");
+  const navbarSocialIcons = document.querySelector(".social-media-nav");
 
-      if (searchToggle && searchBar) {
-          searchToggle.addEventListener("click", () => {
-              searchBar.style.display = "flex";
-              navRight.classList.add("search-active");
-              searchToggle.style.display = "none";
+  if (searchToggle && searchBar) {
+      searchToggle.addEventListener("click", () => {
+          searchBar.style.display = "flex";
+          navRight.classList.add("search-active");
+          searchToggle.style.display = "none";
 
-              // Hide Social Media Icons when the search bar is active
-              if (navbarSocialIcons) {
-                  navbarSocialIcons.style.opacity = "0";
-                  navbarSocialIcons.style.pointerEvents = "none";
-              }
-          });
-
-          // Close Search Bar & Show Social Icons Again
-          if (searchClose) {
-              searchClose.addEventListener("click", () => {
-                  searchBar.style.display = "none";
-                  navRight.classList.remove("search-active");
-                  searchToggle.style.display = "block";
-
-                  if (navbarSocialIcons) {
-                      navbarSocialIcons.style.opacity = "1";
-                      navbarSocialIcons.style.pointerEvents = "auto";
-                  }
-              });
-          }
-      }
-  }
-
-  // Function to Handle Search Functionality
-  function searchFunction() {
-      const input = document.getElementById("search-input").value.toLowerCase().trim();
-      const allTextElements = document.querySelectorAll("h1, h2, h3, p");
-      const resultContainer = document.getElementById("search-results");
-
-      resultContainer.innerHTML = "";
-      resultContainer.style.display = "none";
-
-      if (!input) return;
-
-      const foundResults = [];
-      allTextElements.forEach(element => {
-          const text = element.textContent.toLowerCase();
-          if (text.includes(input)) {
-              const parentLink = element.closest("a");
-              if (parentLink) {
-                  foundResults.push({
-                      text: element.textContent.substring(0, 100) + "...",
-                      url: parentLink.href
-                  });
-              }
+          // Hide Social Media Icons when the search bar is active
+          if (navbarSocialIcons) {
+              navbarSocialIcons.style.opacity = "0";
+              navbarSocialIcons.style.pointerEvents = "none";
           }
       });
 
-      if (foundResults.length > 0) {
-          foundResults.forEach(result => {
-              const resultItem = document.createElement("div");
-              resultItem.classList.add("search-result-item");
-              resultItem.innerHTML = `<a href="${result.url}">${result.text}</a>`;
-              resultContainer.appendChild(resultItem);
-          });
-          resultContainer.style.display = "block";
-      } else {
-          resultContainer.innerHTML = "<p class='no-results'>No results found.</p>";
-          resultContainer.style.display = "block";
-      }
+      // Close Search Bar & Show Social Icons Again
+      if (searchClose) {
+          searchClose.addEventListener("click", () => {
+              searchBar.style.display = "none";
+              navRight.classList.remove("search-active");
+              searchToggle.style.display = "block";
 
-      // Hide the results after 5 seconds
-      setTimeout(() => {
-          resultContainer.style.display = "none";
-      }, 5000);
+              if (navbarSocialIcons) {
+                  navbarSocialIcons.style.opacity = "1";
+                  navbarSocialIcons.style.pointerEvents = "auto";
+              }
+          });
+      }
+  }
+}
+
+// Function to Handle Search Functionality
+function searchFunction() {
+  const input = document.getElementById("search-input").value.toLowerCase().trim();
+  const allTextElements = document.querySelectorAll("h1, h2, h3, p");
+  const resultContainer = document.getElementById("search-results");
+
+  resultContainer.innerHTML = "";
+  resultContainer.style.display = "none";
+
+  if (!input) return;
+
+  const foundResults = [];
+  allTextElements.forEach(element => {
+      const text = element.textContent.toLowerCase();
+      if (text.includes(input)) {
+          foundResults.push({
+              text: element.textContent.substring(0, 100) + "...",
+              link: "#" // Placeholder link; update with actual URL if available
+          });
+      }
+  });
+
+  if (foundResults.length > 0) {
+      foundResults.forEach(result => {
+          const resultItem = document.createElement("div");
+          resultItem.classList.add("search-result-item");
+          resultItem.innerHTML = `<a href="${result.link}">${result.text}</a>`;
+          resultContainer.appendChild(resultItem);
+      });
+      resultContainer.style.display = "block";
+  } else {
+      resultContainer.innerHTML = "<p class='no-results'>No results found.</p>";
+      resultContainer.style.display = "block";
   }
 
-  // Initialize Functions
+  // Hide the results after 5 seconds
+  setTimeout(() => {
+      resultContainer.style.display = "none";
+  }, 5000);
+}
+
+// Initialize Everything - Search Button
+document.addEventListener("DOMContentLoaded", function () {
   setupSearchToggle();
 
-  // Attach searchFunction to the search input
   const searchInput = document.getElementById("search-input");
   if (searchInput) {
-      searchInput.addEventListener("input", searchFunction);
+      searchInput.addEventListener("keyup", searchFunction);
   }
 });
+
+// Existing function definitions...
+
+// Feedback Form Initialization
+function initializeFeedbackForm() {
+  const feedbackBtn = document.querySelector(".feedback-btn");
+  const feedbackForm = document.querySelector(".feedback-form");
+  const feedbackContainer = document.querySelector(".feedback-form-container");
+
+  if (feedbackBtn && feedbackForm && feedbackContainer) {
+      feedbackForm.style.display = "none";
+
+      feedbackBtn.addEventListener("click", function () {
+          feedbackBtn.style.display = "none";
+          feedbackForm.style.display = "block";
+      });
+
+      const formElement = feedbackForm.querySelector("form");
+      formElement.addEventListener("submit", function (event) {
+          event.preventDefault();
+          const feedbackText = document.getElementById("feedbackText").value;
+          console.log("Feedback submitted:", feedbackText);
+
+          const thankYouMessage = document.createElement("p");
+          thankYouMessage.textContent = "Thank you for your feedback!";
+          thankYouMessage.style.color = "green";
+          thankYouMessage.style.fontWeight = "bold";
+          thankYouMessage.style.marginTop = "10px";
+          feedbackContainer.appendChild(thankYouMessage);
+
+          formElement.reset();
+          feedbackForm.style.display = "none";
+
+          setTimeout(() => {
+              feedbackContainer.removeChild(thankYouMessage);
+              feedbackBtn.style.display = "block";
+          }, 3000);
+      });
+  } else {
+      console.error("Feedback form elements not found in the DOM.");
+  }
+}
+
+// Ensure the function runs after the DOM is fully loaded
+if (document.readyState !== 'loading') {
+  initializeFeedbackForm();
+} else {
+  document.addEventListener('DOMContentLoaded', initializeFeedbackForm);
+}
+
+

@@ -52,3 +52,102 @@ html, body {
 #content {
     padding: 20px;
 }
+
+/* Feedback Form Container */
+.feedback-form-container {
+    position: fixed;
+    right: 10px;
+    bottom: 50px;
+    z-index: 100;
+    text-align: center;
+}
+
+/* Feedback Button */
+.feedback-btn {
+    background: #888;
+    color: white;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s;
+    writing-mode: vertical-rl;
+    text-orientation: mixed;
+}
+
+.feedback-btn:hover {
+    background: #035914;
+}
+
+/* Feedback Form */
+.feedback-form {
+    display: none; /* Hidden by default */
+    background: rgb(235, 215, 196);
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    margin-top: 10px;
+}
+
+.feedback-form h3 {
+    margin-top: 0;
+}
+
+.feedback-form textarea {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.feedback-form button[type="submit"] {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.feedback-form button[type="submit"]:hover {
+    background-color: #45a049;
+}
+
+.feedback-form {
+    display: none; /* Hidden by default */
+    /* Other styling properties */
+}
+
+/* General Responsive Styles */
+@media (max-width: 1024px) {
+    .floating-share, .feedback-form-container {
+        right: 10px;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-share, .feedback-form-container {
+        right: 10px;
+    }
+    .feedback-btn {
+        font-size: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+   
+    .floating-share, .feedback-form-container {
+        right: 10px;
+        bottom: 50px;
+    }
+    .feedback-btn {
+        font-size: 12px;
+    }
+    .share-btn-container {
+        width: 35px;
+        height: 35px;
+    }
+}
+
+/* ends */
