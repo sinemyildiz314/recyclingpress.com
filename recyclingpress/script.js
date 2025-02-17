@@ -826,7 +826,7 @@ if (document.readyState !== 'loading') {
 
 
 // ==========================
-// 🌍 ABOUT US / CONTACT PAGE
+// 🌍 ABOUT US - PAGE Animations
 // ==========================
 
 /**
@@ -867,3 +867,4 @@ function setupTeamMemberHoverEffects() {
 }
 
 // ends //
+

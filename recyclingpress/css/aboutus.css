@@ -6,13 +6,13 @@ body {
     background-color: #f4f4f4;
 }
 
-.hero {
-    background: #7e817f;
+/* .hero {
+    /* background: #7e817f;
     color: white;
     padding: 50px 20px;
     border-radius: 8px;
-    margin: 20px;
-}
+    margin: 20px; */
+/* } */  /* to add background design similarly as below content. Keep it for future in case I might us for changes..*/
 
 .our-story, .our-goals, .meet-the-team {
     padding: 20px;
