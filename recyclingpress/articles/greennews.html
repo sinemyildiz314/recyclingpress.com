@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recyclingpress.com</title>
-    <link href="../../CSS_styles/mainstyles.css" rel="stylesheet">
-    <link href="../../CSS_styles/navigation.css" rel="stylesheet">
-    <link href="../../CSS_styles/index.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="../css/mainstyles.css" rel="stylesheet">
+    <link href="../css/navigation.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <link href="../css/articles.css" rel="stylesheet">
 </head>
 <body>
     <div id="wrapper">
         <header>
             <!-- <img class="logo" src tbc..> -->
              <nav>
-                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+                <button class="hamburger" aria-label="Toggle navigation menu">
                     <i class="fas fa-bars"></i>
                 </button>
                 
@@ -72,34 +73,19 @@
         <p>Infomaniak's process efficiently converts all electricity used by servers, inverters, and ventilation equipment into heat at 40-45°C. This heat is then transferred to an air/water exchanger, which feeds it into a hot water circuit. Heat pumps further elevate the temperature to 67°C in summer and 85°C in winter.</p>
 
         <h2>Impact and Scalability</h2>
-        <p>At full capacity, the data center will provide Geneva’s heating network with 1.7 megawatts of power. This is enough energy to supply 6,000 households annually or provide 20,000 people with a 5-minute shower daily.  This translates to significant environmental benefits, saving the Canton of Geneva an estimated 3,600 tonnes of CO2 equivalent (tCO2eq) from natural gas or 5,500 tCO2eq from wood pellets each year.</p>
+        <p>At full capacity, the data center will provide Geneva's heating network with 1.7 megawatts of power. This is enough energy to supply 6,000 households annually or provide 20,000 people with a 5-minute shower daily.  This translates to significant environmental benefits, saving the Canton of Geneva an estimated 3,600 tonnes of CO2 equivalent (tCO2eq) from natural gas or 5,500 tCO2eq from wood pellets each year.</p>
 
         <p>Infomaniak is committed to sharing its innovative approach. They have published a technical guide detailing how other companies can replicate their model, along with a policy brief advising how policymakers can improve design regulations and promote data center sustainability.  This encourages wider adoption of sustainable practices within the industry.</p>
 
         <p>This initiative represents a significant step towards a more sustainable cloud industry and a greener future. By prioritizing energy efficiency and heat recovery, Infomaniak demonstrates that data centers can be both powerful and environmentally responsible.</p>
 
     </div>
-
+    <div id="share-container"></div>
     <footer>
         <p>Copyright &copy; 2025 recyclingpress.com</p>
     </footer>
 
 <script src="../script.js"></script>
-
-<script>
-    function toggleMenu() {
-        const menu = document.getElementById("main-menu");
-        menu.classList.toggle("show");
-    }
-
-    window.addEventListener('click', function(e){
-        const menu = document.getElementById("main-menu");
-        const hamburger = document.querySelector('.hamburger');
-        if (!menu.contains(e.target) && !hamburger.contains(e.target) && window.innerWidth > 768){
-            menu.classList.remove('show');
-        }
-    });
-</script>
 
 </body>
 

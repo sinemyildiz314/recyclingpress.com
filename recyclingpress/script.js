@@ -60,17 +60,6 @@ function contactForm() {
     }
 }
 
-/* =====================
-   Floating Share Button
-===================== */
-function setupShareToggle() {
-  const shareButton = document.querySelector(".share-toggle-btn");
-  if (shareButton) {
-      shareButton.addEventListener("click", () => {
-          document.querySelector(".share-btn-group").classList.toggle("show");
-      });
-  }
-}
 
 
 // The Game Logic
@@ -453,8 +442,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // **Dropdown Menu Setup**
   setupDropdowns();
-  // **Floating Share Buttons**
-  setupShareToggle();
+
+ //Image SLider
   initImageSlider();
 
 
@@ -506,6 +495,10 @@ document.addEventListener("DOMContentLoaded", function () {
 
   //** FeedBack Form */
   initializeFeedbackForm();
+
+  // Initialize the share button
+createExpandableShareButton();
+
 
   console.log("✅ All event listeners successfully added!");
 
@@ -619,6 +612,9 @@ function setupSearchToggle() {
   }
 }
 
+/*********************
+Search  function design
+*********************/
 // Function to Handle Search Functionality
 function searchFunction() {
   const input = document.getElementById("search-input").value.toLowerCase().trim();
@@ -670,8 +666,11 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 });
 
-// Existing function definitions...
+//ends..//
 
+/*********************
+FEEDBACK BUTTON function design
+*********************/
 // Feedback Form Initialization
 function initializeFeedbackForm() {
   const feedbackBtn = document.querySelector(".feedback-btn");
@@ -694,7 +693,7 @@ function initializeFeedbackForm() {
 
           const thankYouMessage = document.createElement("p");
           thankYouMessage.textContent = "Thank you for your feedback!";
-          thankYouMessage.style.color = "green";
+          thankYouMessage.style.color = "rgb(202, 86, 33)";
           thankYouMessage.style.fontWeight = "bold";
           thankYouMessage.style.marginTop = "10px";
           feedbackContainer.appendChild(thankYouMessage);
@@ -718,5 +717,105 @@ if (document.readyState !== 'loading') {
 } else {
   document.addEventListener('DOMContentLoaded', initializeFeedbackForm);
 }
+
+//ends..//
+
+/*********************
+SHARE BUTTON function design
+*********************/
+
+function createExpandableShareButton() {
+  // Check if the DOM is already loaded
+  if (document.readyState !== 'loading') {
+      initializeShareButton();
+  } else {
+      document.addEventListener('DOMContentLoaded', initializeShareButton);
+  }
+}
+
+function initializeShareButton() {
+    const container = document.getElementById('share-container');
+    if (!container) {
+        console.error('Share container element not found.');
+        return;
+    }
+
+    // HTML structure for the expandable button
+    container.innerHTML = `
+        <div class="share-container">
+            <div class="share-button" id="share-btn">➕</div>
+            <div class="share-options">
+                <a href="#" target="_blank" data-platform="facebook" title="Share on Facebook">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="#" target="_blank" data-platform="twitter" title="Share on Twitter">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="#" target="_blank" data-platform="linkedin" title="Share on LinkedIn">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+                <a href="#" target="_blank" data-platform="reddit" title="Share on Reddit">
+                    <i class="fab fa-reddit-alien"></i>
+                </a>
+                <a href="#" target="_blank" data-platform="instagram" title="Share on Instagram">
+                    <i class="fab fa-instagram"></i>
+                </a>
+            </div>
+        </div>
+    `;
+
+    const shareContainer = container.querySelector('.share-container');
+    const shareButton = container.querySelector('#share-btn');
+    const shareLinks = container.querySelectorAll('.share-options a');
+
+    // Toggle Active State on Click
+    shareButton.addEventListener('click', () => {
+        shareContainer.classList.toggle('active');
+        shareButton.textContent = shareContainer.classList.contains('active') ? '✖' : '➕';
+    });
+
+    // Handle Social Media Sharing
+    shareLinks.forEach(link => {
+        link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const platform = this.getAttribute('data-platform');
+            const pageUrl = encodeURIComponent(window.location.href);
+            const pageTitle = encodeURIComponent(document.title);
+            
+            let shareUrl = '';
+
+            switch (platform) {
+                case 'facebook':
+                    shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${pageUrl}`;
+                    break;
+                case 'twitter':
+                    shareUrl = `https://twitter.com/intent/tweet?url=${pageUrl}&text=${pageTitle}`;
+                    break;
+                case 'linkedin':
+                    shareUrl = `https://www.linkedin.com/shareArticle?url=${pageUrl}&title=${pageTitle}`;
+                    break;
+                case 'reddit':
+                    shareUrl = `https://www.reddit.com/submit?url=${pageUrl}&title=${pageTitle}`;
+                    break;
+                case 'instagram':
+                    alert('Instagram does not support direct web sharing. You can copy the link instead.');
+                    return;
+                default:
+                    return;
+            }
+
+            window.open(shareUrl, '_blank', 'width=600,height=400');
+        });
+    });
+}
+
+// Ensure the function runs after the DOM is fully loaded
+if (document.readyState !== 'loading') {
+    initializeShareButton();
+} else {
+    document.addEventListener('DOMContentLoaded', initializeShareButton);
+}
+
+// ends..//
 
 

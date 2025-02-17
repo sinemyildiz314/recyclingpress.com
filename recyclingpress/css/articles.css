@@ -41,3 +41,113 @@ article {
 }
 
 
+/* Floating Share Button Styling */
+.share-container {
+    position: fixed;
+    bottom: 80px;
+    right: 20px;
+    z-index: 1000;
+}
+
+.share-button {
+    width: 40px;
+    height: 40px;
+    background: #edeeed;
+    color: white;
+    font-size: 22px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.share-button:hover {
+    background: #005bb5;
+}
+
+/* Social Media Icons */
+.share-options {
+    position: absolute;
+    bottom: 60px;
+    right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.share-container.active .share-options {
+    opacity: 1;
+    visibility: visible;
+}
+
+.share-options a {
+    width: 40px;
+    height: 40px;
+    background: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.2s ease-in-out;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.share-options a:hover {
+    transform: scale(1.1);
+}
+
+/* Icons */
+.share-options a i {
+    font-size: 18px;
+    color: #444;
+}
+
+.share-options a[data-platform="facebook"] { background: #1877F2; }
+.share-options a[data-platform="twitter"] { background: #1DA1F2; }
+.share-options a[data-platform="linkedin"] { background: #0077B5; }
+.share-options a[data-platform="reddit"] { background: #FF4500; }
+.share-options a[data-platform="instagram"] { background: #E1306C; }
+
+.share-options a[data-platform] i {
+    color: white;
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 768px) {
+    .share-button {
+        width: 45px;
+        height: 45px;
+        font-size: 20px;
+    }
+    .share-options a {
+        width: 35px;
+        height: 35px;
+    }
+    .share-options a i {
+        font-size: 16px;
+    }
+}
+
+/* Small screens (phones) */
+@media (max-width: 480px) {
+    .share-button {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+    }
+    .share-options a {
+        width: 30px;
+        height: 30px;
+    }
+    .share-options a i {
+        font-size: 14px;
+    }
+}
+/* ends */

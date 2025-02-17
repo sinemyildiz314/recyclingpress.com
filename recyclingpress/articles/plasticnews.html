@@ -4,19 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>recyclingpress.com</title>
-    <link href="../../CSS_styles/mainstyles.css" rel="stylesheet">
-    <link href="../../CSS_styles/navigation.css" rel="stylesheet">
-    <link href="../../CSS_styles/index.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link href="../css/mainstyles.css" rel="stylesheet">
+    <link href="../css/navigation.css" rel="stylesheet">
+    <link href="../css/index.css" rel="stylesheet">
+    <link href="../css/articles.css" rel="stylesheet">
 </head>
 <body>
     <div id="wrapper">
         <header>
             <!-- <img class="logo" src tbc..> -->
              <nav>
-                <button class="hamburger" onclick="toggleMenu()" aria-label="Toggle navigation menu">
+                <button class="hamburger" aria-label="Toggle navigation menu">
                     <i class="fas fa-bars"></i>
                 </button>
                 
@@ -78,26 +79,13 @@
         <p>"The Plastics Circularity Journey" Production Line Live Demo is a landmark event for the global plastics industry, showcasing the latest advancements and breakthroughs in plastics recycling technology.  Visit us at <strong>Booth 6J41 in Hall 6</strong> during <a href="https://www.chinaplasonline.com/">CHINAPLAS 2025</a>.  We invite you to witness firsthand the exciting future of the plastic circular economy!</p>
     
     </div>
-
+    <div id="share-container"></div>
     <footer>
         <p>Copyright &copy; 2025 recyclingpress.com</p>
     </footer>
 
 <script src="../script.js"></script>
 
-<script>
-    function toggleMenu() {
-        const menu = document.getElementById("main-menu");
-        menu.classList.toggle("show");
-    }
-
-    window.addEventListener('click', function(e){
-        const menu = document.getElementById("main-menu");
-        const hamburger = document.querySelector('.hamburger');
-        if (!menu.contains(e.target) && !hamburger.contains(e.target) && window.innerWidth > 768){
-            menu.classList.remove('show');
-        }
-    });
 </script>
 
 </body>

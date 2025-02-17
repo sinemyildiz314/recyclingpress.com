@@ -36,7 +36,7 @@ footer p {
 }
 
 /* Ensure the page takes full height, and stick the footer at the bottom */
-html, body {
+html, body, footer {
     height: 100%;
     margin: 0;
     padding: 0;
@@ -65,7 +65,7 @@ html, body {
 /* Feedback Button */
 .feedback-btn {
     background: #888;
-    color: white;
+    color: rgb(255, 255, 255);
     padding: 10px;
     border: none;
     cursor: pointer;
@@ -121,13 +121,13 @@ html, body {
 
 /* General Responsive Styles */
 @media (max-width: 1024px) {
-    .floating-share, .feedback-form-container {
+    .feedback-form-container {
         right: 10px;
     }
 }
 
 @media (max-width: 768px) {
-    .floating-share, .feedback-form-container {
+    .feedback-form-container {
         right: 10px;
     }
     .feedback-btn {
@@ -137,16 +137,12 @@ html, body {
 
 @media (max-width: 480px) {
    
-    .floating-share, .feedback-form-container {
+    .feedback-form-container {
         right: 10px;
         bottom: 50px;
     }
     .feedback-btn {
         font-size: 12px;
-    }
-    .share-btn-container {
-        width: 35px;
-        height: 35px;
     }
 }
 
