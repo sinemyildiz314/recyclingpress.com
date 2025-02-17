@@ -21,9 +21,11 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="nav-content">
-                    <a class="logo">
-                        <img src="./images/logo.png" alt="site logo">
-                    </a>
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="./images/logo.png" alt="Logo">
+                        </div>
+                    </div>
                     <ul id="main-menu" role="menubar">
                         <li role="presentation"><a href="index.html" role="menuitem" data-page="home">Home</a></li>
                         <li role="presentation"><a href="news.html" role="menuitem" data-page="news">News</a></li>
@@ -130,6 +132,20 @@
                     <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
                 </div>
             </section>
+           <!-- Feedback Button -->
+           <div class="feedback-form-container">
+            <button class="feedback-btn">Feedback</button>
+
+            <!-- Feedback Form -->
+            <div class="feedback-form">
+                <h3>We value your feedback</h3>
+                <form id="feedbackForm">
+                    <label for="feedbackText">Your Feedback:</label>
+                    <textarea id="feedbackText" name="feedbackText" rows="4" required></textarea>
+                    <button type="submit">Submit</button>
+                </form>
+            </div>
+        </div>
         </main>
         <footer>
             <p>&copy; 2025 RecyclingPress. All rights reserved.</p>

@@ -17,10 +17,16 @@
         <header>
             <!-- <img class="logo" src tbc..> -->
             <nav>
-                <div class="hamburger">
+                <button class="hamburger"  aria-label="Toggle navigation menu"></button>
                     <i class="fas fa-bars"></i>
-                </div>
-                <ul id="main-menu">
+                </button>
+                <div class="nav-content">
+                    <div class="logo-container">
+                        <div class="logo">
+                            <img src="../images/logo.png" alt="Logo">
+                        </div>
+                    </div>
+                <ul id="main-menu" role="menubar">
                     <li><a href="index.html" data-page="home">Home</a></li>
                     <li><a href="news.html" data-page="news">News</a></li>
                     <li>
@@ -112,21 +118,6 @@
         </footer>
 
     <script src="../script.js"></script>
-
-    <script>
-        function toggleMenu() {
-            const menu = document.getElementById("main-menu");
-            menu.classList.toggle("show");
-        }
-
-        window.addEventListener('click', function(e){
-            const menu = document.getElementById("main-menu");
-            const hamburger = document.querySelector('.hamburger');
-            if (!menu.contains(e.target) && !hamburger.contains(e.target) && window.innerWidth > 768){
-                menu.classList.remove('show');
-            }
-        });
-    </script>
 
 </body>
 

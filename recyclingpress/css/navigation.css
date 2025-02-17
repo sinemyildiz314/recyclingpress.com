@@ -9,7 +9,6 @@ nav {
     width: 100%;
     top:0;
     left: 0px;
-    right: 0px;
     z-index: 100;
     box-shadow: 0 2px 5px rgba(33, 5, 5, 0.1);
 }
@@ -84,12 +83,12 @@ nav a:active {
 nav .hamburger {
     display: block; /* Always show the hamburger */
     cursor: pointer;
-    padding: 15px;
-    font-size: 20px;
+    padding: 10px;
+    font-size: 22px;
     color: white;
     background: none;
     border: none;
-    z-index: 2;
+    z-index: 101;
 }
 
 /* Navigation Right Section */
@@ -283,6 +282,7 @@ nav .hamburger {
     nav .search-bar {
         margin-top: 10px;
     }
+
 }
 
 
@@ -290,6 +290,8 @@ nav .hamburger {
     display: flex; 
     /* justify-content: space-between;  */
     align-items: center; 
+    width: 100%;
+    justify-content: space-between; /* Ensures spacing */
 }
 
 .logo {
@@ -300,6 +302,8 @@ nav .hamburger {
 }
 
 .logo img {
-    height: 150px; 
+    height: 100px; /* Adjusted for a cleaner fit */
+    width: auto;
+    max-width: 120px; /* Prevents it from growing too large */
+    margin-left: 10px;
 }
-
