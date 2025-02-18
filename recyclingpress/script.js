@@ -482,12 +482,63 @@ function launchConfetti() {
   }, 100);
 }
 
+  // **Newsletter Signup Animation**
+  function initializeNewsletterSignup() {
+    const newsletterSignup = document.getElementById("newsletter-signup");
+
+    if (!newsletterSignup) {
+        console.error("❌ Newsletter signup container not found.");
+        return;
+    }
+
+    console.log("📧 Newsletter signup element found");
+
+    // Show the newsletter signup after 2 seconds
+    setTimeout(() => newsletterSignup.classList.add("show"), 2000);
+
+    // Get elements
+    const subscribeButton = document.getElementById("newsletter-subscribe");
+    const emailInput = document.getElementById("newsletter-email");
+    const message = document.getElementById("newsletter-message");
+
+    if (!subscribeButton || !emailInput || !message) {
+        console.error("❌ Missing one or more newsletter elements.");
+        return;
+    }
+
+    // Attach event listener to the subscribe button
+    subscribeButton.addEventListener("click", function () {
+        const email = emailInput.value.trim();
+
+        // ✅ Improved Email Validation using RegExp
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailPattern.test(email)) {
+            message.textContent = "✅ Thank you for subscribing!";
+            message.style.color = "green";
+            emailInput.value = "";  // Clear input field after success
+        } else {
+            message.textContent = "❌ Please enter a valid email address.";
+            message.style.color = "red";
+        }
+
+        // Ensure message is visible
+        message.style.display = "block";
+        console.log(`📩 Subscription attempt: ${email}`);
+    });
+}
 
 /*********************
  1) MAIN DOM: Event Listeners (Optimized & Merged)
 *********************/
 document.addEventListener("DOMContentLoaded", function () {
   console.log("🚀 DOM fully loaded");
+  // **🚀 Now Start Recycling Sorting Game**
+  startRecyclingGame(); // 
+  
+     //Image SLider
+     initImageSlider();
+
+     initializeNewsletterSignup();
 
     // ✅ Initialize AOS animations
     AOS.init();
@@ -498,37 +549,12 @@ document.addEventListener("DOMContentLoaded", function () {
     // **Dropdown Menu Setup**
     setupDropdowns();
 
-    //Image SLider
-    initImageSlider();
-
-
     // ✅ Setup User Interaction Tracking (Hover & Click)
     trackUserInteractions(); 
 
   // **🚀 Now Start Recycling Sorting Game**
   startRecyclingGame(); // ✅ Place it AFTER setting up other UI elements
-
   
-  // **Newsletter Signup Animation**
-  const newsletterSignup = document.getElementById("newsletter-signup");
-  if (newsletterSignup) {
-      console.log("📧 Newsletter signup element found");
-      setTimeout(() => newsletterSignup.classList.add("show"), 2000);
-
-      document.getElementById("newsletter-subscribe")?.addEventListener("click", () => {
-          const email = document.getElementById("newsletter-email").value;
-          const message = document.getElementById("newsletter-message");
-
-          if (email.includes("@")) {
-              message.textContent = "✅ Thank you for subscribing!";
-              message.style.color = "green";
-              document.getElementById("newsletter-email").value = "";
-          } else {
-              message.textContent = "❌ Please enter a valid email address.";
-              message.style.color = "red";
-          }
-      });
-  }
 
   // **Event Hover Effect**
   document.querySelectorAll(".event").forEach(event => {
@@ -552,7 +578,7 @@ document.addEventListener("DOMContentLoaded", function () {
   initializeFeedbackForm();
 
   // Initialize the share button
-createExpandableShareButton();
+    createExpandableShareButton();
 
 
   console.log("✅ All event listeners successfully added!");

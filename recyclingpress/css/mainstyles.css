@@ -147,3 +147,55 @@ html, body, footer {
 }
 
 /* ends */
+
+#newsletter-signup {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background-color: #f0f0f0;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+#newsletter-signup.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+#newsletter-signup input[type="email"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+#newsletter-signup button {
+    padding: 10px 20px;
+    background-color: #007bff;
+    color: rgb(176, 151, 24);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+#newsletter-message { 
+  margin-top: 10px;
+  color: green; 
+}
+
+#newsletter-subscribe {
+background-color: rgb(3, 120, 7);
+color: white;
+padding: 5px 20px;
+border: none;
+border-radius: 5px;
+}
+
+#newsletter-subscribe:hover {
+background-color: rgb(198, 108, 12);
+}
