@@ -2,13 +2,50 @@
    Navigation 
 ===================== */
 function toggleMenu() {
-  const menu = document.getElementById("main-menu");
-  menu.classList.toggle("show");
+    const menu = document.getElementById("main-menu");
+    const hamburger = document.querySelector(".hamburger");
 
-  const hamburger = document.querySelector('.hamburger');
-  const isExpanded = menu.classList.contains('show');
-  hamburger.setAttribute('aria-expanded', isExpanded);
+    if (!menu) {
+        console.error("❌ Menu element (#main-menu) not found!");
+        return;
+    }
+    if (!hamburger) {
+        console.error("❌ Hamburger button not found!");
+        return;
+    }
+
+    // Toggle menu visibility
+    menu.classList.toggle("show");
+
+    // Update ARIA attribute for accessibility
+    const isExpanded = menu.classList.contains("show");
+    hamburger.setAttribute("aria-expanded", isExpanded);
+
+    console.log(`🔄 Menu toggled: ${isExpanded ? "Opened" : "Closed"}`);
 }
+
+// To Ensure the hamburger button ALWAYS Gets an Event Listener !!
+function initializeHamburgerMenu() {
+    const hamburger = document.querySelector(".hamburger");
+
+    if (!hamburger) {
+        console.error("❌ Hamburger button not found!");
+        return;
+    }
+
+    // Add click event listener
+    hamburger.addEventListener("click", toggleMenu);
+
+    console.log("✅ Hamburger menu initialized!");
+}
+
+// Ensure the function runs after the DOM is fully loaded
+if (document.readyState !== "loading") {
+    initializeHamburgerMenu();
+} else {
+    document.addEventListener("DOMContentLoaded", initializeHamburgerMenu);
+}
+
 
 
 // Function to handle the contact form
@@ -243,28 +280,43 @@ const questions = [
 
 // Function to handle dropdown toggling
 function setupDropdowns() {
-  const dropdownLinks = document.querySelectorAll("nav li[aria-haspopup='true'] > a");
+    setTimeout(() => {  // Delay execution to wait for elements to be ready
+        const dropdownLinks = document.querySelectorAll("nav li[aria-haspopup='true'] > a");
 
-  dropdownLinks.forEach(link => {
-      link.addEventListener("click", function (event) {
-          event.preventDefault();
+        if (dropdownLinks.length === 0) {
+            console.warn("⚠️ No dropdowns found - Retrying in 500ms...");
+            setTimeout(setupDropdowns, 500); // Retry again if dropdowns aren't ready
+            return;
+        }
 
-          const dropdownMenu = this.nextElementSibling;
-          document.querySelectorAll(".dropdown").forEach(menu => {
-              if (menu !== dropdownMenu) menu.classList.remove("show");
-          });
+        dropdownLinks.forEach(link => {
+            link.removeEventListener("click", toggleDropdown); // Prevent duplicate listeners
+            link.addEventListener("click", toggleDropdown);
+        });
 
-          dropdownMenu.classList.toggle("show");
-          this.querySelector("i").classList.toggle("fa-rotate-180");
-      });
-  });
+        console.log("✅ Dropdowns initialized on all pages!");
+    }, 100); // Short delay to allow page to load
+}
 
-  document.addEventListener("click", function (event) {
-      if (!event.target.closest("nav")) {
-          document.querySelectorAll(".dropdown").forEach(menu => menu.classList.remove("show"));
-          document.querySelectorAll("nav li[aria-haspopup='true'] > a i").forEach(icon => icon.classList.remove("fa-rotate-180"));
-      }
-  });
+// Function to toggle dropdowns
+function toggleDropdown(event) {
+    event.preventDefault();
+
+    const dropdownMenu = this.nextElementSibling;
+    
+    // Close all other dropdowns
+    document.querySelectorAll(".dropdown").forEach(menu => {
+        if (menu !== dropdownMenu) menu.classList.remove("show");
+    });
+
+    dropdownMenu.classList.toggle("show");
+}
+
+// Ensure dropdowns initialize
+if (document.readyState !== "loading") {
+    setupDropdowns();
+} else {
+    document.addEventListener("DOMContentLoaded", setupDropdowns);
 }
 
 
@@ -442,9 +494,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // ✅ Initialize hover effects on team members
     setupTeamMemberHoverEffects();
-
-    // **Navigation Menu Toggle**
-    document.querySelector(".hamburger")?.addEventListener("click", toggleMenu);
 
     // **Dropdown Menu Setup**
     setupDropdowns();
