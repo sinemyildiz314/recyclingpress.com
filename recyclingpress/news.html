@@ -114,36 +114,38 @@
                 </div>
             </section>
     
-            <section id="breaking-news" class="section news-slider">
+            <section id="breaking-news" class="section">
                 <h2>Breaking News</h2>
-                <div class="news-slider-container">
-                    <div class="news-slider">
-                        <!-- News Item 1 -->
-                        <div class="news-item">
-                            <img src="./images/breaking_news/straw.png" alt="Trump Rescinds Plastic Straw Ban">
+                <div class="breaking-news-container">
+                    <!-- First Large News Item -->
+                    <div class="news-item large">
+                        <img src="./images/breaking_news/straw.png" alt="Trump Rescinds Plastic Straw Ban">
+                        <div class="news-content">
                             <h3>Trump Rescinds Plastic Straw Ban</h3>
-                            <p>President Trump has reversed the previous administration's ban on plastic straws, citing inefficiencies of paper alternatives.
-                                This move contrasts with global efforts to reduce plastic waste.</p>
-                            <a href="https://www.reuters.com/world/us/trump-pushes-use-plastic-straws-us-defies-global-trend-countries-imposing-ban-2025-02-11/">Read More</a>
-                        </div>
-                        <!-- News Item 2 -->
-                        <div class="news-item">
-                            <img src="./images/breaking_news/depositreturn.png" alt="Ireland's Deposit Return Scheme Hits Billion Mark">
-                            <h3>Ireland's Deposit Return Scheme Hits Billion Mark</h3>
-                            <p>Since its launch in February 2024, Ireland's Deposit Return Scheme has recycled one billion drink containers, significantly boosting recycling rates and supporting community initiatives.</p>
-                            <a href="https://www.thesun.ie/news/14670914/irish-deposit-return-scheme-milestone-recycling-charity-funding/">Read More</a>
-
-                        </div>
-                        <!-- News Item 3 -->
-                        <div class="news-item">
-                            <img src="./images/breaking_news/germans.png" alt="Germany's Recycling Rates Decline">
-                            <h3>Germany's Recycling Rates Decline</h3>
-                            <p>Once a leader in recycling, Germany faces a decline in efficiency due to mis-sorted waste and reduced consumer consumption, challenging its 'world champion' status.</p>
-                            <a href="https://www.thetimes.co.uk/article/germans-world-champions-recycling-no-longer-96kskptfx">Read More</a>
+                            <p>President Trump has reversed the previous administration's ban on plastic straws, citing inefficiencies of paper alternatives. This move contrasts with global efforts to reduce plastic waste.</p>
+                            <a href="https://www.reuters.com/world/us/trump-pushes-use-plastic-straws-us-defies-global-trend-countries-imposing-ban-2025-02-11/" class="btn-read-more">Read More</a>
                         </div>
                     </div>
-                    <button class="slider-prev"><i class="fas fa-chevron-left"></i></button>
-                    <button class="slider-next"><i class="fas fa-chevron-right"></i></button>
+            
+                    <!-- Second Medium News Item -->
+                    <div class="news-item medium">
+                        <img src="./images/breaking_news/depositreturn.png" alt="Ireland's Deposit Return Scheme Hits Billion Mark">
+                        <div class="news-content">
+                            <h3>Ireland's Deposit Return Scheme Hits Billion Mark</h3>
+                            <p>Since its launch in February 2024, Ireland's Deposit Return Scheme has recycled one billion drink containers, significantly boosting recycling rates and supporting community initiatives.</p>
+                            <a href="https://www.thesun.ie/news/14670914/irish-deposit-return-scheme-milestone-recycling-charity-funding/" class="btn-read-more">Read More</a>
+                        </div>
+                    </div>
+            
+                    <!-- Third Small News Item -->
+                    <div class="news-item small">
+                        <img src="./images/breaking_news/germans.png" alt="Germany's Recycling Rates Decline">
+                        <div class="news-content">
+                            <h3>Germany's Recycling Rates Decline</h3>
+                            <p>Once a leader in recycling, Germany faces a decline in efficiency due to mis-sorted waste and reduced consumer consumption.</p>
+                            <a href="https://www.thetimes.co.uk/article/germans-world-champions-recycling-no-longer-96kskptfx" class="btn-read-more">Read More</a>
+                        </div>
+                    </div>
                 </div>
             </section>
             
@@ -168,8 +170,7 @@
                 <h3>Subscribe to our Newsletter</h3>
                 <p>Enter your email for an upgraded inbox!</p>
                 <input type="email" id="newsletter-email" placeholder="Your Email">
-                <button id="ne
-                wsletter-subscribe">Submit</button>
+                <button id="newsletter-subscribe">Submit</button>
                 <span id="newsletter-message"></span>
             </div>
 
@@ -177,7 +178,7 @@
         <footer>
             <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
         </footer>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://kit.fontawesome.com/YOUR-FONT-AWESOME-KEY.js" crossorigin="anonymous"></script>
         <script src="./script.js"></script>
     </body>
 </html>

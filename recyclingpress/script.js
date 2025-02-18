@@ -941,4 +941,38 @@ function setupTeamMemberHoverEffects() {
     }
 }
 
-// ends //
+// NEWS PAGE ANIMATIONS
+document.addEventListener("DOMContentLoaded", function () {
+    const newsItems = document.querySelectorAll(".breaking-news-item, .news-item");
+
+    /* 🎭 Scroll Animation - Always Active */
+    function fadeInOnScroll() {
+        newsItems.forEach(item => {
+            const rect = item.getBoundingClientRect();
+            if (rect.top < window.innerHeight * 0.85 && rect.bottom > 0) {
+                item.classList.add("fade-in-active");
+            } else {
+                item.classList.remove("fade-in-active"); // Allows re-triggering on scroll up
+            }
+        });
+    }
+
+    /* 🎨 Ultra-Smooth Hover Effect */
+    newsItems.forEach(item => {
+        item.style.transition = "transform 0.6s ease-out, box-shadow 0.6s ease-out";
+
+        item.addEventListener("mouseenter", () => {
+            item.style.transform = "scale(1.02)";
+            item.style.boxShadow = "0px 10px 25px rgba(0, 0, 0, 0.2)";
+        });
+
+        item.addEventListener("mouseleave", () => {
+            item.style.transform = "scale(1)";
+            item.style.boxShadow = "0px 5px 15px rgba(0, 0, 0, 0.1)";
+        });
+    });
+
+    /* 🚀 Apply Scroll Effect */
+    fadeInOnScroll(); // Run immediately for visible items
+    window.addEventListener("scroll", fadeInOnScroll);
+});

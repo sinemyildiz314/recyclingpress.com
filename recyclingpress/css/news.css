@@ -1,95 +1,243 @@
+/* ==========================
+   🌍 Global Styles & Layout Fixes 
+========================== */
 body {
-    font-family: sans-serif;
+    font-family: "Arial", sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f4f4f4;
 }
 
-#top-news {
-    margin-bottom: 10px;
+/* Standard Section Padding */
+section {
+    padding: 40px 0;
 }
 
-#breaking-news {
-    margin-bottom: 20px;
+/* Centralized Page Content */
+.container {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
 }
 
+/* 🎨 Section Titles */
 h2 {
-    margin-bottom: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
+/* 📏 Ensuring Proper Spacing */
+section + section {
+    margin-top: 40px;
+}
+
+/* ==========================
+   📰 Top News Section 
+========================== */
+#top-news {
+    width: 90%;
+    max-width: 1000px;
+    margin: auto;
+    padding: 50px 0;
+    text-align: center;
+}
+
+/* 🔹 News Row (Grid System) */
 .news-row {
     display: flex;
-    overflow-x: auto;
-    padding: 10px;
-    flex-wrap: wrap; 
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 20px;
 }
 
+/* 📰 Top News Item */
 .news-item {
-    flex: 1 0 300px;
-    margin: 10px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    transition: transform 0.2s;
+    flex: 1 1 calc(33.333% - 20px);
+    min-width: 280px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* 📸 Image Styling */
 .news-item img {
-    max-width: 100%;
-    height: auto;
-    margin-bottom: 10px;
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 10px 10px 0 0;
 }
 
-.news-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+/* 📝 Text Content */
+.news-item h3 {
+    font-size: 18px;
+    font-weight: bold;
+    padding: 15px;
+    color: #333;
 }
 
-.news-slider-container {
-    position: relative;
-    overflow: hidden; 
+.news-item p {
+    font-size: 14px;
+    padding: 0 15px 15px;
+    color: #666;
+    line-height: 1.5;
 }
 
-.news-slider {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: fit-content; 
-}
-
-.news-slider .news-item {
-    flex: 0 0 100%; 
-    margin: 0; 
-}
-
-.slider-prev, .slider-next {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
+/* 📎 Read More Button */
+.news-item a {
+    display: block;
+    width: 80%;
+    margin: 10px auto;
+    text-align: center;
+    background: #007bff;
     color: white;
-    padding: 10px 15px;
-    border: none;
-    cursor: pointer;
-    z-index: 1;
+    padding: 8px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: background 0.3s ease;
 }
 
-.slider-prev {
-    left: 10px;
+.news-item a:hover {
+    background: #0056b3;
 }
 
-.slider-next {
-    right: 10px;
+/* ==========================
+   📢 Breaking News Section 
+========================== */
+#breaking-news {
+    width: 90%;
+    max-width: 1100px;
+    margin: auto;
+    text-align: center;
+    padding: 40px 0;
 }
 
-/* Media query for smaller screens */
-@media (max-width: 768px) {
+/* 🔹 Flexible Grid Layout */
+.breaking-news-container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    grid-template-rows: auto auto;
+    gap: 20px;
+    justify-content: center;
+    align-items: stretch;
+}
+
+/* 📰 General Breaking News Item */
+.breaking-news-item {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* 📜 Content Overlay */
+.breaking-news-content {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 15px;
+    text-align: left;
+    transition: height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+/* Read More Button */
+.btn-read-more {
+    display: inline-block;
+    margin-top: 10px;
+    background: rgba(255, 255, 255, 0.85);
+    padding: 6px 12px;
+    font-size: 14px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    color: black;
+    transition: background 0.3s ease, color 0.3s ease;
+}
+
+.btn-read-more:hover {
+    background: white;
+    color: #007bff;
+}
+
+/* 🎨 Unique Sizes for Different News Items */
+.breaking-news-item.large {
+    grid-column: span 2;
+    height: 320px;
+}
+
+.breaking-news-item.medium {
+    grid-column: span 1;
+    height: 250px;
+}
+
+.breaking-news-item.small {
+    grid-column: span 1;
+    height: 250px;
+}
+
+/* ==========================
+   📱 Responsive Design 
+========================== */
+@media (max-width: 900px) {
+    .news-row {
+        flex-direction: column;
+        align-items: center;
+    }
+
     .news-item {
-        flex: 1 0 45%; /* Two columns */
+        width: 90%;
+    }
+
+    .breaking-news-container {
+        grid-template-columns: 1fr;
+    }
+
+    .breaking-news-item.large {
+        height: 280px;
+    }
+
+    .breaking-news-item.medium,
+    .breaking-news-item.small {
+        height: 220px;
     }
 }
 
-@media (max-width: 500px) {
-    .news-item {
-        flex: 1 0 90%; /* One column */
+@media (max-width: 600px) {
+    .breaking-news-container {
+        grid-template-columns: 1fr;
+    }
+
+    .breaking-news-item {
+        height: auto;
+    }
+
+    .breaking-news-content {
+        position: relative;
+        padding: 10px;
+        text-align: center;
     }
 }
+
+/* 🔹 Default: Items Start Fully Visible but Softly Faded */
+.news-item,
+.breaking-news-item {
+    opacity: 0.5; /* Soft fade, not hidden */
+    transform: translateY(30px);
+    transition: opacity 1.5s ease-out, transform 1.5s ease-out;
+}
+
+/* 🔹 Active Class: Smoothest Fade-in While Scrolling */
+.fade-in-active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
