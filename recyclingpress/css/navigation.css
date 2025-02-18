@@ -197,7 +197,7 @@ nav .hamburger {
     position: absolute;  
     box-shadow: 0px 8px 16px 0px rgba(7, 184, 113, 0.2);
     background-color: #12521f;
-    z-index: 100;
+    z-index: 1000;
     min-width: 160px;
     top: 100%;
     left: 0;
@@ -206,7 +206,7 @@ nav .hamburger {
 
 
 .dropdown li {
-    display: block;
+    display: block !important;
     margin: 0;
 }
 
