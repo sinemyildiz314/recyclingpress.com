@@ -20,13 +20,13 @@ body {
     margin-bottom: 20px;
 }
 
-.contact-info, .contact-form, .social-media, .map {
+.contact-info, .contact-form, .map {
     padding: 20px;
     background: white;
     margin: 20px;
     border-radius: 8px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: left;
+    text-align: center;
 }
 
 .contact-form form {
@@ -40,10 +40,12 @@ body {
 }
 
 .contact-form input, .contact-form textarea {
-    width: 90%;
+    width: 100%;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    box-sizing: border-box;
+   
 }
 
 .contact-form button {
@@ -53,6 +55,7 @@ body {
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
+    width: 100%;
     transition: background 0.3s;
 }
 
@@ -60,27 +63,25 @@ body {
     background: #b86b12;
 }
 
-.social-media ul {
-    list-style: none;
-    padding: 0;
-}
-
-.social-media ul li {
-    margin: 10px 0;
-}
-
-.social-media a {
-    text-decoration: none;
-    color: #4CAF50;
-    font-weight: bold;
-    transition: color 0.3s;
-}
-
-.social-media a:hover {
-    color: #388E3C;
-}
-
 .map iframe {
     width: 100%;
     border-radius: 8px;
+}
+
+/* Media Queries for Smaller Screens */
+@media (max-width: 768px) {
+    .contact-info, 
+    .contact-form, 
+    .map {
+        margin: 10px; /* Reduce margins on smaller screens */
+    }
+
+    .contact-form input, 
+    .contact-form textarea {
+        margin-left: 0; /* Remove left margin on smaller screens */
+    }
+
+    .contact-form button {
+        margin-left: 0; /* Remove left margin on smaller screens */
+    }
 }

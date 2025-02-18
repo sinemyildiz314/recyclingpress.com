@@ -942,4 +942,3 @@ function setupTeamMemberHoverEffects() {
 }
 
 // ends //
-
