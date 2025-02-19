@@ -980,12 +980,13 @@ document.addEventListener("DOMContentLoaded", function () {
 // LIVE RATES API embeded - runs
 
 let previousRates = {}; // Store previous rates for comparison
+let retryCount = 0; // To prevent infinite retries
 
 async function fetchLiveRates() {
     try {
         console.log("Fetching exchange rates...");
 
-        // ✅ Use the correct API (Change this to the correct Forex API if needed)
+        // ✅ Use the correct Forex API
         const forexResponse = await fetch(`https://api.exchangerate-api.com/v4/latest/USD`);
 
         if (!forexResponse.ok) throw new Error(`Forex API error: ${forexResponse.statusText}`);
@@ -993,11 +994,9 @@ async function fetchLiveRates() {
 
         console.log("Forex API response:", forexData); // ✅ Debugging log
 
-        if (!forexData.rates) {
-            throw new Error("Invalid Forex API response");
-        }
+        if (!forexData.rates) throw new Error("Invalid Forex API response");
 
-        // ✅ Extract exchange rates correctly from `rates`
+        // ✅ Update Forex rates while keeping previous values if API fails
         updateRate("usd-eur", forexData.rates.EUR);
         updateRate("gbp-usd", forexData.rates.GBP);
         updateRate("eur-gbp", forexData.rates.GBP / forexData.rates.EUR);
@@ -1008,7 +1007,7 @@ async function fetchLiveRates() {
         updateRate("usd-cad", forexData.rates.CAD);
         updateRate("usd-aud", forexData.rates.AUD);
 
-        // ✅ Fetch Bitcoin & Ethereum Prices from CoinGecko
+        // ✅ Fetch Bitcoin & Ethereum Prices
         console.log("Fetching crypto data...");
         const cryptoResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
 
@@ -1017,18 +1016,24 @@ async function fetchLiveRates() {
 
         console.log("Crypto API response:", cryptoData);
 
-        if (!cryptoData.bitcoin || !cryptoData.ethereum) {
-            throw new Error("Invalid Crypto API response");
-        }
+        if (!cryptoData.bitcoin || !cryptoData.ethereum) throw new Error("Invalid Crypto API response");
 
         updateRate("btc-price", cryptoData.bitcoin.usd);
         updateRate("eth-price", cryptoData.ethereum.usd);
 
+        retryCount = 0; // Reset retry count if everything works fine
+
     } catch (error) {
         console.error("Error fetching data:", error);
 
-        // Show error message in UI
-        document.querySelectorAll(".fade").forEach((el) => el.innerText = "N/A");
+        // **Retry fetching after 5 seconds without clearing old data**
+        if (retryCount < 3) {
+            retryCount++;
+            console.log(`Retrying fetch attempt ${retryCount}...`);
+            setTimeout(fetchLiveRates, 5000);
+        } else {
+            console.log("Failed to update data after multiple attempts. Keeping previous values.");
+        }
     }
 }
 
@@ -1052,8 +1057,8 @@ function updateRate(id, newRate) {
     rateElement.innerText = newRate.toFixed(2);
 }
 
-// Fetch rates every 1 second
+// Fetch rates every **10 seconds** instead of 1 second
 fetchLiveRates();
-setInterval(fetchLiveRates, 1000);
+setInterval(fetchLiveRates, 10000);
 
 console.log("Script is running...");
