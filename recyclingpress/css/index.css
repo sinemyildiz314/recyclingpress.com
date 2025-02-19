@@ -1,81 +1,115 @@
-.featured-and-recent {
-    display: grid;
-    grid-template-columns: 1fr 1fr; /* Two columns for featured/recent */
-    grid-gap: 20px;
+/* ==============================
+   🌟 General Styles
+================================= */
+body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+    color: #333;
 }
 
-.grid-item {
-    /* padding: 20px;
-    border: 1px solid #ccc; */
-    flex: 1 0 300px;
-    margin: 10px;
-    border: 1px solid #ddd;
-    padding: 10px;
-    border-radius: 5px;
-    box-sizing: border-box;
-    transition: transform 0.2s;
+/* 🎨 Standard Section Styling */
+section {
+    padding: 50px 0;
+    max-width: 1100px;
+    margin: auto;
 }
 
-.grid-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
-}
-
-#featured-article img, #recent-articles img, aside img, #featured-video video {
-    max-width: 100%;
-    height: auto;
-}
-
-.article-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    grid-gap: 10px;
-}
-
-.gallery-images {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    grid-gap: 10px;
-}
-
-/* Media query for smaller screens */
-@media (max-width: 768px) {
-    .featured-and-recent {
-        grid-template-columns: 1fr; /* Stack featured/recent */
-    }
-}
-
+/* 🌟 Headings */
 h1, h2, h3 {
     font-weight: 600;
+    text-align: center;
+    margin-bottom: 20px;
 }
 
-h1 {
-    font-size: 2em;
-}
-
-h2 {
-    font-size: 1.5em;
-}
-
-img {
-    max-width: 100%;
-    height: auto;
-    display: block;
-    margin: 20px auto; /* Center the image */
-}
-
-
-.highlight {
-    font-style: italic;
-}
-
-a {
-    color: #007bff; /* Example blue color */
+/* 🔘 Buttons */
+.btn {
+    display: inline-block;
+    text-align: center;
+    background: #007bff;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: bold;
     text-decoration: none;
+    transition: background 0.3s ease;
+    margin-top: 10px;
 }
 
-a:hover {
-    text-decoration: underline;
+.btn:hover {
+    background: #0056b3;
 }
 
+/* ==============================
+   📰 Featured Article Section
+================================= */
+.featured-article .featured-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
 
+.featured-article img {
+    width: 50%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ==============================
+   🔥 Top Stories & More Articles
+================================= */
+.stories-grid, .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+}
+
+.stories-grid article, .articles-grid article {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.stories-grid img, .articles-grid img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* ==============================
+   🎥 Featured Video Section
+================================= */
+.video-container {
+    position: relative;
+    padding-bottom: 56.27%;
+    height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+}
+
+.video-container iframe {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+/* 📱 Mobile Responsiveness */
+@media (max-width: 900px) {
+    .featured-article .featured-content {
+        flex-direction: column;
+    }
+    
+    .featured-article img {
+        width: 100%;
+        height: auto;
+    }
+}

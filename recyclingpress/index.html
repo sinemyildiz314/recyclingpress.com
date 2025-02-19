@@ -79,107 +79,98 @@
                             <div id="search-results" class="search-dropdown"></div>
         
                         </div>
-
                 </div>
                 </div>
              </nav>
+        
         </header>
 
-        <main id="content">
-            <div class="featured-and-recent">
-                <section id="featured-article" class="grid-item">
-                    <h2>Featured Article</h2>
-                    <article>
-                        <h3>Green News</h3>
-                        <img src="./images/greennews.png" alt="Green News Image">
-                        <p>This Swiss data centre will heat 6,000 homes with recycled energy.
-                            Turning energy waste into a community benefit,
-                            using its excess heat to warm local homes...
-                        </p>
-                        <a href="./articles/greennews.html">Read More</a>
-                    </article>
+            <!-- 🌟 Main Content -->
+            <main>
+
+    <div class="ticker-container">
+        <div class="ticker">
+            <span class="rate-item">USD/EUR: <span id="usd-eur" class="fade">Loading...</span></span>
+            <span class="rate-item">GBP/USD: <span id="gbp-usd" class="fade">Loading...</span></span>
+            <span class="rate-item">EUR/GBP: <span id="eur-gbp" class="fade">Loading...</span></span>
+            <span class="rate-item">USD/JPY: <span id="usd-jpy" class="fade">Loading...</span></span>
+            <span class="rate-item">USD/CHF: <span id="usd-chf" class="fade">Loading...</span></span>
+            <span class="rate-item">USD/CNY: <span id="usd-cny" class="fade">Loading...</span></span>
+            <span class="rate-item">USD/INR: <span id="usd-inr" class="fade">Loading...</span></span>
+            <span class="rate-item">USD/CAD: <span id="usd-cad" class="fade">Loading...</span></span>
+            <span class="rate-item">USD/AUD: <span id="usd-aud" class="fade">Loading...</span></span>
+            <span class="rate-item">Bitcoin/USD: $<span id="btc-price" class="fade">Loading...</span></span>
+            <span class="rate-item">Ethereum/USD: $<span id="eth-price" class="fade">Loading...</span></span>
+        </div>
+    </div>
+
+                <!-- 📰 Featured Article -->
+                <section class="featured-article">
+                    <div class="featured-content">
+                        <img src="./images/greennews.png" alt="Green News">
+                        <div class="text">
+                            <h2>Green News</h2>
+                            <p>This Swiss data center will heat 6,000 homes with recycled energy...</p>
+                            <a href="./articles/greennews.html" class="btn">Read More</a>
+                        </div>
+                    </div>
+
+
                 </section>
-                <section id="recent-articles" class="grid-item">
+        
+                <!-- 🔥 Top Stories -->
+                <section class="top-stories">
                     <h2>Top Stories</h2>
-                    <div class="article-list">
+                    <div class="stories-grid">
                         <article>
-                            <h3>Eco-Friendly Textiles: The Role of Sorting</h3>
-                            <img src="./images/textilesnews.png" alt="Article 1 Image">
-                            <p>Fashion for Good, a Netherlands-based global innovation platform, has launched the Sorting for Circularity Project ...</p>
-                            <a href="./articles/textilenews.html">Read More</a>
+                            <img src="./images/textilesnews.png" alt="Eco Textiles">
+                            <h3>Eco-Friendly Textiles</h3>
+                            <p>Fashion for Good has launched the Sorting for Circularity Project...</p>
+                            <a href="./articles/textilenews.html" class="btn">Read More</a>
                         </article>
                         <article>
+                            <img src="./images/electricvehicle.png" alt="EV Batteries">
                             <h3>EV Batteries: $500B Market by 2031</h3>
-                            <img src="./images/electricvehicle.png" alt="Article 2 Image">
-                            <p>Environmental concerns, government policies, and technological advances are driving rapid growth in the EV battery market...</p>
-                            <a href="./articles/evnews.html">Read More</a>
+                            <p>Environmental concerns and technological advances drive EV market...</p>
+                            <a href="./articles/evnews.html" class="btn">Read More</a>
                         </article>
                     </div>
                 </section>
-            </div>
-            <aside class="grid-item">
-                <h2>More Articles</h2>
-                <div class="article-list">
-                    <article>
-                        <h3>Europe Takes Action on Paper Packaging</h3>
-                        <img src="./images/paperpacking.png" alt="Article 4 Image">
-                        <p>4evergreen:  Europe's paper industry unites to maximize the sustainability
-                            and recyclability of its packaging, creating a truly circular economy...</p>
-                        <a href="./articles/paperpacking.html">Read More</a>
-                    </article>
-                    <article>
-                        <h3>CHINAPLAS to Showcase Cutting-Edge Plastics Recycling</h3>
-                        <img src="./images/plastic.png" alt="Article 5 Image">
-                        <p>Cutting-edge plastics recycling tech takes center stage at CHINAPLAS 2025!
-                            Experience "The Plastics Circularity Journey" live and see how we're closing the loop...</p>
-                        <a href="./articles/plasticnews.html">Read More</a>
-                    </article>
-                </div>
-            </aside>
-            <section id="featured-video" class="grid-item">
-                <h2>Explore The Recycling Process - How Are Over 130 Million Tons of Glass Recycled?</h2>
-                <p>This video, from "The Engine", summarizes the modern recycling process.
-                    It covers collection, sorting, cleaning, processing into raw materials,
-                    and distribution for new product manufacturing.
-                    The goal is to minimize waste and promote a sustainable future.
-                    The video also includes segments on battery recycling,
-                    a plastic bottle recycling plant, a waste sorting line, and a waste treatment plant.
-                </p>
-                <div style="position: relative; padding-bottom: 56.27%; height: 0; overflow: hidden;">
-                <iframe width="800" height="450" src="https://www.youtube.com/embed/2kVhOJa5I5w" 
-                title="Explore The Recycling Process - How Are Over 130 Million Tons of Glass Recycled?" 
-                frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
-            </section>
-            <!-- Feedback Button -->
-            <div class="feedback-form-container">
-                <button class="feedback-btn">Feedback</button>
-
-                <!-- Feedback Form -->
-                <div class="feedback-form">
-                    <h3>We value your feedback</h3>
-                    <form id="feedbackForm">
-                        <label for="feedbackText">Your Feedback:</label>
-                        <textarea id="feedbackText" name="feedbackText" rows="4" required></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-            
-            <div id="newsletter-signup"></div>
-            <h3>Subscribe to our Newsletter</h3>
-            <p>Enter your email for an upgraded inbox!</p>
-            <input type="email" id="newsletter-email" placeholder="Your Email">
-            <button id="newsletter-subscribe">Submit</button>
-            <span id="newsletter-message"></span>
-        </div>
         
-        </main>
-
-        <footer>
-            <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
-        </footer>
-    <script src="./script.js"></script>
-</body>
-
-</html>
+                <!-- 📚 More Articles -->
+                <section class="more-articles">
+                    <h2>More Articles</h2>
+                    <div class="articles-grid">
+                        <article>
+                            <img src="./images/paperpacking.png" alt="Paper Packaging">
+                            <h3>Europe Takes Action on Paper Packaging</h3>
+                            <p>4evergreen: Europe's paper industry maximizes recyclability...</p>
+                            <a href="./articles/paperpacking.html" class="btn">Read More</a>
+                        </article>
+                        <article>
+                            <img src="./images/plastic.png" alt="Plastics Recycling">
+                            <h3>CHINAPLAS Showcases Cutting-Edge Plastics Recycling</h3>
+                            <p>Experience "The Plastics Circularity Journey" live...</p>
+                            <a href="./articles/plasticnews.html" class="btn">Read More</a>
+                        </article>
+                    </div>
+                </section>
+        
+                <!-- 🎥 Featured Video -->
+                <section class="featured-video">
+                    <h2>How Over 130 Million Tons of Glass Are Recycled</h2>
+                    <div class="video-container">
+                        <iframe src="https://www.youtube.com/embed/2kVhOJa5I5w" allowfullscreen></iframe>
+                    </div>
+                </section>
+            </main>
+        
+            <!-- 🌍 Footer -->
+            <footer>
+                <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
+            </footer>
+        
+            <script src="./script.js"></script>
+        </body>
+        </html>
+        

@@ -20,6 +20,53 @@ main {
     flex: 1; 
 }
 
+/* LIVE MARKET RATES */
+
+/* Scrolling ticker container */
+.ticker-container {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* Animation effect - Continuous loop */
+.ticker {
+    display: flex;
+    gap: 40px; /* Space between items */
+    animation: ticker-scroll 20s linear infinite; /* Adjusted for smoother scrolling */
+}
+
+/* Each rate item */
+.rate-item {
+    display: inline-block;
+    font-weight: bold;
+    padding-right: 30px;
+}
+
+/* Green for increase, Red for decrease */
+.up { color: green; }
+.down { color: red; }
+.fade { transition: color 0.5s ease-in-out; }
+
+/* Continuous Scrolling Effect */
+@keyframes ticker-scroll {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .ticker-container { font-size: 12px; }
+}
+
+
+
+
 /* ==============================
    Footer Styling
    ============================== */
