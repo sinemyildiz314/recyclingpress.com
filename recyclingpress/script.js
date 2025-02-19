@@ -976,3 +976,84 @@ document.addEventListener("DOMContentLoaded", function () {
     fadeInOnScroll(); // Run immediately for visible items
     window.addEventListener("scroll", fadeInOnScroll);
 });
+
+// LIVE RATES API embeded - runs
+
+let previousRates = {}; // Store previous rates for comparison
+
+async function fetchLiveRates() {
+    try {
+        console.log("Fetching exchange rates...");
+
+        // ✅ Use the correct API (Change this to the correct Forex API if needed)
+        const forexResponse = await fetch(`https://api.exchangerate-api.com/v4/latest/USD`);
+
+        if (!forexResponse.ok) throw new Error(`Forex API error: ${forexResponse.statusText}`);
+        const forexData = await forexResponse.json();
+
+        console.log("Forex API response:", forexData); // ✅ Debugging log
+
+        if (!forexData.rates) {
+            throw new Error("Invalid Forex API response");
+        }
+
+        // ✅ Extract exchange rates correctly from `rates`
+        updateRate("usd-eur", forexData.rates.EUR);
+        updateRate("gbp-usd", forexData.rates.GBP);
+        updateRate("eur-gbp", forexData.rates.GBP / forexData.rates.EUR);
+        updateRate("usd-jpy", forexData.rates.JPY);
+        updateRate("usd-chf", forexData.rates.CHF);
+        updateRate("usd-cny", forexData.rates.CNY);
+        updateRate("usd-inr", forexData.rates.INR);
+        updateRate("usd-cad", forexData.rates.CAD);
+        updateRate("usd-aud", forexData.rates.AUD);
+
+        // ✅ Fetch Bitcoin & Ethereum Prices from CoinGecko
+        console.log("Fetching crypto data...");
+        const cryptoResponse = await fetch('https://api.coingecko.com/api/v3/simple/price?ids=bitcoin,ethereum&vs_currencies=usd');
+
+        if (!cryptoResponse.ok) throw new Error(`Crypto API error: ${cryptoResponse.statusText}`);
+        const cryptoData = await cryptoResponse.json();
+
+        console.log("Crypto API response:", cryptoData);
+
+        if (!cryptoData.bitcoin || !cryptoData.ethereum) {
+            throw new Error("Invalid Crypto API response");
+        }
+
+        updateRate("btc-price", cryptoData.bitcoin.usd);
+        updateRate("eth-price", cryptoData.ethereum.usd);
+
+    } catch (error) {
+        console.error("Error fetching data:", error);
+
+        // Show error message in UI
+        document.querySelectorAll(".fade").forEach((el) => el.innerText = "N/A");
+    }
+}
+
+function updateRate(id, newRate) {
+    const rateElement = document.getElementById(id);
+    if (!rateElement) {
+        console.error(`Element with ID '${id}' not found.`);
+        return;
+    }
+
+    if (previousRates[id] !== undefined) {
+        const oldRate = previousRates[id];
+
+        // Update color based on increase/decrease
+        rateElement.classList.toggle("up", newRate > oldRate);
+        rateElement.classList.toggle("down", newRate < oldRate);
+    }
+
+    // Store the new rate & update the text
+    previousRates[id] = newRate;
+    rateElement.innerText = newRate.toFixed(2);
+}
+
+// Fetch rates every 1 second
+fetchLiveRates();
+setInterval(fetchLiveRates, 1000);
+
+console.log("Script is running...");
