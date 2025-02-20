@@ -1,17 +1,41 @@
 nav {
+    position: sticky; /* ✅ Keeps navbar visible when scrolling */
+    top: 0;
+    left: 0;
+    width: 100vw; /* ✅ Ensures navbar takes full screen width */
     background-color: #035914;
-    padding: 10px;
+    padding: 0; /* ✅ Removes extra padding that caused gaps */
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 60px;
-    position: fixed;
-    width: 100%;
-    top:0;
-    left: 0px;
     z-index: 100;
-    box-shadow: 0 2px 5px rgba(33, 5, 5, 0.1);
+    box-sizing: border-box; /* ✅ Ensures no unexpected margin issues */
 }
+
+
+/* ✅ Ensure Navbar Content Stays Inside */
+.nav-content {
+    width: 100%;
+    max-width: 1200px; /* ✅ Keeps content within a readable space */
+    margin: 0 auto; /* ✅ Ensures content is centered */
+    padding: 0 20px; /* ✅ Adds spacing inside the navbar */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* ✅ Ensure No Extra Gaps Below the Navbar */
+nav::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 1px; 
+    background-color: #035914;
+}
+
 
 nav #sustainability-link, #aboutus-link {
     display: block;
@@ -31,19 +55,37 @@ nav ul {
     list-style: none;
     margin: 0;
     padding: 0;
-    display: none; /* Initially hidden */
-    flex-direction: column; /* Stack menu items vertically */
-    position: fixed; /* Used fixed positioning for the menu */
-    top: 50px; 
-    left: 0px;
-    width: 30%; 
-    height: calc(100vh - 60px); 
-    overflow-y: auto;
-    background-color: #035914; 
-    z-index: 11; 
-    transition: transform 0.3s ease-in-out; 
-    transform: translateY(-100%); /* Initially hidden off-screen */
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%; /* ✅ Ensures dropdown aligns perfectly below navbar */
+    left: 0; /* ✅ Starts at the exact left edge */
+    width: 100vw; /* ✅ Ensures dropdown spans full screen width */
+    background-color: #035914;
+    z-index: 1000;
 }
+
+/* ✅ Ensure Dropdown Items are Properly Styled */
+nav ul li {
+    width: 100%;
+    text-align: left;
+}
+
+/* ✅ Ensure Links are Consistent */
+nav ul li a {
+    display: block;
+    padding: 12px;
+    color: white;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+/* ✅ Add Hover Effect */
+nav ul li a:hover {
+    background-color: #002b0a;
+}
+
+
 
 nav ul.show {
     display: flex; 
@@ -91,6 +133,8 @@ nav .hamburger {
     z-index: 101;
 }
 
+
+
 /* Navigation Right Section */
 .nav-right {
     display: flex;
@@ -106,7 +150,7 @@ nav .hamburger {
 }
 
 .social-media-nav a {
-    color: white
+    color: white;
     font-size: 18px;
     transition: color 0.3s ease;
 }
@@ -184,12 +228,6 @@ nav .hamburger {
     transform: translateY(-50%);
 }
 
-/* Hide Social Icons When Search Bar Expands
-.search-active .social-media-nav {
-    opacity: 0;
-    pointer-events: none;
-} */
-
 /* ends */
 
 .dropdown {
@@ -206,7 +244,7 @@ nav .hamburger {
 
 
 .dropdown li {
-    display: block !important;
+    display: block;
     margin: 0;
 }
 
@@ -265,8 +303,10 @@ nav .hamburger {
 /* Responsive styles */
 @media (max-width: 768px) {
     nav ul {
-        width: 40%; /* Adjust width for smaller screens */
-        left: 10px; /* the same line with the head */
+        width: 50%; /* Adjust width for smaller screens */
+        left: 0px; 
+        position: absolute;
+        top: 60px;
     }
 
     nav li {
@@ -275,6 +315,13 @@ nav .hamburger {
         margin-right: 0;
     }
 
+    .nav-content {
+        padding: 0 15px; /* ✅ Adjusts spacing for smaller screens */
+    }
+
+    nav ul li {
+        text-align: center;
+    }
     nav a {
         padding: 15px 10px;
     }

@@ -10,58 +10,22 @@ body {
 }
 
 header {
-background-color:#f4f4f4;
-padding: 10px;
+    width: 100vw; /* ✅ Ensures it spans the entire viewport */
+    overflow: hidden; /* ✅ Prevents unwanted horizontal scrolling */
+    box-sizing: border-box; /* ✅ Ensures padding/margins don't cause width issues */
+    background-color:#f4f4f4;
 }
 
 main {
-    padding: 20px;
-    margin-top: 30px;
     flex: 1; 
 }
 
-/* LIVE MARKET RATES */
-
-/* Scrolling ticker container */
-.ticker-container {
+html, body {
     width: 100%;
-    overflow: hidden;
-    background: #fff;
-    padding: 10px;
-    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
-    white-space: nowrap;
-    position: relative;
-}
-
-/* Animation effect - Continuous loop */
-.ticker {
-    display: flex;
-    gap: 40px; /* Space between items */
-    animation: ticker-scroll 20s linear infinite; /* Adjusted for smoother scrolling */
-}
-
-/* Each rate item */
-.rate-item {
-    display: inline-block;
-    font-weight: bold;
-    padding-right: 30px;
-}
-
-/* Green for increase, Red for decrease */
-.up { color: green; }
-.down { color: red; }
-.fade { transition: color 0.5s ease-in-out; }
-
-/* Continuous Scrolling Effect */
-@keyframes ticker-scroll {
-    from { transform: translateX(100%); }
-    to { transform: translateX(-100%); }
-}
-
-/* Responsive */
-@media (max-width: 600px) {
-    .ticker-container { font-size: 12px; }
+    overflow-x: hidden; /* ✅ Prevents horizontal scrolling */
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* ✅ Ensures no unexpected padding/margins */
 }
 
 
@@ -95,8 +59,7 @@ footer p {
 } */
 
 #main-menu {
-    margin-top: 10px;
-    margin-left:0px;
+        margin-left:0px;
 }
 
 #content {
@@ -159,7 +122,6 @@ footer p {
 .close-btn:hover {
     color: red;
 }
-
 .feedback-form h3 {
     margin-top: 0;
 }
@@ -203,6 +165,10 @@ footer p {
     }
     .feedback-btn {
         font-size: 14px;
+    }
+
+    header {
+        width: 100vw;
     }
 }
 

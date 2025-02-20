@@ -1,13 +1,7 @@
 /* ==============================
    🌟 General Styles
 ================================= */
-body {
-    font-family: "Arial", sans-serif;
-    margin: 0;
-    padding: 0;
-    background-color: #f4f4f4;
-    color: #333;
-}
+
 
 /* 🎨 Standard Section Styling */
 section {
@@ -22,6 +16,51 @@ h1, h2, h3 {
     text-align: center;
     margin-bottom: 20px;
 }
+
+/* LIVE MARKET RATES */
+
+/* Scrolling ticker container */
+.ticker-container {
+    width: 100%;
+    overflow: hidden;
+    background: #fff;
+    padding: 10px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    white-space: nowrap;
+    position: relative;
+}
+
+/* Animation effect - Continuous loop */
+.ticker {
+    display: flex;
+    gap: 40px; /* Space between items */
+    animation: ticker-scroll 20s linear infinite; /* Adjusted for smoother scrolling */
+}
+
+/* Each rate item */
+.rate-item {
+    display: inline-block;
+    font-weight: bold;
+    padding-right: 30px;
+}
+
+/* Green for increase, Red for decrease */
+.up { color: green; }
+.down { color: red; }
+.fade { transition: color 0.5s ease-in-out; }
+
+/* Continuous Scrolling Effect */
+@keyframes ticker-scroll {
+    from { transform: translateX(100%); }
+    to { transform: translateX(-100%); }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .ticker-container { font-size: 12px; }
+}
+
 
 /* ==============================
    🔘 Global Button Styles
@@ -75,6 +114,12 @@ h1, h2, h3 {
 /* ==============================
    📰 Featured Article Section
 ================================= */
+.featured-article {
+    padding: 50px 20px; /* ✅ Ensures equal spacing from left & right */
+    max-width: 1100px;
+    margin: 0 auto; /* ✅ Centers the section */
+}
+
 .featured-article .featured-content {
     display: flex;
     gap: 20px;
@@ -95,6 +140,12 @@ h1, h2, h3 {
 /* ==============================
    📝 More Articles Grid
 ================================= */
+.more-articles {
+    padding: 50px 20px; /* ✅ Ensures equal spacing from left & right */
+    max-width: 1100px;
+    margin: 0 auto; /* ✅ Centers the section */
+}
+
 .articles-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -118,6 +169,12 @@ h1, h2, h3 {
 /* ==============================
    🎥 Featured Video Section
 ================================= */
+.featured-video {
+    padding: 50px 20px; /* ✅ Ensures equal spacing from left & right */
+    max-width: 1100px;
+    margin: 0 auto; /* ✅ Centers the section */
+}
+
 .video-container {
     position: relative;
     padding-bottom: 56.27%;
@@ -148,51 +205,59 @@ h1, h2, h3 {
 /* ===========================
    🌍 HERO SECTION IMAGE SLIDER
 =========================== */
-/* ===========================
-   🌍 HERO SECTION IMAGE SLIDER
-=========================== */
+
 .hero {
-    width: 100%;
-    height: auto;
-    padding: 50px 0; /* ✅ Matches other sections */
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
+    padding: 50px 0;
+    width: 100%;
 }
 
-/* Slider Wrapper */
+/* ✅ Center and Style Paragraph */
+.title-text {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: justify;
+    text-align-last: center;
+    max-width: 70%;  /* ✅ Prevents P from stretching too wide */
+    line-height: 1.6;
+    margin: 0 auto 20px;
+    display: block;
+}
+
+/* Slider Container */
 .slider {
-    width: 100%;
-    max-width: 1100px; /* ✅ Matches other sections */
-    height: 520px; /* ✅ Adjusted height to fit everything properly */
+    max-width: 1100px;
+    height: 500px;
     position: relative;
     overflow: hidden;
-    border-radius: 12px; /* ✅ Rounded corners */
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* ✅ Subtle shadow */
-    background: white; /* ✅ Matches section design */
-    padding: 25px; /* ✅ Creates spacing inside */
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: white;
+    display: flex;  /* ✅ Ensures everything inside is aligned */
     justify-content: center;
+    align-items: center;
 }
 
-/* Slides Wrapper */
+/* Slides Container */
 .slides {
     width: 100%;
     height: 100%;
-    position: relative;
-}
-
-/* Each Slide */
-.slide {
-    width: 100%;
-    height: 100%;
-    display: none; /* ✅ Hides inactive slides */
+    display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    padding: 20px; /* ✅ Reduced padding */
+}
+
+/* Individual Slide */
+.slide {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 15px;
+    width: 100%;
 }
 
 /* Active Slide */
@@ -202,13 +267,11 @@ h1, h2, h3 {
 
 /* Slide Image */
 .slide img {
-    width: 85%;
-    max-width: 850px;
+    display: block;
+    max-width: 90%;
     height: auto;
     max-height: 260px; /* ✅ Reduced slightly to allow space for button */
-    object-fit: cover;
     border-radius: 20px;
-    margin-bottom: 10px; /* ✅ Ensures space between image and text */
 }
 
 /* Slide Title */
@@ -222,10 +285,12 @@ h1, h2, h3 {
 /* Slide Paragraph */
 .slide p {
     font-size: 1rem;
-    max-width: 80%;
-    line-height: 1.5; /* ✅ Reduced line height */
+    font-weight: 400;
     color: #555;
-    margin-bottom: 12px; /* ✅ Reduced gap before the button */
+    text-align: center; /* ✅ Ensures text is always centered */
+    max-width: 80%; /* ✅ Prevents text from stretching too wide */
+    line-height: 1.6; /* ✅ Improves readability */
+    margin: 10px auto 20px; /* ✅ Adds space before and after the paragraph */
 }
 
 /* Read More Button - Fully Separated from Dots */
@@ -273,6 +338,11 @@ h1, h2, h3 {
         padding: 40px 15px;
     }
 
+    .title-text {
+        font-size: 1rem !important;
+        max-width: 80% !important;
+    }
+
     .slider {
         height: 500px; /* ✅ Increased height for small screens */
         padding: 20px;
@@ -289,7 +359,8 @@ h1, h2, h3 {
 
     .slide p {
         font-size: 0.9rem;
-        max-width: 85%;
+        max-width: 85%; /* ✅ Allows more space on smaller screens */
+        line-height: 1.5;
     }
 
     .btn {
@@ -306,6 +377,11 @@ h1, h2, h3 {
 @media (max-width: 480px) {
     .hero {
         padding: 30px 10px;
+    }
+
+    .title-text {
+        font-size: 0.9rem !important;
+        max-width: 90% !important;
     }
 
     .slider {
@@ -325,6 +401,7 @@ h1, h2, h3 {
     .slide p {
         font-size: 0.85rem;
         max-width: 90%;
+        margin: 8px auto 15px; /* ✅ Keeps spacing balanced on small screens */
     }
 
     .btn {
