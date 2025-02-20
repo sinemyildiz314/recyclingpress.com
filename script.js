@@ -754,43 +754,48 @@ FEEDBACK BUTTON function design
 *********************/
 // Feedback Form Initialization
 function initializeFeedbackForm() {
-  const feedbackBtn = document.querySelector(".feedback-btn");
-  const feedbackForm = document.querySelector(".feedback-form");
-  const feedbackContainer = document.querySelector(".feedback-form-container");
+    const feedbackBtn = document.querySelector(".feedback-btn");
+    const feedbackForm = document.querySelector(".feedback-form");
+    const closeBtn = document.querySelector(".close-btn"); // Select close button
 
-  if (feedbackBtn && feedbackForm && feedbackContainer) {
-      feedbackForm.style.display = "none";
+    if (feedbackBtn && feedbackForm && closeBtn) {
+        feedbackForm.style.display = "none";
 
-      feedbackBtn.addEventListener("click", function () {
-          feedbackBtn.style.display = "none";
-          feedbackForm.style.display = "block";
-      });
+        feedbackBtn.addEventListener("click", function () {
+            feedbackBtn.style.display = "none";
+            feedbackForm.style.display = "block";
+        });
 
-      const formElement = feedbackForm.querySelector("form");
-      formElement.addEventListener("submit", function (event) {
-          event.preventDefault();
-          const feedbackText = document.getElementById("feedbackText").value;
-          console.log("Feedback submitted:", feedbackText);
+        closeBtn.addEventListener("click", function () {
+            feedbackForm.style.display = "none";
+            feedbackBtn.style.display = "block"; // Show button again
+        });
 
-          const thankYouMessage = document.createElement("p");
-          thankYouMessage.textContent = "Thank you for your feedback!";
-          thankYouMessage.style.color = "rgb(202, 86, 33)";
-          thankYouMessage.style.fontWeight = "bold";
-          thankYouMessage.style.marginTop = "10px";
-          feedbackContainer.appendChild(thankYouMessage);
+        const formElement = feedbackForm.querySelector("form");
+        formElement.addEventListener("submit", function (event) {
+            event.preventDefault();
+            const feedbackText = document.getElementById("feedbackText").value;
+            console.log("Feedback submitted:", feedbackText);
 
-          formElement.reset();
-          feedbackForm.style.display = "none";
+            const thankYouMessage = document.createElement("p");
+            thankYouMessage.textContent = "Thank you for your feedback!";
+            thankYouMessage.style.color = "rgb(202, 86, 33)";
+            thankYouMessage.style.fontWeight = "bold";
+            thankYouMessage.style.marginTop = "10px";
+            feedbackForm.appendChild(thankYouMessage);
 
-          setTimeout(() => {
-              feedbackContainer.removeChild(thankYouMessage);
-              feedbackBtn.style.display = "block";
-          }, 3000);
-      });
-  } else {
-      console.error("Feedback form elements not found in the DOM.");
-  }
+            formElement.reset();
+            setTimeout(() => {
+                feedbackForm.style.display = "none";
+                feedbackBtn.style.display = "block";
+                thankYouMessage.remove();
+            }, 3000);
+        });
+    } else {
+        console.error("Feedback form elements not found in the DOM.");
+    }
 }
+
 
 // Ensure the function runs after the DOM is fully loaded
 if (document.readyState !== 'loading') {
