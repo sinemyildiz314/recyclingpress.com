@@ -377,15 +377,14 @@ nav .hamburger {
 }
 
 .logo {
-    display: inline-block;
-    vertical-align: middle;
-    margin-top: 12%;
-    margin-left: 10px;
+    display: flex;
+    align-items: center;
+    margin-left: 3px;
 }
 
 .logo img {
-    height: 100px; /* Adjusted for a cleaner fit */
+    height: 80px; 
     width: auto;
     max-width: 120px; /* Prevents it from growing too large */
-    margin-left: 10px;
+    margin-top: 14px;
 }
