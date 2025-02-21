@@ -21,7 +21,7 @@ section {
 }
 
 /* 🎨 Section Titles */
-h2 {
+h1, h2 {
     font-size: 28px;
     font-weight: bold;
     text-transform: uppercase;
