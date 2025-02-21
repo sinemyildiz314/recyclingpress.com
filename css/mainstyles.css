@@ -36,11 +36,12 @@ html, body {
 
    footer {
     text-align: center;
-    padding: 10px;
+    padding: 20px;
     background: #035914;
     color: white;
     font-size: 14px;
     position: relative;
+    bottom: 0;
     width: 100%;
 }
 

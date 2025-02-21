@@ -195,6 +195,7 @@ nav .hamburger {
     border: none;
     font-size: 18px;
     cursor: pointer;
+    margin: 0 !important;
 }
 
 .search-toggle:hover {

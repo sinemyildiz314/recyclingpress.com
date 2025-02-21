@@ -5,6 +5,43 @@
   margin: 0;
 }
 
+.container p{
+  font-size: 1.2rem;
+  color: #555;
+  text-align: justify;
+  text-align-last: center;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+h1,h2 {
+  color: black;
+  text-align: justify;
+  text-align-last: center;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+/* ✅ Center and Style Paragraph */
+.title-text {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: justify;
+  text-align-last: center;
+  max-width: 70%;  /* ✅ Prevents P from stretching too wide */
+  line-height: 1.6;
+  margin: 0 auto 20px;
+  display: block;
+}
+
 main {
   width: 100%;
   padding: 0;
