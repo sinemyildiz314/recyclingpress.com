@@ -49,10 +49,13 @@ section + section {
 .news-row {
     display: flex;
     gap: 20px;
-    justify-content: center;
+    justify-content: center; /* Centers items inside */
     flex-wrap: wrap;
-    padding: 20px;
+    max-width: 100%; /* Ensures it doesn't exceed the parent container */
+    width: 100%; /* Ensures full width inside parent */
+    box-sizing: border-box; /* Ensures padding doesn’t cause overflow */
 }
+
 
 /* 📰 Top News Item */
 .news-item {

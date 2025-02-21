@@ -391,25 +391,6 @@ canvas {
     }
 }
 
-/* Make Navigation Responsive */
-@media (max-width: 768px) {
-    nav ul {
-        flex-direction: column;
-        width: 100%;
-        display: none;
-        position: absolute;
-        background: #035914;
-        top: 60px;
-        left: 0;
-        right: 0;
-    }
-    nav ul.show {
-        display: flex;
-    }
-    .hamburger {
-        display: block;
-    }
-}
 
 /* Ensure Footer Stays Below Content */
 footer {
