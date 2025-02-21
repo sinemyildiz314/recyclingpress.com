@@ -6,13 +6,18 @@ body {
     background-color: #f4f4f4;
 }
 
-/* .hero {
-    /* background: #7e817f;
-    color: white;
-    padding: 50px 20px;
-    border-radius: 8px;
-    margin: 20px; */
-/* } */  /* to add background design similarly as below content. Keep it for future in case I might us for changes..*/
+#aboutus-section {
+    display: flex;
+    flex-direction: column;
+    align-items: left;
+    justify-content: center;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 20px;
+    background: rgb(245, 249, 246);
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
 
 .our-story, .our-goals, .meet-the-team {
     padding: 20px;
