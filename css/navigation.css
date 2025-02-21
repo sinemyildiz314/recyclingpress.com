@@ -149,14 +149,29 @@ nav .hamburger {
     gap: 10px;
 }
 
+/* Fix hover issue */
 .social-media-nav a {
     color: white;
     font-size: 18px;
-    transition: color 0.3s ease;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    background-color: transparent; /* Ensure default state has no background */
 }
 
+/* Change color on hover */
 .social-media-nav a:hover {
-    color: #035914; /* Highlight on hover */
+    color: #035914;
+    background-color: rgba(255, 255, 255, 0.2); /* Optional: temporary hover effect */
+}
+
+/* Remove background when clicked */
+.social-media-nav a:active {
+    background-color: transparent !important;
+}
+
+/* Prevent focus outline causing background to stay */
+.social-media-nav a:focus {
+    outline: none;
+    background-color: transparent !important;
 }
 
 /* Search Bar (Initially Hidden) */
