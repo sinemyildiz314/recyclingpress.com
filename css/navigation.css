@@ -36,6 +36,12 @@ nav::after {
     background-color: #035914;
 }
 
+/* Show dropdown on hover */
+nav li:hover > .dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
 
 nav #sustainability-link, #aboutus-link {
     display: block;
@@ -51,6 +57,12 @@ nav #sustainability-link i, #aboutus-link i {
     margin-left: 5px;
 }
 
+
+/* Fix after-border issue */
+nav::after {
+    display: none; /* Remove the thin line if it's causing problems */
+}
+
 nav ul {
     list-style: none;
     margin: 0;
@@ -61,7 +73,7 @@ nav ul {
     top: 100%; /* ✅ Ensures dropdown aligns perfectly below navbar */
     left: 0; /* ✅ Starts at the exact left edge */
     width: 100vw; /* ✅ Ensures dropdown spans full screen width */
-    background-color:rgba(5, 116, 6, 0.944);
+    background-color:rgba(3, 52, 20, 0.934);
     z-index: 1000;
 }
 
@@ -82,7 +94,7 @@ nav ul li a {
 
 /* ✅ Add Hover Effect */
 nav ul li a:hover {
-    background-color: #002b0a;
+    background-color: #115421;
 }
 
 
@@ -113,12 +125,12 @@ nav button {
 
 nav a:hover {
     color: #ccc;
-    background-color: #002b0a;
+    background-color: rgba(44, 193, 96, 0.934);;
     transform: translateY(-2px);
 }
 
 nav a:active {
-    color: #041a01;
+    color: rgba(3, 52, 20, 0.934);;
     transform: translateY(1px);
 }
 
@@ -247,15 +259,17 @@ nav .hamburger {
 /* ends */
 
 .dropdown {
-    display: none; 
-    position: absolute;  
-    box-shadow: 0px 8px 16px 0px rgba(7, 184, 113, 0.2);
-    background-color: #12521f;
-    z-index: 1000;
-    min-width: 160px;
+    position: absolute;
     top: 100%;
     left: 0;
-    transition: opacity 0.3s ease;
+    min-width: 160px;
+    background-color: #12521f;
+    box-shadow: 0px 8px 16px rgba(7, 184, 113, 0.2);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, transform 0.2s ease;
+    transform: translateY(5px);
+    z-index: 1000;
 }
 
 
@@ -270,6 +284,11 @@ nav .hamburger {
     display: block;
     text-decoration: none;
     color: rgb(253, 253, 253);
+    transition: background 0.3s ease;
+}
+
+.dropdown a:hover {
+    background-color: #1c6c2e;
 }
 
 #search-results {

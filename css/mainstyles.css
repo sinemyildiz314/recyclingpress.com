@@ -89,7 +89,7 @@ footer p {
 }
 
 .feedback-btn:hover {
-    background: #035914;
+    background: #01860a;
 }
 
 /* Feedback Form */
@@ -135,7 +135,7 @@ footer p {
 }
 
 .feedback-form button[type="submit"] {
-    background-color: #4CAF50;
+    background-color: #01860a;
     color: white;
     padding: 10px 20px;
     border: none;
@@ -144,7 +144,7 @@ footer p {
 }
 
 .feedback-form button[type="submit"]:hover {
-    background-color: #45a049;
+    background-color: #01860a;
 }
 
 .feedback-form {
