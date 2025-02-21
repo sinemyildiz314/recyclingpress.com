@@ -1,10 +1,50 @@
+/* ✅ Center and Style Paragraph */
+.title-text {
+  font-size: 1.2rem;
+  color: #555;
+  text-align: justify;
+  text-align-last: center;
+  max-width: 70%;  /* ✅ Prevents P from stretching too wide */
+  line-height: 1.6;
+  margin: 0 auto 20px;
+  display: block;
+}
+
+h1, h2 {
+  font-weight: 600;
+    text-align: center;
+}
+
+#event-listings {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  justify-content: center;
+  max-width: 900px;
+  margin: 0 auto; /* Center the container */
+  padding: 20px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling individual events */
 .event {
-    display: flex;
-    align-items: center; 
-    padding: 10px; 
-    border-bottom: 1px solid #ccc; 
-  }
+  display: flex;
+  align-items: center;
+  width: 100%;
+  background: #f9f9f9;
+  /* padding: 10px;  - add to make right side wider and have different style  */
+  margin: 10px 0;
+  border-radius: 8px;
+  transition: 0.3s ease-in-out;
+  text-decoration: none;
+}
   
+.event:hover {
+  background: #e6f5e6;
+  transform: scale(1.02);
+}
   .event a {
       display: flex; 
       align-items: center; 
@@ -32,20 +72,42 @@
   
   .event-details {
     flex-grow: 1; /* Allow details to take up remaining space */
+    text-align: left;
   }
   
-  .event h3 {
-    margin-top: 0; 
+  .event-details h3 {
+    margin: 5px 0;
+    color: #2c7a7b;
+    font-size: 18px;
   }
   
-  .event-details h3, h4, p {
-    margin: 5px;
+  .event-details h4 {
+    margin: 5px 0;
+    font-size: 14px;
+    color: #555;
+}
 
-  }
+.event-details p {
+  font-size: 14px;
+  color: #777;
+}
 
-  h4 {
-    color: rgb(195, 76, 21);
-  }
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    #event-listings {
+        max-width: 100%;
+        padding: 10px;
+    }
+
+    .event {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .date {
+        margin-bottom: 10px;
+    }
+}
 
 #newsletter-signup {
     position: fixed;

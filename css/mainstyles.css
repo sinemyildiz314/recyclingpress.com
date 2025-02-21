@@ -182,6 +182,17 @@ footer p {
 
 /* ends */
 
+.newsletter-container {
+    width: 100%;
+    max-width: 600px; /* Adjust as needed */
+    margin: 20px auto;
+    padding: 20px;
+    background: #f9f9f9; /* Light background for contrast */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
 #newsletter-signup {
     position: fixed;
     bottom: 20px;
