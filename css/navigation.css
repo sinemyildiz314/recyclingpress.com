@@ -3,7 +3,7 @@ nav {
     top: 0;
     left: 0;
     width: 100vw; /* ✅ Ensures navbar takes full screen width */
-    background-color: #035914;
+    background-color: rgba(5, 116, 6, 0.944);
     padding: 0; /* ✅ Removes extra padding that caused gaps */
     display: flex;
     justify-content: space-between;
@@ -61,7 +61,7 @@ nav ul {
     top: 100%; /* ✅ Ensures dropdown aligns perfectly below navbar */
     left: 0; /* ✅ Starts at the exact left edge */
     width: 100vw; /* ✅ Ensures dropdown spans full screen width */
-    background-color: #035914;
+    background-color:rgba(5, 116, 6, 0.944);
     z-index: 1000;
 }
 

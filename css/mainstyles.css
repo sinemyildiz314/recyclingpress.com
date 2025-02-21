@@ -37,7 +37,7 @@ html, body {
    footer {
     text-align: center;
     padding: 20px;
-    background: #035914;
+    background:rgba(5, 116, 6, 0.944);
     color: white;
     font-size: 14px;
     position: relative;
@@ -220,7 +220,7 @@ footer p {
 
 #newsletter-signup button {
     padding: 10px 20px;
-    background-color: #007bff;
+    background-color: rgba(5, 116, 6, 0.944);
     color: rgb(176, 151, 24);
     border: none;
     border-radius: 5px;
