@@ -14,6 +14,7 @@
     <link href="./css/news.css" rel="stylesheet">
 </head>
     <body class="news-page">
+          <!-- Navigation Bar -->
         <header>
              <nav>
                 <button class="hamburger"  aria-label="Toggle navigation menu">
@@ -81,131 +82,122 @@
         </header>
 
         <main id="content">
-            <section id="top-news">
-                <h1>Hot & Trending:<br>The Biggest News in Recycling!♻️</h1>
-                <div class="title-text">
-                <p>Recycling is making waves 🌊 with breakthrough innovations, bold policies, and game-changing tech!<br>
-                    From plastic bans 🚫 to futuristic waste solutions ♻️, the industry is evolving fast. Stay ahead with the hottest updates, shocking stats, and must-know trends that are shaping a greener future.
-                    Ready to dive in? Let's go! 🚀
-                </p>
-                </div>
-
-                <div class="news-row">
-                    <div class="news-item">
-                        <h3>Turning Waste into Blooms: RHS Trials Compost Toilets</h3>
-                        <img src="./images/hotnews1.png" alt="Green Skills Garden">
-                        <p>The horticultural charity's showpiece garden in Surrey is setting aside a space to test human waste fertiliser...</p>
-                        <a href="./articles/hotnews1.html">Read More</a>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>The 5 biggest recycling trends to look out for in 2025</h3>
-                        <img src="./images/hotnews2tomra.png" alt="News Image">
-                        <p>AI is revolutionizing sorting by improving accuracy and reducing backlogs,
-                            according to TOMRA...</p>
-                        <a href="./articles/hotnews2.html">Read More</a>
-                    </div>
-
-                    <div class="news-item">
-                        <h3>Swiss data center heats 6,000 homes with recycled energy</h3>
-                        <img src="./images/greennews.png" alt="Green News Image">
-                        <p>This Swiss data centre will heat 6,000 homes with recycled energy.
-                            Turning energy waste into a community benefit,
-                            using its excess heat to warm local homes...
-                        </p>
-                        <a href="./articles/greennews.html">Read More</a>
-                    </div>
-
-                </div>
-            </section>
-    
-            <section id="breaking-news" class="section">
-                <h1>Breaking News 🚨</h1>
-                <h2>The Biggest Sustainability Headlines Right Now!🌎</h2>
-                
-                <div class="title-text">
-                <p>Big moves, bold policies, and game-changing innovations! ⚡ Stay ahead with real-time updates on the biggest eco-news shaping our planet.
-                    <br>Don't miss a beat! 🔥♻️</p>
-                </div>
-
-                <div class="breaking-news-container">
-                    <!-- First Large News Item -->
-                    <div class="news-item large">
-                        <img src="./images/breaking_news/straw.png" alt="Trump Rescinds Plastic Straw Ban">
-                        <div class="news-content">
-                            <h3>Trump Rescinds Plastic Straw Ban</h3>
-                            <p>President Trump has reversed the previous administration's ban on plastic straws, citing inefficiencies of paper alternatives. This move contrasts with global efforts to reduce plastic waste.</p>
-                            <a href="https://www.reuters.com/world/us/trump-pushes-use-plastic-straws-us-defies-global-trend-countries-imposing-ban-2025-02-11/" class="btn-read-more">Read More</a>
-                        </div>
-                    </div>
-            
-                    <!-- Second Medium News Item -->
-                    <div class="news-item medium">
-                        <img src="./images/breaking_news/depositreturn.png" alt="Ireland's Deposit Return Scheme Hits Billion Mark">
-                        <div class="news-content">
-                            <h3>Ireland's Deposit Return Scheme Hits Billion Mark</h3>
-                            <p>Since its launch in February 2024, Ireland's Deposit Return Scheme has recycled one billion drink containers, significantly boosting recycling rates and supporting community initiatives.</p>
-                            <a href="https://www.thesun.ie/news/14670914/irish-deposit-return-scheme-milestone-recycling-charity-funding/" class="btn-read-more">Read More</a>
-                        </div>
-                    </div>
-            
-                    <!-- Third Small News Item -->
-                    <div class="news-item small">
-                        <img src="./images/breaking_news/germans.png" alt="Germany's Recycling Rates Decline">
-                        <div class="news-content">
-                            <h3>Germany's Recycling Rates Decline</h3>
-                            <p>Once a leader in recycling, Germany faces a decline in efficiency due to mis-sorted waste and reduced consumer consumption.</p>
-                            <a href="https://www.thetimes.co.uk/article/germans-world-champions-recycling-no-longer-96kskptfx" class="btn-read-more">Read More</a>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            
-            
-            <br>
-                <!-- Feedback Button -->
-            <div class="feedback-form-container">
-                <button class="feedback-btn">Feedback</button>
-
-                <!-- Feedback Form -->
-                <div class="feedback-form">
-                    <button class="close-btn">&times;</button> <!-- Close Button -->
-                    <h3>We value your feedback</h3>
-                    <form id="feedbackForm">
-                        <label for="feedbackText">Your Feedback:</label>
-                        <textarea id="feedbackText" name="feedbackText" rows="4" required></textarea>
-                        <button type="submit">Submit</button>
-                    </form>
-                </div>
-            </div>
-
-
-            <div class="newsletter-container">
-                <div id="newsletter-signup"></div>
-                    <h3>📩 Join Our Green Crew!</h3>
-                    <p>Get the latest sustainability tips & eco-news straight to your inbox. 🌱✨
-    
+            <div id="page-container">
+                <section id="top-news">
+                    <h1>Hot & Trending:<br>The Biggest News in Recycling!♻️</h1>
+                    <div class="title-text">
+                    <p>Recycling is making waves 🌊 with breakthrough innovations, bold policies, and game-changing tech!<br>
+                        From plastic bans 🚫 to futuristic waste solutions ♻️, the industry is evolving fast. Stay ahead with the hottest updates, shocking stats, and must-know trends that are shaping a greener future.
+                        Ready to dive in? Let's go! 🚀
                     </p>
-                    <input type="email" id="newsletter-email" placeholder="Your Email">
-                    <button id="newsletter-subscribe">Submit</button>
-                    <span id="newsletter-message"></span>
+                    </div>
+
+                    <div class="news-row">
+                        <div class="news-item">
+                            <h3>Turning Waste into Blooms: RHS Trials Compost Toilets</h3>
+                            <img src="./images/hotnews1.png" alt="Green Skills Garden">
+                            <p>The horticultural charity's showpiece garden in Surrey is setting aside a space to test human waste fertiliser...</p>
+                            <a href="./articles/hotnews1.html">Read More</a>
+                        </div>
+
+                        <div class="news-item">
+                            <h3>The 5 biggest recycling trends to look out for in 2025</h3>
+                            <img src="./images/hotnews2tomra.png" alt="News Image">
+                            <p>AI is revolutionizing sorting by improving accuracy and reducing backlogs,
+                                according to TOMRA...</p>
+                            <a href="./articles/hotnews2.html">Read More</a>
+                        </div>
+
+                        <div class="news-item">
+                            <h3>Swiss data center heats 6,000 homes with recycled energy</h3>
+                            <img src="./images/greennews.png" alt="Green News Image">
+                            <p>This Swiss data centre will heat 6,000 homes with recycled energy.
+                                Turning energy waste into a community benefit,
+                                using its excess heat to warm local homes...
+                            </p>
+                            <a href="./articles/greennews.html">Read More</a>
+                        </div>
+
+                    </div>
+                </section>
+    
+                <section id="breaking-news" class="section">
+                    <h1>Breaking News 🚨</h1>
+                    <h2>The Biggest Sustainability Headlines Right Now!🌎</h2>
+                    
+                    <div class="title-text">
+                    <p>Big moves, bold policies, and game-changing innovations! ⚡ Stay ahead with real-time updates on the biggest eco-news shaping our planet.
+                        <br>Don't miss a beat! 🔥♻️</p>
+                    </div>
+
+                    <div class="breaking-news-container">
+                        <!-- First Large News Item -->
+                        <div class="news-item large">
+                            <img src="./images/breaking_news/straw.png" alt="Trump Rescinds Plastic Straw Ban">
+                            <div class="news-content">
+                                <h3>Trump Rescinds Plastic Straw Ban</h3>
+                                <p>President Trump has reversed the previous administration's ban on plastic straws, citing inefficiencies of paper alternatives. This move contrasts with global efforts to reduce plastic waste.</p>
+                                <a href="https://www.reuters.com/world/us/trump-pushes-use-plastic-straws-us-defies-global-trend-countries-imposing-ban-2025-02-11/" class="btn-read-more">Read More</a>
+                            </div>
+                        </div>
+                
+                        <!-- Second Medium News Item -->
+                        <div class="news-item medium">
+                            <img src="./images/breaking_news/depositreturn.png" alt="Ireland's Deposit Return Scheme Hits Billion Mark">
+                            <div class="news-content">
+                                <h3>Ireland's Deposit Return Scheme Hits Billion Mark</h3>
+                                <p>Since its launch in February 2024, Ireland's Deposit Return Scheme has recycled one billion drink containers, significantly boosting recycling rates and supporting community initiatives.</p>
+                                <a href="https://www.thesun.ie/news/14670914/irish-deposit-return-scheme-milestone-recycling-charity-funding/" class="btn-read-more">Read More</a>
+                            </div>
+                        </div>
+                
+                        <!-- Third Small News Item -->
+                        <div class="news-item small">
+                            <img src="./images/breaking_news/germans.png" alt="Germany's Recycling Rates Decline">
+                            <div class="news-content">
+                                <h3>Germany's Recycling Rates Decline</h3>
+                                <p>Once a leader in recycling, Germany faces a decline in efficiency due to mis-sorted waste and reduced consumer consumption.</p>
+                                <a href="https://www.thetimes.co.uk/article/germans-world-champions-recycling-no-longer-96kskptfx" class="btn-read-more">Read More</a>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            
+            
+                <br>
+                    <!-- Feedback Button -->
+                <div class="feedback-form-container">
+                    <button class="feedback-btn">Feedback</button>
+
+                    <!-- Feedback Form -->
+                    <div class="feedback-form">
+                        <button class="close-btn">&times;</button> <!-- Close Button -->
+                        <h3>We value your feedback</h3>
+                        <form id="feedbackForm">
+                            <label for="feedbackText">Your Feedback:</label>
+                            <textarea id="feedbackText" name="feedbackText" rows="4" required></textarea>
+                            <button type="submit">Submit</button>
+                        </form>
+                    </div>
+                </div>
+
+
+                <div class="newsletter-container">
+                    <div id="newsletter-signup"></div>
+                        <h3>📩 Join Our Green Crew!</h3>
+                        <p>Get the latest sustainability tips & eco-news straight to your inbox. 🌱✨
+        
+                        </p>
+                        <input type="email" id="newsletter-email" placeholder="Your Email">
+                        <button id="newsletter-subscribe">Submit</button>
+                        <span id="newsletter-message"></span>
+                    </div>
                 </div>
             </div>
-
         </main>
         <footer>
             <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
         </footer>
-                   <!-- Google tag (gtag.js) -->
-                   <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDQMBEP9TL"></script>
-                   <script>
-                   window.dataLayer = window.dataLayer || [];
-                   function gtag(){dataLayer.push(arguments);}
-                   gtag('js', new Date());
-       
-                   gtag('config', 'G-GDQMBEP9TL');
-                   </script>
-                   <script src="./script.js"></script>
         <script src="https://kit.fontawesome.com/YOUR-FONT-AWESOME-KEY.js" crossorigin="anonymous"></script>
         <script src="./script.js"></script>
     </body>

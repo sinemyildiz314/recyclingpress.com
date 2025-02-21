@@ -3,7 +3,7 @@ nav {
     top: 0;
     left: 0;
     width: 100vw; /* ✅ Ensures navbar takes full screen width */
-    background-color: rgba(5, 116, 6, 0.944);
+    background-color: rgba(3, 52, 20, 0.934);
     padding: 0; /* ✅ Removes extra padding that caused gaps */
     display: flex;
     justify-content: space-between;

@@ -2,7 +2,6 @@
 .title-text {
   font-size: 1.2rem;
   color: #555;
-  text-align: justify;
   text-align-last: center;
   max-width: 70%;  /* ✅ Prevents P from stretching too wide */
   line-height: 1.6;
