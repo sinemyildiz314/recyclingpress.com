@@ -3,64 +3,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recyclingpress.com</title>
+    <title>Article | RecyclingPress</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="../css/mainstyles.css" rel="stylesheet">
     <link href="../css/navigation.css" rel="stylesheet">
-    <link href="../css/index.css" rel="stylesheet">
     <link href="../css/articles.css" rel="stylesheet">
 </head>
 <body>
-    <div id="wrapper">
-        <header>
-            <!-- <img class="logo" src tbc..> -->
-             <nav>
-                <button class="hamburger"  aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <ul id="main-menu" role="menubar">
-                    <li role="presentation"><a href="../index.html" role="menuitem" data-page="home">Home</a></li>
-                    <li role="presentation"><a href="../news.html" role="menuitem" data-page="news">News</a></li>
-                    <li role="presentation" aria-haspopup="true">
-                      <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
-                        Sustainability <i class="fas fa-caret-down"></i>
-                      </a>
-                      <ul class="dropdown" role="menu">
-                        <li role="presentation"><a href="../sustainability/materials.html" role="menuitem" data-page="materials" id="materials-item">Materials</a></li>
-                        <li role="presentation"><a href="../sustainability/recyclables.html" role="menuitem" data-page="recyclables" id="recyclables-item">Recyclables</a></li>
-                      </ul>
-                    </li>
-                    <li role="presentation"><a href="../events.html" role="menuitem" data-page="events">Events</a></li>
-                    <li role="presentation" aria-haspopup="true">
-                      <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
-                      <ul class="dropdown" role="menu">
-                        <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">Recycling Press Media Group</a></li>
-                        <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
-                      </ul>
-                    </li>
-                    <div class="social-media-icons">
-                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-twitter"></i></a></li>
-                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-instagram"></i></a></li>
-                    </div>
-                  </ul>
+   <!-- Navigation Bar -->
+   <header>
+    <nav>
+      <button class="hamburger"  aria-label="Toggle navigation menu">
+          <i class="fas fa-bars"></i>
+      </button>
+      <div class="nav-content">
+        <div class="logo-container">
+            <div class="logo">
+                <img src="../images/logo.png" alt="Logo">
+            </div>
+        </div>
+          <ul id="main-menu" role="menubar">
+              <li role="presentation"><a href="../index.html" role="menuitem" data-page="home">Home</a></li>
+              <li role="presentation"><a href="../news.html" role="menuitem" data-page="news">News</a></li>
+              <li role="presentation" aria-haspopup="true">
+              <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
+                  Sustainability <i class="fas fa-caret-down"></i>
+              </a>
+              <ul class="dropdown" role="menu">
+                    <li role="presentation"><a href="../sustainability/industry.html" role="menuitem" data-page="recyclables" id="recyclables-item">Industry</a></li>
+                    <li role="presentation"><a href="../sustainability/recycling.html" role="menuitem" data-page="recycling" id="materials-item">Recycling</a></li>
+              </ul>
+              </li>
+              <li role="presentation"><a href="../events.html" role="menuitem" data-page="events">Events</a></li>
+              <li role="presentation" aria-haspopup="true">
+              <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
+              <ul class="dropdown" role="menu">
+                  <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">About Us</a></li>
+                  <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
+              </ul>
+              </li>
+          </ul>
 
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                    <button><i class="fas fa-search"></i></button>
+          <div class="nav-right">
+                <!-- Instagram & Twitter Social Links -->
+                <div class="social-media-nav">
+                    <a href="https://www.instagram.com/recyclingpress/?igsh=MWcwNXNob2NuMjU3Zg%3D%3D&utm_source=qr#" target="_blank" aria-label="Instagram">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <a href="https://x.com/recyclingpress?s=11&t=ManCo2ZD0ssdXl3t-i6ENg" target="_blank" aria-label="Twitter">
+                        <i class="fab fa-twitter"></i>
+                    </a>
                 </div>
-             </nav>
+                                        <!-- Search Icon -->
+                <button class="search-toggle" aria-label="Open search bar">
+                    <i class="fas fa-search"></i>
+                </button>
 
-        </header>
-    </div>
+                <!-- Search Bar (Initially Hidden) -->
+                <div class="search-bar">
+                    <input type="text" id="search-input" placeholder="Search articles..." aria-label="Search input">
+                    <button class="search-close" aria-label="Close search bar">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
 
-    <div class="container"></div>
+                <!-- Search Results Dropdown -->
+                <div id="search-results" class="search-dropdown"></div>
+            </div>
+      </div>
+    </nav>
+</header>
+<main>
+    <div id="article-section">
         <h1>Driving Textile Recycling Through Innovation</h1>
-        <!-- <img src="../../images/textilesnews.png" alt="Article 1 Image"> -->
         <p>Fashion for Good, a Netherlands-based global innovation platform, has launched the Sorting for Circularity Project to revolutionize textile recycling.  Recognizing the ever-increasing volume of discarded textiles and the limitations of current sorting methods, this initiative aims to create a more efficient and scalable solution.</p>
-
+        <img src="../images/textilesnews.png" alt="Textile Clothes" class="article-image">
         <section>
             <h2>The Challenge: Inefficient Textile Sorting</h2>
             <p>The amount of textile waste is growing rapidly. While some is reused, a significant portion is destined for recycling.  However, accurately determining the material composition of these textiles is crucial for effective recycling. Current manual sorting systems struggle with this due to unreliable or missing clothing labels, hindering progress towards a circular economy.</p>
@@ -85,24 +104,25 @@
             <h2>Learn More</h2>
             <p>Visit the <a href="https://fashionforgood.com" target="_blank">Fashion for Good website</a> to learn more about this project and their other initiatives.</p>
         </section>
+        <div id="share-container"></div>
     </div>
-    <div id="share-container"></div>
+         <!-- Newsletter SignUp -->
+         <div class="newsletter-container">
+          <div id="newsletter-signup"></div>
+              <h3>📩 Join Our Green Crew!</h3>
+              <p>Get the latest sustainability tips & eco-news straight to your inbox. 🌱✨
+
+              </p>
+              <input type="email" id="newsletter-email" placeholder="Your Email">
+              <button id="newsletter-subscribe">Submit</button>
+              <span id="newsletter-message"></span>
+            </div>
+        </div>
+    </div> 
+</main>
     <footer>
-        <p>Copyright &copy; 2025 recyclingpress.com</p>
+      <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
     </footer>
-
-               <!-- Google tag (gtag.js) -->
-               <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDQMBEP9TL"></script>
-               <script>
-               window.dataLayer = window.dataLayer || [];
-               function gtag(){dataLayer.push(arguments);}
-               gtag('js', new Date());
-   
-               gtag('config', 'G-GDQMBEP9TL');
-               </script>
-               <script src="./script.js"></script>
-<script src="../script.js"></script>
-
+  <script src="../script.js"></script>
 </body>
-
 </html>

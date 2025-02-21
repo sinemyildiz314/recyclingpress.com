@@ -9,83 +9,105 @@
     crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="../css/mainstyles.css" rel="stylesheet">
     <link href="../css/navigation.css" rel="stylesheet">
-    <link href="../css/index.css" rel="stylesheet">
     <link href="../css/articles.css" rel="stylesheet">
 </head>
 <body>
-    <div id="wrapper">
-        <header>
-            <!-- <img class="logo" src tbc..> -->
-             <nav>
-                <button class="hamburger" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <ul id="main-menu" role="menubar">
-                    <li role="presentation"><a href="../index.html" role="menuitem" data-page="home">Home</a></li>
-                    <li role="presentation"><a href="../news.html" role="menuitem" data-page="news">News</a></li>
-                    <li role="presentation" aria-haspopup="true">
-                      <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
-                        Sustainability <i class="fas fa-caret-down"></i>
+    <!-- Navigation Bar -->
+    <header>
+      <nav>
+        <button class="hamburger"  aria-label="Toggle navigation menu">
+            <i class="fas fa-bars"></i>
+        </button>
+        <div class="nav-content">
+          <div class="logo-container">
+              <div class="logo">
+                  <img src="../images/logo.png" alt="Logo">
+              </div>
+          </div>
+            <ul id="main-menu" role="menubar">
+                <li role="presentation"><a href="../index.html" role="menuitem" data-page="home">Home</a></li>
+                <li role="presentation"><a href="../news.html" role="menuitem" data-page="news">News</a></li>
+                <li role="presentation" aria-haspopup="true">
+                <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
+                    Sustainability <i class="fas fa-caret-down"></i>
+                </a>
+                <ul class="dropdown" role="menu">
+                      <li role="presentation"><a href="../sustainability/industry.html" role="menuitem" data-page="recyclables" id="recyclables-item">Industry</a></li>
+                      <li role="presentation"><a href="../sustainability/recycling.html" role="menuitem" data-page="recycling" id="materials-item">Recycling</a></li>
+                </ul>
+                </li>
+                <li role="presentation"><a href="../events.html" role="menuitem" data-page="events">Events</a></li>
+                <li role="presentation" aria-haspopup="true">
+                <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
+                <ul class="dropdown" role="menu">
+                    <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">About Us</a></li>
+                    <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
+                </ul>
+                </li>
+            </ul>
+
+            <div class="nav-right">
+                  <!-- Instagram & Twitter Social Links -->
+                  <div class="social-media-nav">
+                      <a href="https://www.instagram.com/recyclingpress/?igsh=MWcwNXNob2NuMjU3Zg%3D%3D&utm_source=qr#" target="_blank" aria-label="Instagram">
+                          <i class="fab fa-instagram"></i>
                       </a>
-                      <ul class="dropdown" role="menu">
-                        <li role="presentation"><a href="../sustainability/materials.html" role="menuitem" data-page="materials" id="materials-item">Materials</a></li>
-                        <li role="presentation"><a href="../sustainability/recyclables.html" role="menuitem" data-page="recyclables" id="recyclables-item">Recyclables</a></li>
-                      </ul>
-                    </li>
-                    <li role="presentation"><a href="../events.html" role="menuitem" data-page="events">Events</a></li>
-                    <li role="presentation" aria-haspopup="true">
-                      <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
-                      <ul class="dropdown" role="menu">
-                        <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">Recycling Press Media Group</a></li>
-                        <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
-                      </ul>
-                    </li>
-                    <div class="social-media-icons">
-                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-twitter"></i></a></li>
-                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-instagram"></i></a></li>
-                    </div>
-                  </ul>
+                      <a href="https://x.com/recyclingpress?s=11&t=ManCo2ZD0ssdXl3t-i6ENg" target="_blank" aria-label="Twitter">
+                          <i class="fab fa-twitter"></i>
+                      </a>
+                  </div>
+                                          <!-- Search Icon -->
+                  <button class="search-toggle" aria-label="Open search bar">
+                      <i class="fas fa-search"></i>
+                  </button>
 
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                    <button><i class="fas fa-search"></i></button>
-                </div>
-             </nav>
+                  <!-- Search Bar (Initially Hidden) -->
+                  <div class="search-bar">
+                      <input type="text" id="search-input" placeholder="Search articles..." aria-label="Search input">
+                      <button class="search-close" aria-label="Close search bar">
+                          <i class="fas fa-times"></i>
+                      </button>
+                  </div>
 
-        </header>
-    </div>
+                  <!-- Search Results Dropdown -->
+                  <div id="search-results" class="search-dropdown"></div>
+              </div>
+        </div>
+      </nav>
+  </header>
+<main>
+        <div id="article-section">
+          <h1>European Paper Industry Launches 4evergreen Alliance for Sustainable Packaging</h1>
+          <img src="../images/paperpacking.png" alt="paper box" class="article-image">
 
-    <div class="container"></div>
-        <h1>European Paper Industry Launches 4evergreen Alliance for Sustainable Packaging</h1>
+          <p>The European paper industry has formed a new alliance called "4evergreen" to advance the role of paper-based packaging in a circular economy.  Spearheaded by Cepi (Confederation of European Paper Industries), the initiative aims to maximize the sustainability and recyclability of fiber-based packaging, minimizing its environmental and climate impact.</p>
 
-        <p>The European paper industry has formed a new alliance called "4evergreen" to advance the role of paper-based packaging in a circular economy.  Spearheaded by Cepi (Confederation of European Paper Industries), the initiative aims to maximize the sustainability and recyclability of fiber-based packaging, minimizing its environmental and climate impact.</p>
+          <p>4evergreen will focus on several key areas: raising awareness of the advantages of paper packaging, advocating for EU legislation that supports design for recyclability, and promoting the development of efficient collection and recycling infrastructure.  This initiative comes as growing environmental awareness and consumer concerns, along with regulations like the Single-Use Plastics Directive, drive demand for sustainable packaging alternatives.  4evergreen provides a platform for collaboration across the entire paper packaging value chain, from producers and converters to brands, retailers, technology suppliers, waste management companies, and recyclers.</p>
 
-        <p>4evergreen will focus on several key areas: raising awareness of the advantages of paper packaging, advocating for EU legislation that supports design for recyclability, and promoting the development of efficient collection and recycling infrastructure.  This initiative comes as growing environmental awareness and consumer concerns, along with regulations like the Single-Use Plastics Directive, drive demand for sustainable packaging alternatives.  4evergreen provides a platform for collaboration across the entire paper packaging value chain, from producers and converters to brands, retailers, technology suppliers, waste management companies, and recyclers.</p>
+          <p>Eija Hietavuo, Chairwoman of 4evergreen and Senior Vice President of Sustainability at Stora Enso Consumer Board, emphasized the potential of fiber-based packaging to replace less sustainable materials.  The alliance's goal is to implement a comprehensive approach to optimize the sustainability and circularity of packaging throughout its lifecycle. Jori Ringman, Director General at Cepi, stressed the urgency of the initiative, highlighting the industry's existing strong environmental record and recycling performance, while expressing a commitment to achieving higher levels of circularity and climate resilience through collaborative efforts within 4evergreen.</p>
 
-        <p>Eija Hietavuo, Chairwoman of 4evergreen and Senior Vice President of Sustainability at Stora Enso Consumer Board, emphasized the potential of fiber-based packaging to replace less sustainable materials.  The alliance's goal is to implement a comprehensive approach to optimize the sustainability and circularity of packaging throughout its lifecycle. Jori Ringman, Director General at Cepi, stressed the urgency of the initiative, highlighting the industry's existing strong environmental record and recycling performance, while expressing a commitment to achieving higher levels of circularity and climate resilience through collaborative efforts within 4evergreen.</p>
+          <p>The 4evergreen alliance boasts a diverse membership, including major players like Nestlé, Danone, Mars, Stora Enso, Smurfit Kappa, and many more.  The alliance is open to new members who wish to contribute to this collaborative effort.</p>
 
-        <p>The 4evergreen alliance boasts a diverse membership, including major players like Nestlé, Danone, Mars, Stora Enso, Smurfit Kappa, and many more.  The alliance is open to new members who wish to contribute to this collaborative effort.</p>
+          <p>Learn more at: <a href="www.cepi.org/industry-initiatives">www.cepi.org/industry-initiatives</a></p>
+          <div id="share-container"></div>
+        </div>
+          <!-- Newsletter SignUp -->
+          <div class="newsletter-container">
+            <div id="newsletter-signup"></div>
+                <h3>📩 Join Our Green Crew!</h3>
+                <p>Get the latest sustainability tips & eco-news straight to your inbox. 🌱✨
 
-        <p>Learn more at: <a href="www.cepi.org/industry-initiatives">www.cepi.org/industry-initiatives</a></p>
-
-    </div>
-    <div id="share-container"></div>
+                </p>
+                <input type="email" id="newsletter-email" placeholder="Your Email">
+                <button id="newsletter-subscribe">Submit</button>
+                <span id="newsletter-message"></span>
+              </div>
+          </div>
+      </div>
+  </main>
     <footer>
-        <p>Copyright &copy; 2025 recyclingpress.com</p>
+      <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
     </footer>
-           <!-- Google tag (gtag.js) -->
-           <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDQMBEP9TL"></script>
-           <script>
-           window.dataLayer = window.dataLayer || [];
-           function gtag(){dataLayer.push(arguments);}
-           gtag('js', new Date());
-
-           gtag('config', 'G-GDQMBEP9TL');
-           </script>
-           <script src="./script.js"></script>
-<script src="../script.js"></script>
-
+    <script src="../script.js"></script>
 </body>
-
 </html>

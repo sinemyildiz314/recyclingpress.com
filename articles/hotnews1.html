@@ -3,60 +3,80 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>recyclingpress.com</title>
+    <title>Article | RecyclingPress</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
     integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
     crossorigin="anonymous" referrerpolicy="no-referrer">
     <link href="../css/mainstyles.css" rel="stylesheet">
     <link href="../css/navigation.css" rel="stylesheet">
-    <link href="../css/index.css" rel="stylesheet">
     <link href="../css/articles.css" rel="stylesheet">
 </head>
 <body>
-    <div id="wrapper">
-        <header>
-            <!-- <img class="logo" src tbc..> -->
-             <nav>
-                <button class="hamburger" aria-label="Toggle navigation menu">
-                    <i class="fas fa-bars"></i>
-                </button>
-                
-                <ul id="main-menu" role="menubar">
-                    <li role="presentation"><a href="../index.html" role="menuitem" data-page="home">Home</a></li>
-                    <li role="presentation"><a href="../news.html" role="menuitem" data-page="news">News</a></li>
-                    <li role="presentation" aria-haspopup="true">
-                      <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
-                        Sustainability <i class="fas fa-caret-down"></i>
-                      </a>
-                      <ul class="dropdown" role="menu">
-                        <li role="presentation"><a href="../sustainability/materials.html" role="menuitem" data-page="materials" id="materials-item">Materials</a></li>
-                        <li role="presentation"><a href="../sustainability/recyclables.html" role="menuitem" data-page="recyclables" id="recyclables-item">Recyclables</a></li>
-                      </ul>
-                    </li>
-                    <li role="presentation"><a href="../events.html" role="menuitem" data-page="events">Events</a></li>
-                    <li role="presentation" aria-haspopup="true">
-                      <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
-                      <ul class="dropdown" role="menu">
-                        <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">Recycling Press Media Group</a></li>
-                        <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
-                      </ul>
-                    </li>
-                    <div class="social-media-icons">
-                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-twitter"></i></a></li>
-                      <li role="presentation"><a href="#" target="_blank" role="menuitem"><i class="fab fa-instagram"></i></a></li>
-                    </div>
-                  </ul>
-
-                <div class="search-bar">
-                    <input type="text" placeholder="Search...">
-                    <button><i class="fas fa-search"></i></button>
+      <!-- Navigation Bar -->
+      <header>
+        <nav>
+           <button class="hamburger"  aria-label="Toggle navigation menu">
+               <i class="fas fa-bars"></i>
+           </button>
+           <div class="nav-content">
+            <div class="logo-container">
+                <div class="logo">
+                    <img src="../images/logo.png" alt="Logo">
                 </div>
-             </nav>
+            </div>
+               <ul id="main-menu" role="menubar">
+                   <li role="presentation"><a href="../index.html" role="menuitem" data-page="home">Home</a></li>
+                   <li role="presentation"><a href="../news.html" role="menuitem" data-page="news">News</a></li>
+                   <li role="presentation" aria-haspopup="true">
+                   <a href="#" role="menuitem" data-page="sustainability" id="sustainability-link">
+                       Sustainability <i class="fas fa-caret-down"></i>
+                   </a>
+                   <ul class="dropdown" role="menu">
+                        <li role="presentation"><a href="../sustainability/industry.html" role="menuitem" data-page="recyclables" id="recyclables-item">Industry</a></li>
+                        <li role="presentation"><a href="../sustainability/recycling.html" role="menuitem" data-page="recycling" id="materials-item">Recycling</a></li>
+                   </ul>
+                   </li>
+                   <li role="presentation"><a href="../events.html" role="menuitem" data-page="events">Events</a></li>
+                   <li role="presentation" aria-haspopup="true">
+                   <a href="#" role="menuitem" data-page="AboutUs" id="aboutus-link">About Us<i class="fas fa-caret-down"></i></a>
+                   <ul class="dropdown" role="menu">
+                       <li role="presentation"><a href="../contact/aboutus.html" role="menuitem" data-page="companyoverview" id="companyoverview">About Us</a></li>
+                       <li role="presentation"><a href="../contact/contactus.html" role="menuitem" data-page="contact" id="contactform">Contact Us</a></li>
+                   </ul>
+                   </li>
+               </ul>
 
-        </header>
-    </div>
+               <div class="nav-right">
+                    <!-- Instagram & Twitter Social Links -->
+                    <div class="social-media-nav">
+                        <a href="https://www.instagram.com/recyclingpress/?igsh=MWcwNXNob2NuMjU3Zg%3D%3D&utm_source=qr#" target="_blank" aria-label="Instagram">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="https://x.com/recyclingpress?s=11&t=ManCo2ZD0ssdXl3t-i6ENg" target="_blank" aria-label="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                                            <!-- Search Icon -->
+                    <button class="search-toggle" aria-label="Open search bar">
+                        <i class="fas fa-search"></i>
+                    </button>
 
-    <div class="container">
+                    <!-- Search Bar (Initially Hidden) -->
+                    <div class="search-bar">
+                        <input type="text" id="search-input" placeholder="Search articles..." aria-label="Search input">
+                        <button class="search-close" aria-label="Close search bar">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+
+                    <!-- Search Results Dropdown -->
+                    <div id="search-results" class="search-dropdown"></div>
+                </div>
+           </div>
+        </nav>
+   </header>
+ <main>
+    <div id="article-section">
         <article>
         <h1>Turning Waste into Blooms: RHS Trials Compost Toilets</h1>
         <img src="../images/hotnews1.png" alt="Green Garde photo generated by computer" class="article-image">
@@ -70,8 +90,6 @@
             change on plants. The garden will showcase environmentally friendly ways to manage human waste, among other
             sustainable practices.</p>
             <img src="../images/lewisgeorge.png" alt="Lewis George's photograph" class="article-image">
-
-           
 
         <p>Lewis George, an RHS horticultural engagement officer overseeing education in the garden, explained the composting process.
             "Material" deposited in the toilet will spend 18 months in a large-capacity container, followed by six months in a
@@ -88,7 +106,6 @@
             that can feed our soils - but it also saves water and helps prevent sewage spills going out into rivers, which
             occur because of the capacity problems of our sewage system." He added, "This is one of the ways we can be much
             more responsible about our waste and get something really beneficial from it. So for me, it's a no-brainer.”</p>
-
         <p>Wisley, established in 1878 as an experimental garden focused on cultivating "difficult plants," now welcomes
             over one million visitors annually.  George believes the composting toilet and the Greener Skills Garden align
             perfectly with Wisley's history of innovation. "A composting loo and the wider Greener Skills Garden really fits
@@ -102,25 +119,22 @@
             Sutcliffe explained. "That is something we increasingly need to do to try to increase our resilience to heavy rainfall
             and reduce the risk of flash flooding in the future.”</p>
         </article>
+            <div id="share-container"></div>
     </div>
-
-    <div id="share-container"></div>
-
+    <!-- Newsletter SignUp -->
+    <div class="newsletter-container">
+        <div id="newsletter-signup"></div>
+            <h3>📩 Join Our Green Crew!</h3>
+            <p>Get the latest sustainability tips & eco-news straight to your inbox. 🌱✨</p>
+            <input type="email" id="newsletter-email" placeholder="Your Email">
+            <button id="newsletter-subscribe">Submit</button>
+            <span id="newsletter-message"></span>
+        </div>
+    </div>
+</main>
     <footer>
-        <p>Copyright &copy; 2025 recyclingpress.com</p>
+        <p>&copy; 2025 RecyclingPress. All rights reserved.</p>
     </footer>
-           <!-- Google tag (gtag.js) -->
-           <script async src="https://www.googletagmanager.com/gtag/js?id=G-GDQMBEP9TL"></script>
-           <script>
-           window.dataLayer = window.dataLayer || [];
-           function gtag(){dataLayer.push(arguments);}
-           gtag('js', new Date());
-
-           gtag('config', 'G-GDQMBEP9TL');
-           </script>
-           <script src="./script.js"></script>
 <script src="../script.js"></script>
-
 </body>
-
 </html>
