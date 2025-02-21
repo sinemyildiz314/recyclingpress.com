@@ -209,10 +209,6 @@ footer p {
     transition: opacity 0.5s ease, transform 0.5s ease;
 }
 
-#newsletter-signup.show {
-    opacity: 1;
-    transform: translateY(0);
-}
 
 #newsletter-signup input[type="email"] {
     padding: 10px;
