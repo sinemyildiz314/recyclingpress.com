@@ -41,6 +41,19 @@ h1, h2, h3 {
     background: #f4f4f4;
 }
 
+
+/* ✅ Center and Style Paragraph */
+.title-text {
+    font-size: 1.2rem;
+    color: #555;
+    text-align: justify;
+    text-align-last: center;
+    max-width: 70%;  /* ✅ Prevents P from stretching too wide */
+    line-height: 1.6;
+    margin: 0 auto 20px;
+    display: block;
+}
+
 /* Slider Container */
 .slider {
     width: 100%;
