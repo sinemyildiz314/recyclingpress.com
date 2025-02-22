@@ -86,7 +86,7 @@ The project includes both an **SEO XML sitemap** and a **visual sitemap** for do
 - **SEO Sitemap:** 
             [`sitemap.xml`](./sitemap.xml) (Used for search engine indexing)
 - **Visual Sitemap:**  
-            ![Visual Sitemap](./project_strategy/sitemap.png)
+            [Visual Sitemap](./project_strategy/sitemap.png)
 
 ### ✅ SEO Best Practices Implemented  
 - **`sitemap.xml`** is stored at the root: [https://recyclingpress.com/sitemap.xml](https://recyclingpress.com/sitemap.xml)  

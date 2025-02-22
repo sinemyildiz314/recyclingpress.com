@@ -1,0 +1,43 @@
+# ===========================================
+# 🤖 Robots.txt of RecyclingPress.com
+# ===========================================
+
+# ✅ Allow all search engines to crawl the site
+User-agent: *
+
+# ✅ Allow full access to important pages
+Allow: /
+
+# ❌ Disallow access to admin, private, and non-public directories
+Disallow: /admin/
+Disallow: /private/
+Disallow: /tmp/
+Disallow: /backup/
+Disallow: /cgi-bin/
+
+# ❌ Block search engines from indexing search query results (prevents duplicate content issues)
+Disallow: /*?*
+
+# ✅ Allow access to public sustainability-related pages
+Allow: /sustainability/
+Allow: /sustainability/industry.html
+Allow: /sustainability/recycling.html
+
+# ✅ Allow access to news articles and event pages
+Allow: /news.html
+Allow: /articles/
+Allow: /events.html
+
+# ✅ Allow access to contact and about us pages
+Allow: /aboutus.html
+Allow: /contactus.html
+
+# ❌ Block specific file types that shouldn't be indexed
+Disallow: /*.php$
+Disallow: /*.log$
+Disallow: /*.zip$
+Disallow: /*.sql$
+Disallow: /*.env$
+
+# ✅ The location of the sitemap
+Sitemap: https://recyclingpress.com/sitemap.xml
