@@ -72,9 +72,10 @@ nav ul {
     position: absolute;
     top: 100%; /* ✅ Ensures dropdown aligns perfectly below navbar */
     left: 0; /* ✅ Starts at the exact left edge */
-    width: 100vw; /* ✅ Ensures dropdown spans full screen width */
+    width: 15vw; 
     background-color:rgba(3, 52, 20, 0.934);
     z-index: 1000;
+    
 }
 
 /* ✅ Ensure Dropdown Items are Properly Styled */
@@ -86,7 +87,7 @@ nav ul li {
 /* ✅ Ensure Links are Consistent */
 nav ul li a {
     display: block;
-    padding: 12px;
+    padding: 15px;
     color: white;
     text-decoration: none;
     transition: background 0.3s ease;
