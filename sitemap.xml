@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+    <!-- Home Page -->
+    <url>
+        <loc>https://recyclingpress.com/</loc>
+        <priority>1.0</priority>
+    </url>
+
+    <!-- News Section -->
+    <url>
+        <loc>https://recyclingpress.com/news.html</loc>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/articles/hotnews1.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/articles/hotnews2.html</loc>
+        <priority>0.8</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/articles/greennews.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- Sustainability Section -->
+    <url>
+        <loc>https://recyclingpress.com/sustainability/industry.html</loc>
+        <priority>0.9</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/sustainability/recycling.html</loc>
+        <priority>0.9</priority>
+    </url>
+
+    <!-- Industry Subcategories -->
+    <url>
+        <loc>https://recyclingpress.com/sustainability/industry.html#waste-management</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/sustainability/industry.html#green-technology</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/sustainability/industry.html#sustainable-agriculture</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/sustainability/industry.html#circular-economy</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/sustainability/industry.html#eco-friendly-products</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/sustainability/industry.html#renewable-energy</loc>
+        <priority>0.7</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/sustainability/industry.html#sorting-game</loc>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Recycling Subsections -->
+    <url>
+        <loc>https://recyclingpress.com/sustainability/recycling.html#quiz</loc>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Events Page -->
+    <url>
+        <loc>https://recyclingpress.com/events.html</loc>
+        <priority>0.8</priority>
+    </url>
+
+    <!-- About Us Page -->
+    <url>
+        <loc>https://recyclingpress.com/aboutus.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/aboutus.html#our-story</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/aboutus.html#our-goals</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/aboutus.html#meet-the-team</loc>
+        <priority>0.6</priority>
+    </url>
+
+    <!-- Contact Us Page -->
+    <url>
+        <loc>https://recyclingpress.com/contactus.html</loc>
+        <priority>0.6</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/contactus.html#contact-form</loc>
+        <priority>0.5</priority>
+    </url>
+    <url>
+        <loc>https://recyclingpress.com/contactus.html#our-location</loc>
+        <priority>0.5</priority>
+    </url>
+
+</urlset>
