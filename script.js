@@ -705,73 +705,114 @@ document.addEventListener("DOMContentLoaded", function () {
 2) Second DOM: Likes & Views counter 
 *********************/
 document.addEventListener("DOMContentLoaded", function () {
-  // Function to handle the like button click
-  function handleLikeButtonClick(event) {
-      const likeBtn = event.currentTarget;
-      const quoteElement = likeBtn.closest(".quote");
-      const quoteId = quoteElement.getAttribute("data-quote");
-      const likeCountElement = likeBtn.querySelector(".like-count");
+    console.log("🚀 DOM fully loaded for Like & Visit Counters");
 
-      // Retrieve the current like count from localStorage
-      let likeCount = parseInt(localStorage.getItem(`likeCount-${quoteId}`)) || 0;
+    document.querySelectorAll(".quote").forEach(quoteElement => {
+        const quoteId = quoteElement.getAttribute("data-quote");
+        const likeBtn = quoteElement.querySelector(".like-btn");
+        const likeCountElement = likeBtn ? likeBtn.querySelector(".like-count") : null;
+        const visitCountElement = quoteElement.querySelector(".visit-count");
 
-      // Increment the like count
-      likeCount++;
+        if (!likeBtn || !likeCountElement || !visitCountElement) {
+            console.warn(`⚠️ Missing elements for Quote ID: ${quoteId}`);
+            return;
+        }
 
-      // Update the like count in localStorage
-      localStorage.setItem(`likeCount-${quoteId}`, likeCount);
+        // ✅ Restore Like Count
+        let likeCount = safeLocalStorageGet(`likeCount-${quoteId}`);
+        likeCountElement.textContent = likeCount;
 
-      // Update the like count in the UI
-      likeCountElement.textContent = likeCount;
-  }
+        // ✅ Restore Visit Count
+        let visitCount = safeSessionStorageGet(`visitCount-${quoteId}`);
+        visitCountElement.textContent = `👀 ${visitCount}`;
 
-  // Function to handle the visit count
-  function handleVisitCount(entries, observer) {
-      entries.forEach(entry => {
-          if (entry.isIntersecting) {
-              const quoteElement = entry.target;
-              const quoteId = quoteElement.getAttribute("data-quote");
-              const visitCountElement = quoteElement.querySelector(".visit-count");
+        // ✅ Desktop: Click Event
+        likeBtn.addEventListener("click", handleLikeButtonClick);
 
-              // Retrieve the current visit count from sessionStorage
-              let visitCount = parseInt(sessionStorage.getItem(`visitCount-${quoteId}`)) || 0;
+        // ✅ Mobile: Touch Event (Prevents Double Clicks)
+        likeBtn.addEventListener("touchend", function (event) {
+            event.preventDefault(); // Prevents unwanted "click" events on mobile
+            handleLikeButtonClick(event);
+        });
 
-              // Increment the visit count
-              visitCount++;
-
-              // Update the visit count in sessionStorage
-              sessionStorage.setItem(`visitCount-${quoteId}`, visitCount);
-
-              // Update the visit count in the UI
-              visitCountElement.textContent = `👀 ${visitCount}`;
-
-              // Unobserve the element after counting
-              observer.unobserve(quoteElement);
-          }
-      });
-  }
-
-  // Set up the Intersection Observer for visit counting
-  const observer = new IntersectionObserver(handleVisitCount, { threshold: 0.5 });
-
-  // Attach event listeners to like buttons and observe quotes for visit counting
-  document.querySelectorAll(".quote").forEach(quoteElement => {
-      // Observe the quote element for visit counting
-      observer.observe(quoteElement);
-
-      // Attach click event listener to the like button
-      const likeBtn = quoteElement.querySelector(".like-btn");
-      const quoteId = quoteElement.getAttribute("data-quote");
-      const likeCountElement = likeBtn.querySelector(".like-count");
-
-      // Retrieve and display the current like count from localStorage
-      let likeCount = parseInt(localStorage.getItem(`likeCount-${quoteId}`)) || 0;
-      likeCountElement.textContent = likeCount;
-
-      likeBtn.addEventListener("click", handleLikeButtonClick);
-  });
+        observer.observe(quoteElement);
+    });
 });
 
+// ✅ Updated Like Button Function (Fix for Mobile & Desktop)
+function handleLikeButtonClick(event) {
+    const likeBtn = event.currentTarget;
+    const quoteElement = likeBtn.closest(".quote");
+    const quoteId = quoteElement.getAttribute("data-quote");
+    const likeCountElement = likeBtn.querySelector(".like-count");
+
+    if (!quoteId || !likeCountElement) return;
+
+    let likeCount = safeLocalStorageGet(`likeCount-${quoteId}`);
+    likeCount++;
+    safeLocalStorageSet(`likeCount-${quoteId}`, likeCount);
+    likeCountElement.textContent = likeCount;
+}
+
+// ✅ Fix: Adjusted Intersection Observer (Threshold Lowered for Mobile)
+const observer = new IntersectionObserver(handleVisitCount, { threshold: 0.2 });
+
+function handleVisitCount(entries, observer) {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            const quoteElement = entry.target;
+            const quoteId = quoteElement.getAttribute("data-quote");
+            const visitCountElement = quoteElement.querySelector(".visit-count");
+
+            if (!quoteId || !visitCountElement) return;
+
+            let visitCount = safeSessionStorageGet(`visitCount-${quoteId}`);
+            visitCount++;
+            safeSessionStorageSet(`visitCount-${quoteId}`, visitCount);
+            visitCountElement.textContent = `👀 ${visitCount}`;
+            observer.unobserve(quoteElement);
+        }
+    });
+}
+
+// ✅ Safe Local & Session Storage Handling
+function safeLocalStorageGet(key, fallback = 0) {
+    try {
+        return parseInt(localStorage.getItem(key)) || fallback;
+    } catch (e) {
+        console.warn("⚠️ LocalStorage is not available:", e);
+        return fallback;
+    }
+}
+
+function safeLocalStorageSet(key, value) {
+    try {
+        localStorage.setItem(key, value);
+    } catch (e) {
+        console.warn("⚠️ Unable to store data in LocalStorage:", e);
+    }
+}
+
+function safeSessionStorageGet(key, fallback = 0) {
+    try {
+        return parseInt(sessionStorage.getItem(key)) || fallback;
+    } catch (e) {
+        console.warn("⚠️ SessionStorage is not available:", e);
+        return fallback;
+    }
+}
+
+function safeSessionStorageSet(key, value) {
+    try {
+        sessionStorage.setItem(key, value);
+    } catch (e) {
+        console.warn("⚠️ Unable to store data in SessionStorage:", e);
+    }
+}
+
+
+
+// =======================
 // Function to Manage Search Toggle Behaviour
 function setupSearchToggle() {
   const searchToggle = document.querySelector(".search-toggle");
