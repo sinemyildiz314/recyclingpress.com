@@ -48,54 +48,88 @@ if (document.readyState !== "loading") {
 
 
 
-// Function to handle the contact form
-function contactForm() {
-    const contactForm = document.getElementById('contact-form');
-    if (contactForm) {
-        contactForm.addEventListener('submit', function (event) {
-            event.preventDefault();
+// Function to handle the contact form - I used google sheets  & Apps Script
+const serverUrl = "https://script.google.com/macros/s/AKfycbyEQy4aclUBIUH7WjvdCB802zOMMFw8WOGektN7vKr3xA0fcSORHTpRClnkZCdC0MGc/exec"; 
 
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const message = document.getElementById('message').value;
+function initializeContactForm() {
+    console.log("📢 Contact form function initialized!");
 
-            if (!name || !email || !message) {
-                alert('Please fill in all fields.');
-                return;
-            }
-
-            // --- Local Storage ---
-            const formData = { name, email, message };
-            localStorage.setItem('contactFormData', JSON.stringify(formData));
-            console.log('Saved to local storage:', formData);
-
-
-            // --- Console Logging ---
-            console.log("Contact Form Data:");
-            console.log(JSON.stringify({ name, email, message }, null, 2)); 
-
-            // --- "Live" Storage (Placeholder - Requires Backend) ---
-            fetch('192.168.1.83', {  // Replace with your server endpoint
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(formData)
-            })
-                .then(response => response.json())
-                .then(data => {
-                    console.log('Data sent to server:', data);
-                    alert('Message sent successfully!');
-                    contactForm.reset();
-                })
-                .catch(error => {
-                    console.error('Error sending data to server:', error);
-                    alert('An error occurred. Please try again later.'); // User-friendly message
-                });
-
-        });
+    const contactForm = document.getElementById("contact-form");
+    if (!contactForm) {
+        console.error("❌ Contact form not found in the DOM.");
+        return;
     }
+
+    contactForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        console.log("🚀 Contact form submitted!");
+
+        const name = document.getElementById("name").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        if (!name || !email || !message) {
+            console.warn("⚠️ Some fields are empty. Form will not submit.");
+            alert("Please fill in all fields before submitting.");
+            return;
+        }
+
+        console.log("📩 Sending data to server:", { name, email, message });
+
+        // ✅ Show Thank You Message Immediately
+        showThankYouMessage();
+
+        // ✅ Format URL for GET request
+        const getRequestUrl = `${serverUrl}?name=${encodeURIComponent(name)}&email=${encodeURIComponent(email)}&message=${encodeURIComponent(message)}`;
+
+        // ✅ Send Data to Google Sheets in the Background
+        fetch(getRequestUrl, { method: "GET" })
+            .then(response => response.json())
+            .then(data => {
+                console.log("✅ Server response:", data);
+                if (data.status !== "success") {
+                    console.error("❌ Server returned an error:", data);
+                    alert("Error submitting form. Please try again.");
+                }
+            })
+            .catch(error => {
+                console.error("❌ Fetch request failed:", error);
+                alert("🚨 There was an issue submitting the form. Check console for details.");
+            });
+
+        // ✅ Clear Form Fields Immediately After Clicking Send
+        contactForm.reset();
+    });
 }
+
+// ✅ Show Thank You Message Function (No Delay)
+function showThankYouMessage() {
+    console.log("🎉 Displaying thank-you message...");
+    
+    let thankYouMessage = document.getElementById("thank-you-message");
+    
+    if (!thankYouMessage) {
+        // If thank-you message doesn't exist, create it
+        thankYouMessage = document.createElement("p");
+        thankYouMessage.id = "thank-you-message";
+        thankYouMessage.textContent = "🎉 Thank you! Your message has been sent.";
+        thankYouMessage.style.color = "green";
+        thankYouMessage.style.fontWeight = "bold";
+        thankYouMessage.style.marginTop = "10px";
+        document.getElementById("contact-form").appendChild(thankYouMessage);
+    }
+
+    thankYouMessage.style.display = "block";
+
+    // Hide the message after 3 seconds
+    setTimeout(() => {
+        console.log("🕒 Hiding thank-you message...");
+        thankYouMessage.style.display = "none";
+    }, 3000);
+}
+
+// ✅ Ensure the function runs when the page loads
+document.addEventListener("DOMContentLoaded", initializeContactForm);
 
 
 
@@ -571,8 +605,7 @@ document.addEventListener("DOMContentLoaded", function () {
   // **Newsletter Page Slider**
   newsSlider();
 
-  // **Contact Form Handler**
-  contactForm();
+
 
   //** FeedBack Form */
   initializeFeedbackForm();
