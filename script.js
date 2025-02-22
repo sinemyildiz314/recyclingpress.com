@@ -454,18 +454,17 @@ function downloadUserInteractionData() {
 
 
 
-// ✅ Recycling Sorting Game - Restored Drag & Drop// TouchScreen on mobile Functionality
+// ✅ Recycling Sorting Game - Restored Drag & Drop // Desktop ONLY
+
 function startRecyclingGame() {
     console.log("♻️ Initializing Recycling Sorting Game...");
 
-    // ✅ Ensure the Game Container Exists
     const gameContainer = document.querySelector(".recycling-game");
     if (!gameContainer) {
         console.error("❌ ERROR: Recycling Game Container Not Found! Check your HTML.");
         return;
     }
 
-    // ✅ Select Waste Items and Bins
     const wasteItems = gameContainer.querySelectorAll(".draggable");
     const bins = gameContainer.querySelectorAll(".bin");
     const gameMessage = document.getElementById("game-message");
@@ -481,7 +480,7 @@ function startRecyclingGame() {
     let correctCount = 0;
     const totalItems = wasteItems.length;
 
-    // ✅ Enable Drag & Drop for Desktop
+    // ✅ Step 1: Enable Drag & Drop for Desktop
     wasteItems.forEach(item => {
         item.draggable = true;
         console.log(`🔹 Making item draggable: ${item.alt} (Type: ${item.dataset.type})`);
@@ -492,12 +491,14 @@ function startRecyclingGame() {
         });
     });
 
-    // ✅ Enable Touch Dragging for Mobile
+    // ✅ Step 2: Enable Touch Dragging for Mobile
     wasteItems.forEach(item => {
         item.addEventListener("touchstart", event => {
             event.preventDefault();
             console.log(`📱 Touch start: ${item.dataset.type}`);
             item.classList.add("dragging");
+
+            // Store touched element globally
             window.currentDraggedItem = item;
         });
     });
@@ -522,7 +523,7 @@ function startRecyclingGame() {
         }
     });
 
-    // ✅ Ensure Bins Accept Dragged Items (Desktop)
+    // ✅ Step 3: Enable Desktop Drag & Drop Bins
     bins.forEach(bin => {
         bin.addEventListener("dragover", event => {
             event.preventDefault();
@@ -542,7 +543,7 @@ function startRecyclingGame() {
     console.log("✅ Recycling Sorting Game initialized successfully!");
 }
 
-// ✅ Handle Drop for Desktop
+// ✅ New Function: Handle Drop for Desktop
 function handleDrop(bin, wasteType) {
     const gameMessage = document.getElementById("game-message");
 
@@ -550,6 +551,7 @@ function handleDrop(bin, wasteType) {
         gameMessage.textContent = "✅ Correct! Good job!";
         gameMessage.style.color = "green";
 
+        // Remove the correctly sorted item
         document.querySelector(`img[data-type="${wasteType}"]`).remove();
 
         if (document.querySelectorAll(".draggable").length === 0) {
@@ -564,7 +566,7 @@ function handleDrop(bin, wasteType) {
     setTimeout(() => { gameMessage.textContent = ""; }, 2000);
 }
 
-// ✅ Handle Drop for Mobile
+// ✅ New Function: Handle Drop for Mobile
 function handleDropMobile(bin, item) {
     if (!item) return;
     const wasteType = item.dataset.type;
@@ -576,8 +578,7 @@ function handleDropMobile(bin, item) {
 // ✅ Ensure It Runs After the DOM Fully Loads
 // document.addEventListener("DOMContentLoaded", function () {
 //     setTimeout(() => {
-//         console.log("🔄 Running `startRecyclingGame()` after delay...");
-//         startRecyclingGame();
+//         startRecyclingGame(); 
 //     }, 500);
 // });
 
@@ -597,143 +598,51 @@ function launchConfetti() {
   }, 100);
 }
 
+
   // **Newsletter Signup Animation**
-  function startRecyclingGame() {
-    console.log("♻️ Initializing Recycling Sorting Game...");
+  function initializeNewsletterSignup() {
+    const newsletterSignup = document.getElementById("newsletter-signup");
 
-    const gameContainer = document.querySelector(".recycling-game");
-    if (!gameContainer) {
-        console.error("❌ ERROR: Recycling Game Container Not Found! Check your HTML.");
+    if (!newsletterSignup) {
+        console.error("❌ Newsletter signup container not found.");
         return;
     }
 
-    const wasteItems = gameContainer.querySelectorAll(".draggable");
-    const bins = gameContainer.querySelectorAll(".bin");
-    const gameMessage = document.getElementById("game-message");
+    console.log("📧 Newsletter signup element found");
 
-    console.log(`🟢 Found ${wasteItems.length} draggable items inside container`);
-    console.log(`🟢 Found ${bins.length} bins inside container`);
+    // Show the newsletter signup after 2 seconds
+    setTimeout(() => newsletterSignup.classList.add("show"), 2000);
 
-    if (wasteItems.length === 0 || bins.length === 0) {
-        console.error("❌ ERROR: No draggable items or bins found! The game will not start.");
+  // Get elements
+    const subscribeButton = document.getElementById("newsletter-subscribe");
+    const emailInput = document.getElementById("newsletter-email");
+    const message = document.getElementById("newsletter-message");
+
+    if (!subscribeButton || !emailInput || !message) {
+        console.error("❌ Missing one or more newsletter elements.");
         return;
     }
 
-    let correctCount = 0;
-    const totalItems = wasteItems.length;
+    // Attach event listener to the subscribe button
+    subscribeButton.addEventListener("click", function () {
+        const email = emailInput.value.trim();
 
-    // ✅ Enable Drag & Drop for Desktop
-    wasteItems.forEach(item => {
-        item.draggable = true;
-        console.log(`🔹 Making item draggable: ${item.alt} (Type: ${item.dataset.type})`);
-
-        item.addEventListener("dragstart", event => {
-            event.dataTransfer.setData("wasteType", item.dataset.type);
-            console.log(`🚀 Drag started: ${item.dataset.type}`);
-        });
-    });
-
-    // ✅ Enable Touch Dragging for Mobile
-    wasteItems.forEach(item => {
-        item.addEventListener("touchstart", event => {
-            event.preventDefault();
-            console.log(`📱 Touch start: ${item.dataset.type}`);
-            item.classList.add("dragging");
-            window.currentDraggedItem = item;
-        });
-    });
-
-    document.addEventListener("touchmove", event => {
-        event.preventDefault();
-        console.log("📱 Touch move event detected");
-    });
-
-    document.addEventListener("touchend", event => {
-        event.preventDefault();
-        console.log("📱 Touch end event detected");
-
-        const touchX = event.changedTouches[0].clientX;
-        const touchY = event.changedTouches[0].clientY;
-        console.log(`📍 Touch ended at X: ${touchX}, Y: ${touchY}`);
-
-        const target = document.elementFromPoint(touchX, touchY);
-        if (target) {
-            console.log(`🎯 Touch ended on element: ${target.classList}`);
+        // ✅ Improved Email Validation using RegExp
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (emailPattern.test(email)) {
+            message.textContent = "✅ Thank you for subscribing!";
+            message.style.color = "green";
+            emailInput.value = "";  // Clear input field after success
         } else {
-            console.error("❌ No element found at touch end position!");
+            message.textContent = "❌ Please enter a valid email address.";
+            message.style.color = "red";
         }
 
-        if (target && target.classList.contains("bin")) {
-            handleDropMobile(target, window.currentDraggedItem);
-        }
-
-        if (window.currentDraggedItem) {
-            window.currentDraggedItem.classList.remove("dragging");
-            window.currentDraggedItem = null;
-        }
+        // Ensure message is visible
+        message.style.display = "block";
+        console.log(`📩 Subscription attempt: ${email}`);
     });
-
-    // ✅ Ensure Bins Accept Dragged Items (Desktop)
-    bins.forEach(bin => {
-        bin.addEventListener("dragover", event => {
-            event.preventDefault();
-            console.log(`🚛 Dragging over: ${bin.dataset.type}`);
-        });
-
-        bin.addEventListener("drop", event => {
-            event.preventDefault();
-            const wasteType = event.dataTransfer.getData("wasteType");
-
-            console.log(`🗑️ Dropped into bin: ${bin.dataset.type}, Dragged item: ${wasteType}`);
-
-            handleDrop(bin, wasteType);
-        });
-    });
-
-    console.log("✅ Recycling Sorting Game initialized successfully!");
 }
-
-// ✅ Handle Drop for Mobile
-function handleDropMobile(bin, item) {
-    if (!item) {
-        console.error("❌ No item was dragged on mobile!");
-        return;
-    }
-    const wasteType = item.dataset.type;
-    console.log(`📱 Mobile drop detected - Item: ${wasteType}, Bin: ${bin.dataset.type}`);
-
-    handleDrop(bin, wasteType);
-}
-
-// ✅ Handle Drop for Desktop
-function handleDrop(bin, wasteType) {
-    const gameMessage = document.getElementById("game-message");
-
-    if (wasteType === bin.dataset.type) {
-        gameMessage.textContent = "✅ Correct! Good job!";
-        gameMessage.style.color = "green";
-
-        document.querySelector(`img[data-type="${wasteType}"]`).remove();
-
-        if (document.querySelectorAll(".draggable").length === 0) {
-            launchConfetti();
-            gameMessage.textContent = "🎉 You sorted all items correctly!";
-        }
-    } else {
-        gameMessage.textContent = "❌ Wrong bin! Try again.";
-        gameMessage.style.color = "red";
-    }
-
-    setTimeout(() => { gameMessage.textContent = ""; }, 2000);
-}
-
-// ✅ Ensure It Runs After the DOM Fully Loads
-document.addEventListener("DOMContentLoaded", function () {
-    setTimeout(() => {
-        console.log("🔄 Running `startRecyclingGame()` after delay...");
-        startRecyclingGame();
-    }, 500);
-});
 
 /*********************
  1) MAIN DOM: Event Listeners (Optimized & Merged)
@@ -741,7 +650,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
   console.log("🚀 DOM fully loaded");
   // **🚀 Now Start Recycling Sorting Game**
-//   startRecyclingGame(); // 
+  startRecyclingGame(); // 
   
      //Image SLider
      initImageSlider();
