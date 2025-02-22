@@ -101,7 +101,7 @@ To maintain a clean, organized, and scalable project structure, I followed this 
 📁 RECYCLINGPRESS.COM/                # 🌍 Main project directory
 │── 📁├── images/                     # All website images
 │── 📁├── project_strategy/               
-│         ├── documentation.pdf       # Project journey, design processes, etc. 
+│         ├── documentation.md       # Project journey, design processes, etc. 
 │         ├── sitemap.png             # 📸 Visual Sitemap (for documentation)                  
 │ 
 │
