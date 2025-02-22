@@ -486,3 +486,13 @@ footer {
     font-weight: bold;
     margin-top: 15px;
 }
+
+.draggable {
+    cursor: grab;
+    touch-action: none;
+}
+
+.draggable.dragging {
+    opacity: 0.5;
+    transform: scale(1.1);
+}

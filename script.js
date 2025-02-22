@@ -454,54 +454,135 @@ function downloadUserInteractionData() {
 
 
 
-// ✅ Recycling Sorting Game - Restored Drag & Drop Functionality
+// ✅ Recycling Sorting Game - Restored Drag & Drop// TouchScreen on mobile Functionality
 function startRecyclingGame() {
-  console.log("♻️ Initializing Recycling Sorting Game...");
+    console.log("♻️ Initializing Recycling Sorting Game...");
 
-  const wasteItems = document.querySelectorAll(".draggable");
-  const bins = document.querySelectorAll(".bin");
-  const gameMessage = document.getElementById("game-message");
+    // ✅ Ensure the Game Container Exists
+    const gameContainer = document.querySelector(".recycling-game");
+    if (!gameContainer) {
+        console.error("❌ ERROR: Recycling Game Container Not Found! Check your HTML.");
+        return;
+    }
 
-  let correctCount = 0;
-  const totalItems = wasteItems.length;
+    // ✅ Select Waste Items and Bins
+    const wasteItems = gameContainer.querySelectorAll(".draggable");
+    const bins = gameContainer.querySelectorAll(".bin");
+    const gameMessage = document.getElementById("game-message");
 
-  // Enable Dragging for Waste Items
-  wasteItems.forEach(item => {
-      item.draggable = true;
-      item.addEventListener("dragstart", event => {
-          event.dataTransfer.setData("wasteType", item.dataset.type);
-      });
-  });
+    console.log(`🟢 Found ${wasteItems.length} draggable items inside container`);
+    console.log(`🟢 Found ${bins.length} bins inside container`);
 
-  // Enable Bins to Accept Waste Items
-  bins.forEach(bin => {
-      bin.addEventListener("dragover", event => event.preventDefault());
+    if (wasteItems.length === 0 || bins.length === 0) {
+        console.error("❌ ERROR: No draggable items or bins found! The game will not start.");
+        return;
+    }
 
-      bin.addEventListener("drop", event => {
-          event.preventDefault();
-          const wasteType = event.dataTransfer.getData("wasteType");
+    let correctCount = 0;
+    const totalItems = wasteItems.length;
 
-          if (wasteType === bin.dataset.type) {
-              gameMessage.textContent = "✅ Correct! Good job!";
-              gameMessage.style.color = "green";
+    // ✅ Enable Drag & Drop for Desktop
+    wasteItems.forEach(item => {
+        item.draggable = true;
+        console.log(`🔹 Making item draggable: ${item.alt} (Type: ${item.dataset.type})`);
 
-              // Remove the item when correctly sorted
-              document.querySelector(`img[data-type="${wasteType}"]`).remove();
-              correctCount++;
+        item.addEventListener("dragstart", event => {
+            event.dataTransfer.setData("wasteType", item.dataset.type);
+            console.log(`🚀 Drag started: ${item.dataset.type}`);
+        });
+    });
 
-              if (correctCount === totalItems) {
-                  launchConfetti();
-                  gameMessage.textContent = "🎉 You sorted all items correctly!";
-              }
-          } else {
-              gameMessage.textContent = "❌ Wrong bin! Try again.";
-              gameMessage.style.color = "red";
-          }
+    // ✅ Enable Touch Dragging for Mobile
+    wasteItems.forEach(item => {
+        item.addEventListener("touchstart", event => {
+            event.preventDefault();
+            console.log(`📱 Touch start: ${item.dataset.type}`);
+            item.classList.add("dragging");
+            window.currentDraggedItem = item;
+        });
+    });
 
-          setTimeout(() => { gameMessage.textContent = ""; }, 2000);
-      });
-  });
+    document.addEventListener("touchmove", event => {
+        event.preventDefault();
+        console.log("📱 Touch move event detected");
+    });
+
+    document.addEventListener("touchend", event => {
+        event.preventDefault();
+        console.log("📱 Touch end event detected");
+
+        const target = document.elementFromPoint(event.changedTouches[0].clientX, event.changedTouches[0].clientY);
+        if (target && target.classList.contains("bin")) {
+            handleDropMobile(target, window.currentDraggedItem);
+        }
+
+        if (window.currentDraggedItem) {
+            window.currentDraggedItem.classList.remove("dragging");
+            window.currentDraggedItem = null;
+        }
+    });
+
+    // ✅ Ensure Bins Accept Dragged Items (Desktop)
+    bins.forEach(bin => {
+        bin.addEventListener("dragover", event => {
+            event.preventDefault();
+            console.log(`🚛 Dragging over: ${bin.dataset.type}`);
+        });
+
+        bin.addEventListener("drop", event => {
+            event.preventDefault();
+            const wasteType = event.dataTransfer.getData("wasteType");
+
+            console.log(`🗑️ Dropped into bin: ${bin.dataset.type}, Dragged item: ${wasteType}`);
+
+            handleDrop(bin, wasteType);
+        });
+    });
+
+    console.log("✅ Recycling Sorting Game initialized successfully!");
 }
+
+// ✅ Handle Drop for Desktop
+function handleDrop(bin, wasteType) {
+    const gameMessage = document.getElementById("game-message");
+
+    if (wasteType === bin.dataset.type) {
+        gameMessage.textContent = "✅ Correct! Good job!";
+        gameMessage.style.color = "green";
+
+        document.querySelector(`img[data-type="${wasteType}"]`).remove();
+
+        if (document.querySelectorAll(".draggable").length === 0) {
+            launchConfetti();
+            gameMessage.textContent = "🎉 You sorted all items correctly!";
+        }
+    } else {
+        gameMessage.textContent = "❌ Wrong bin! Try again.";
+        gameMessage.style.color = "red";
+    }
+
+    setTimeout(() => { gameMessage.textContent = ""; }, 2000);
+}
+
+// ✅ Handle Drop for Mobile
+function handleDropMobile(bin, item) {
+    if (!item) return;
+    const wasteType = item.dataset.type;
+    console.log(`📱 Mobile drop detected - Item: ${wasteType}, Bin: ${bin.dataset.type}`);
+
+    handleDrop(bin, wasteType);
+}
+
+// ✅ Ensure It Runs After the DOM Fully Loads
+// document.addEventListener("DOMContentLoaded", function () {
+//     setTimeout(() => {
+//         console.log("🔄 Running `startRecyclingGame()` after delay...");
+//         startRecyclingGame();
+//     }, 500);
+// });
+
+
+
 
 // ✅ Launch Confetti When Game is Completed
 function launchConfetti() {
